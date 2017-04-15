@@ -1,0 +1,11 @@
+MongoDB: 
+DB Name: test
+Collection Name: Customer
+
+MySQL:
+DB Name: db_example
+Table Name: User
+
+Commands to kill a process:
+Display all working ports: netstat -a -n -o
+Force kill task: TaskKill.exe /F /PID <pid_number>
