@@ -9,3 +9,6 @@ Table Name: User
 Commands to kill a process:
 Display all working ports: netstat -a -n -o
 Force kill task: TaskKill.exe /F /PID <pid_number>
+
+Running the application on Eclipse: 
+Right click on project --> Run As --> Maven Build --> Goals: spring-boot:run --> Click on Run
