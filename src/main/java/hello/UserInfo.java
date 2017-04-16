@@ -1,26 +1,32 @@
 package hello;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class User {
+@Table(name="USERINFO")
+public class UserInfo {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @Column(name="fb_id")   
+    private String fb_id;
 
     private String name;
-
+    
+    private String phone_number;
+    
     private String email;
 
-	public Integer getId() {
-		return id;
+	
+	public String getFb_id() {
+		return fb_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setFb_id(String fbId) {
+		this.fb_id = fbId;
 	}
 
 	public String getName() {
@@ -31,6 +37,14 @@ public class User {
 		this.name = name;
 	}
 
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phoneNumber) {
+		this.phone_number = phoneNumber;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -39,5 +53,5 @@ public class User {
 		this.email = email;
 	}
 
-
+	
 }
