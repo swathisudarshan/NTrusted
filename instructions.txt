@@ -13,6 +13,7 @@ Force kill task: TaskKill.exe /F /PID <pid_number>
 Running the application on Eclipse: 
 Right click on project --> Run As --> Maven Build --> Goals: spring-boot:run --> Click on Run
 
+<<<<<<< Updated upstream
 Basic APIs:
 
 user add: 
@@ -26,3 +27,5 @@ localhost:8080/product/add?userId=asdadgewfgvs2szdvsesf&productName=camera&produ
 
 product findAll:
 localhost:8080/product/all
+=======
+>>>>>>> Stashed changes
