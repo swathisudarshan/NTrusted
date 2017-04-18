@@ -47,36 +47,6 @@ public class UserController {
     }
     return "The user id is: " + userId;
   }
- /* 
-  @RequestMapping(value="/add") // Map ONLY GET Requests
-	public @ResponseBody String addNewUser (@RequestParam String id, @RequestParam String name
-			, @RequestParam String email) {
-		// @ResponseBody means the returned String is the response, not a view name
-		// @RequestParam means it is a parameter from the GET or POST request
-		//MySQL
-		System.out.println("***Name :"+name+" Email: "+email);
-		try{
-			User user = new User(id,name,email);
-			userDao.Create(user);
-		}
-		catch(Exception ex){
-			return ex.getMessage();
-		}
-		
-		//Mongo
-		GenerateMongoMapping mapping  = new GenerateMongoMapping();
-		Customer cus1 = mapping.generateMongoJson();
-				
-		cuRepo.save(cus1);
-			    
-		getCustomerByUserId(123);
-		return "Saved";
-	}
-	
-	
-*/
-  
-  
 
   @RequestMapping(value="/save")
   @ResponseBody
