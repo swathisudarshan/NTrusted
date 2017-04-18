@@ -1,15 +1,17 @@
 package ntrusted.controllers;
 
-import ntrusted.mongoModel.Customer;
-import ntrusted.models.User;
-import ntrusted.models.UserDao;
-import ntrusted.mongo_services.GenerateMongoMapping;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import ntrusted.models.User;
+import ntrusted.models.UserDao;
+import ntrusted.mongoModel.Customer;
+import ntrusted.mongo_services.GenerateMongoMapping;
 
 @Controller
 @RequestMapping(value="/user")
@@ -48,7 +50,7 @@ public class UserController {
     return "The user id is: " + userId;
   }
 
-  @RequestMapping(value="/save")
+  @RequestMapping(value="/signup")
   @ResponseBody
   public String create(String id, String name, String email, String phone) {
     try {
@@ -57,11 +59,14 @@ public class UserController {
       
     //Mongo
     		GenerateMongoMapping mapping  = new GenerateMongoMapping();
-    		Customer cus1 = mapping.generateMongoJson();
+    		List<String> list1 = new ArrayList<String>();
+    		list1.add("12345");
+    		list1.add("12346");
+    		Customer cus1 = mapping.generateMongoJson(id,list1);
     				
     		cuRepo.save(cus1);
     			    
-    		getCustomerByUserId(123);
+    		//getCustomerByUserId(123);
       //Customer cus1=new Customer(name,email);
       //cuRepo.save(cus1);
     }
@@ -71,9 +76,9 @@ public class UserController {
     return "User succesfully saved!";
   }
   
-  public Customer getCustomerByUserId(final int userId){
-		System.out.println("*************"+cuRepo.findByUserId(userId));
-		return cuRepo.findByUserId(userId);
+  public Customer getCustomerByUserId(final String userId){
+		System.out.println("*************"+cuRepo.findByCustomerId(userId));
+		return cuRepo.findByCustomerId(userId);
 		
 	}
 

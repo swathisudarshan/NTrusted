@@ -1,9 +1,9 @@
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\models\User.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\mongoModel\Connection.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\controllers\UserController.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\mongoModel\Customer.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\Application.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\configs\DatabaseConfig.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\controllers\CustomerRepository.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\mongo_services\GenerateMongoMapping.java
-C:\Users\Swathi Sudarshan\Desktop\Copy of TrustApplication\src\main\java\ntrusted\models\UserDao.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/controllers/CustomerRepository.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/configs/DatabaseConfig.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/mongo_services/GenerateMongoMapping.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/models/User.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/Application.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/controllers/UserController.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/models/UserDao.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/mongoModel/Customer.java
+/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/mongoModel/Connection.java

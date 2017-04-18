@@ -9,37 +9,29 @@ import org.springframework.data.annotation.Id;
 public class Customer {
 
     @Id
-    private int userId;
+    private String customerId;
 
     private List<Connection> Connections = new ArrayList<Connection>();
-    
-    private int activeFriend;
-
-   
-
-
-
+  
 	public Customer() {}
 
-    
-
-    public Customer(int userid, List<Connection> connections) {
+    public Customer(String userid, List<Connection> connections) {
 		super();
-		this.userId = userid;
+		this.customerId = userid;
 		this.Connections = connections;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [userid=" + userId + ", Connections=" + Connections + "]";
+		return "Customer [userid=" + customerId + ", Connections=" + Connections + "]";
 	}
 
-	public int getUserId() {
-		return this.userId;
+	public String getCustomerId() {
+		return this.customerId;
 	}
 
-	public void setUserid(int userid) {
-		this.userId = userid;
+	public void setCustomerId(String userid) {
+		this.customerId = userid;
 	}
 
 	public List<Connection> getConnections() {
@@ -52,11 +44,5 @@ public class Customer {
 	{
 		this.Connections.add(con);
 	}
-	 public int getActiveFriend() {
-			return activeFriend;
-		}
-
-	public void setActiveFriend(int activeFriend) {
-			this.activeFriend = activeFriend;
-		}
+	 
 }
