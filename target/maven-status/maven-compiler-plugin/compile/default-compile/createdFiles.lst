@@ -1,0 +1,9 @@
+ntrusted\controllers\CustomerRepository.class
+ntrusted\models\UserDao.class
+ntrusted\mongoModel\Connection.class
+ntrusted\models\User.class
+ntrusted\controllers\UserController.class
+ntrusted\mongo_services\GenerateMongoMapping.class
+ntrusted\configs\DatabaseConfig.class
+ntrusted\Application.class
+ntrusted\mongoModel\Customer.class
