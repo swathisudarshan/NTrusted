@@ -16,8 +16,8 @@ Right click on project --> Run As --> Maven Build --> Goals: spring-boot:run -->
 <<<<<<< Updated upstream
 Basic APIs:
 
-user add: 
-localhost:8080/demo/add?fbId=asfsegvs4sfdbesdfseggs&name=Swathi&phoneNumber=0987654321&email=swathi.sujay03@gmail.com
+user Signup: 
+http://localhost:8080/user/signup?id=123&name=Ketki&email=K@gmail.com&phone=123456789
 
 user findAll:
 http://localhost:8080/demo/all
