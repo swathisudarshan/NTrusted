@@ -7,3 +7,4 @@ ntrusted/controllers/UserController.class
 ntrusted/configs/DatabaseConfig.class
 ntrusted/models/User.class
 ntrusted/mongo_services/GenerateMongoMapping.class
+ntrusted/controllers/FacebookFriendList.class
