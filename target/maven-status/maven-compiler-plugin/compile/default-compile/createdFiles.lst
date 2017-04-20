@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+ntrusted/mongoModel/Customer.class
+ntrusted/models/UserDao.class
+ntrusted/controllers/CustomerRepository.class
+ntrusted/Application.class
+ntrusted/mongoModel/Connection.class
+ntrusted/controllers/UserController.class
+ntrusted/configs/DatabaseConfig.class
+ntrusted/models/User.class
+ntrusted/mongo_services/GenerateMongoMapping.class
+ntrusted/controllers/FacebookFriendList.class
+=======
 ntrusted\models\UserDao.class
 ntrusted\controllers\UserController.class
 ntrusted\configs\DatabaseConfig.class
@@ -17,3 +29,4 @@ ntrusted\models\TransactionDao.class
 ntrusted\models\RequestDao.class
 ntrusted\models\CategoryDao.class
 ntrusted\mongoModel\Customer.class
+>>>>>>> b3bb8c38ef5fda896a11995594beea239013fca7

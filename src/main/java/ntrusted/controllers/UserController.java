@@ -1,6 +1,5 @@
 package ntrusted.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,18 +56,17 @@ public class UserController {
       User user = new User(id, name, email, phone);
       _userDao.save(user);
       
-    //Mongo
+    
+      //Mongo
     		GenerateMongoMapping mapping  = new GenerateMongoMapping();
-    		List<String> list1 = new ArrayList<String>();
-    		list1.add("12345");
-    		list1.add("12346");
+    		//List<String> list1 = new ArrayList<String>();
+    		FacebookFriendList friendClassObject = new FacebookFriendList();
+    		List<String> list1 = friendClassObject.getFriends(id);
+    		
     		Customer cus1 = mapping.generateMongoJson(id,list1);
     				
-    		cuRepo.save(cus1);
-    			    
-    		//getCustomerByUserId(123);
-      //Customer cus1=new Customer(name,email);
-      //cuRepo.save(cus1);
+    		cuRepo.save(cus1);	
+
     }
     catch(Exception ex) {
       return ex.getMessage();
