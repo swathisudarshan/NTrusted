@@ -1,5 +1,7 @@
 package ntrusted.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -131,12 +133,20 @@ public class RequestController {
 			ad.setActive(2);
 			_adDao.update(ad);
 			req.setResponse(response);
-			Date d = new Date();
-			
-			
-			
-			//Transaction trx = new Transaction(ad, req, 0, 0,
-				//	d.getDate(),null,0,0,renter,rentee, 1);
+			//convert date format to desired format
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			//System.out.println(formatter.format(date));
+			//Store the date into a string 
+			String d = formatter.format(date); 
+			try {
+				//parse the string to date using .parse(string) function and add it to transaction table.
+				Transaction trx = new Transaction(ad, req, 0, 0,
+						formatter.parse(d),null,0,0,renter,rentee, 1);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			//Add to trx i.e start trx
 			
