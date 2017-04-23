@@ -1,0 +1,31 @@
+MongoDB: 
+DB Name: test
+Collection Name: Customer
+
+MySQL:
+DB Name: db_example
+Table Name: User
+
+Commands to kill a process:
+Display all working ports: netstat -a -n -o
+Force kill task: TaskKill.exe /F /PID <pid_number>
+
+Running the application on Eclipse: 
+Right click on project --> Run As --> Maven Build --> Goals: spring-boot:run --> Click on Run
+
+<<<<<<< Updated upstream
+Basic APIs:
+
+user Signup: 
+http://localhost:8080/user/signup?id=123&name=Ketki&email=K@gmail.com&phone=123456789
+
+user findAll:
+http://localhost:8080/demo/all
+
+product add:
+localhost:8080/product/add?userId=asdadgewfgvs2szdvsesf&productName=camera&productDescription=camera&productPrice=10.3&productRating=5 
+
+product findAll:
+localhost:8080/product/all
+=======
+>>>>>>> Stashed changes
