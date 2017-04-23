@@ -9,29 +9,37 @@ import org.springframework.data.annotation.Id;
 public class Customer {
 
     @Id
-    private String customerId;
+    private String userId;
 
     private List<Connection> Connections = new ArrayList<Connection>();
-  
+    
+    
+
+   
+
+
+
 	public Customer() {}
+
+    
 
     public Customer(String userid, List<Connection> connections) {
 		super();
-		this.customerId = userid;
+		this.userId = userid;
 		this.Connections = connections;
 	}
 
 	@Override
 	public String toString() {
-		return "Customer [userid=" + customerId + ", Connections=" + Connections + "]";
+		return "Customer [userid=" + userId + ", Connections=" + Connections + "]";
 	}
 
-	public String getCustomerId() {
-		return this.customerId;
+	public String getUserId() {
+		return this.userId;
 	}
 
-	public void setCustomerId(String userid) {
-		this.customerId = userid;
+	public void setUserid(String userid) {
+		this.userId = userid;
 	}
 
 	public List<Connection> getConnections() {

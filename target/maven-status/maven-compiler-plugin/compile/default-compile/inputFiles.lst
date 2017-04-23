@@ -1,22 +1,13 @@
-<<<<<<< HEAD
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/controllers/CustomerRepository.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/configs/DatabaseConfig.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/mongo_services/GenerateMongoMapping.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/models/User.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/Application.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/controllers/UserController.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/models/UserDao.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/mongoModel/Customer.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/controllers/FacebookFriendList.java
-/Users/saurabhkulkarni/NTrusted/src/main/java/ntrusted/mongoModel/Connection.java
-=======
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\controllers\AdvertisementController.java
+C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\controllers\FacebookFriendList.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\controllers\CategoryController.java
+C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\controllers\RequestController.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\models\UserDao.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\configs\DatabaseConfig.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\mongoModel\Customer.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\controllers\UserController.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\mongo_services\GenerateMongoMapping.java
+C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\controllers\TrustCalcController.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\models\User.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\mongoModel\Connection.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\Application.java
@@ -27,6 +18,6 @@ C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\n
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\models\Advertisement.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\models\Category.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\models\RequestDao.java
+C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\controllers\SearchProductController.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\models\Request.java
 C:\Users\Swathi Sudarshan\Documents\GitHub\Project_295B\NTrusted\src\main\java\ntrusted\models\TransactionDao.java
->>>>>>> b3bb8c38ef5fda896a11995594beea239013fca7

@@ -42,7 +42,7 @@ public class UserDao {
         .uniqueResult();
   }
 
-  public User getById(String id) {
+  public User getById(String id) {	
     return (User) getSession().load(User.class, id);
   }
 
@@ -50,5 +50,4 @@ public class UserDao {
     getSession().update(user);
     return;
   }
-
 } // class UserDao

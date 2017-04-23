@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,15 +23,15 @@ public class Request {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int requestId;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="renterId")
-	private User renter;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="sender")
+	private User sender;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="renteeId")
-	private User rentee;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="receiver")
+	private User receiver;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="adId")
 	private Advertisement advertisement;
 	
@@ -38,20 +39,27 @@ public class Request {
 	@Column(name="requestDate")
 	private Date requestDate;
 	
+	//Response from receiver end: int 1: active, 0:declined 2:Accepted
 	@NotNull
 	@Column(name="response")
 	private int response;
+	
+	//Request Type: Who is sending the request - int 1: borrow 2:lend
+	@NotNull
+	@Column(name="requestType")
+	private int requestType;
 	
 	public Request(){
 		
 	}
 
-	public Request(int requestId, User renter, User rentee, Advertisement advertisement, int response) {
-		this.requestId = requestId;
-		this.renter = renter;
-		this.rentee = rentee;
+	public Request(User sender, User receiver, Advertisement advertisement, int response, int requestType) {
+		
+		this.sender = sender;
+		this.receiver = receiver;
 		this.advertisement = advertisement;
 		this.response = response;
+		this.requestType = requestType;
 	}
 
 	public int getRequestId() {
@@ -60,22 +68,6 @@ public class Request {
 
 	public void setRequestId(int requestId) {
 		this.requestId = requestId;
-	}
-
-	public User getRenter() {
-		return renter;
-	}
-
-	public void setRenter(User renter) {
-		this.renter = renter;
-	}
-
-	public User getRentee() {
-		return rentee;
-	}
-
-	public void setRentee(User rentee) {
-		this.rentee = rentee;
 	}
 
 	public Advertisement getAdvertisement() {
@@ -100,6 +92,30 @@ public class Request {
 
 	public void setRequestDate(Date requestDate) {
 		this.requestDate = requestDate;
+	}
+
+	public User getSender() {
+		return sender;
+	}
+
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+
+	public User getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
+	}
+
+	public int getRequestType() {
+		return requestType;
+	}
+
+	public void setRequestType(int requestType) {
+		this.requestType = requestType;
 	}
 	
 }

@@ -5,6 +5,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ntrusted.models.Advertisement;
@@ -39,23 +41,28 @@ public class AdvertisementController {
 	    return "Advertisement succesfully deleted!";
 	  }
 	 
-	 @RequestMapping(value="/addProduct")
+	 @RequestMapping(value="/addLendingProduct", method=RequestMethod.POST)
 	  @ResponseBody
-	  public String createAdvertisement(String productName, 
-			 String productDescription, float productPrice, Date postDate,
-			 Boolean active, int categoryId, String userId) {
+	  public String createAdvertisement(@RequestParam(value="productName")String productName, 
+			  @RequestParam(value="productDescription") String productDescription, 
+			  @RequestParam(value="productPrice") float productPrice, 
+			  @RequestParam(value="postDate")Date postDate,
+			  @RequestParam(value="active") int active, 
+			  @RequestParam(value="categoryId") int categoryId, 
+			  @RequestParam(value="userId") String userId,
+			  @RequestParam(value="adType") int adType) {
 	    try {
 	    	//Category category = new Category(categoryId);
 	    	Category category = _catDao.getById(categoryId);
 	    	User user = _userDao.getById(userId);
 	    	System.out.println(category.getCategoryName());
 	      Advertisement ad = new Advertisement(productName, productDescription, 
-	    		  							   productPrice, postDate, active, category, user);
+	    		  							   productPrice, postDate, active, category, user,adType);
 	      _adDao.save(ad);
 	    }
 	    catch(Exception ex) {
 	      return ex.getMessage();
 	    }
-	    return "User succesfully saved!";
+	    return "Advertisement details saved!";
 	  }
 }
