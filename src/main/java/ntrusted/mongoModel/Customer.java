@@ -12,16 +12,8 @@ public class Customer {
     private String userId;
 
     private List<Connection> Connections = new ArrayList<Connection>();
-    
-    
-
-   
-
-
 
 	public Customer() {}
-
-    
 
     public Customer(String userid, List<Connection> connections) {
 		super();
@@ -47,6 +39,17 @@ public class Customer {
 	}
 	public void setConnections(List<Connection> connections) {
 		this.Connections = connections;
+	}
+	
+	public Connection getCon(String userId)
+	{
+		List<Connection> list = this.getConnections();
+		for(Connection con : list)
+		{
+			if(con.getUserid().equals(userId))
+				return con;
+		}
+		return null;
 	}
 	public void addConnection(Connection con)
 	{

@@ -171,6 +171,15 @@ public class Transaction {
 	public void setRentee(User rentee) {
 		this.rentee = rentee;
 	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 	
 	
 }

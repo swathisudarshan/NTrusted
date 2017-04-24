@@ -24,24 +24,42 @@ public class SearchProductController {
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
 	    
 	    try {
-	      ads = _adDao.getAds(catId);
-	      
-	 //     System.out.println("Inside Search Controller" + ads.toString());
+	      ads = _adDao.getLendingAds(catId);
 	      //Get List of user Id's for each ad
 	      List<String> userIds = new ArrayList<String>();
 	      for(Advertisement ad: ads)
 	      {
 	    	  
 	    	  String tempUserID = ad.getUser().getFbId();
-	    //	  System.out.println("Inside Search Controller" + tempUserID);
-	    //	  System.out.println("Returned rank is " + TCC.calcRenterRank(RenteeId,tempUserID));
 	    	  UnsortedResult.put(ad,TCC.calcRenterRank(RenteeId,tempUserID));
 	      }
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
 	      System.out.println(sortedResult.toString());
-	      //HashMap<Customer,>TCC.getRecommendedRenter(userIds, RenteeId);
-	 //     System.out.println("Inside Controller");
-	   //   System.out.println(ads.toString());
+	    }
+	    catch(Exception ex) {
+	    	System.out.println(ex);
+	      return "Ad not found";
+	    }
+		return ads.toString();
+	  }
+	
+	@RequestMapping(value="/fetchRentees")
+	  @ResponseBody
+	  public String getRenteeAds(int catId, String RenterId) {
+	    List<Advertisement> ads;
+	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
+	    
+	    try {
+	      ads = _adDao.getBorrowingAds(catId);
+	      //Get List of user Id's for each ad
+	      List<String> userIds = new ArrayList<String>();
+	      for(Advertisement ad: ads)
+	      {
+	    	  String tempUserID = ad.getUser().getFbId();
+	    	  UnsortedResult.put(ad,TCC.calcRenteeRank(RenterId,tempUserID));
+	      }
+	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
+	      System.out.println(sortedResult.toString());
 	    }
 	    catch(Exception ex) {
 	    	System.out.println(ex);

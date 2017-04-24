@@ -103,7 +103,9 @@ public class RequestController {
 		}
 		else
 		{
+			req.setResponse(response);
 			
+			//Get renter and rentee according to advertisement
 			Advertisement ad = req.getAdvertisement();
 			if(ad.getAdType() == 1)
 			{
@@ -131,10 +133,11 @@ public class RequestController {
 					renter = req.getSender();
 				}
 			}
-			 
+			
+			//set Advertisemnt active status as busy
 			ad.setActive(2);
 			_adDao.update(ad);
-			req.setResponse(response);
+			
 			//convert date format to desired format
 			
 				java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
@@ -142,7 +145,6 @@ public class RequestController {
 				//parse the string to date using .parse(string) function and add it to transaction table.
 				Transaction trx = new Transaction(ad, req, 0, 0,
 						date,null,0,0,renter,rentee, 1);
-			
 			
 			//Add to trx i.e start trx
 			
