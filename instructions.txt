@@ -27,5 +27,20 @@ localhost:8080/product/add?userId=asdadgewfgvs2szdvsesf&productName=camera&produ
 
 product findAll:
 localhost:8080/product/all
+
+to fetch borrowing ads: 
+/search/fetchRenters
+parameters: int catId, String RenteeId
+
+to fetch lending ads:
+/search/fetchRentees
+parameters: int catId, String RenterId
+
+
+
+
+
+
+
 =======
 >>>>>>> Stashed changes
