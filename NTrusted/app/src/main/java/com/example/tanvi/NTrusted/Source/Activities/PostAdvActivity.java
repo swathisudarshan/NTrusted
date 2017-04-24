@@ -149,14 +149,13 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
         parameters.put("productName",advertisement.getProductName());
         parameters.put("productDescription","Camera Needed !");
         parameters.put("productPrice",advertisement.getProductPrice());
-        parameters.put("postDate","2017-04-04");
         parameters.put("categoryId",String.valueOf(advertisement.getProductCategory()));
         parameters.put("active", "1");
         parameters.put("userId","1310902888949199");
         parameters.put("adType","1");
 
 
-        System.out.println("Parameters: Product Name: "+parameters.get("productName")+" Description:  "+parameters.get("productDesc")+" Price: "+parameters.get("productPrice"));
+        System.out.println("Parameters: Product Name: "+parameters.get("productName")+" Description:  "+parameters.get("productDescription")+" Price: "+parameters.get("productPrice"));
         System.out.println("Category :"+parameters.get("categoryId")+" User:"+parameters.get("userId")+" Post Date:"+parameters.get("postDate")+" Active:" +parameters.get("active") +"Type:"+parameters.get("adType"));
 
 

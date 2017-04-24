@@ -44,7 +44,10 @@ public class UserDao {
   }
 
   public User getById(String id) {	
-    return (User) getSession().load(User.class, id);
+	  return (User) getSession().createQuery(
+		        "from User where userId = :id")
+		        .setParameter("id", id)
+		        .uniqueResult();
   }
 
   public void update(User user) {

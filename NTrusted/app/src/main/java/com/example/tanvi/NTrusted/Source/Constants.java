@@ -5,8 +5,11 @@ package com.example.tanvi.NTrusted.Source;
  */
 public interface Constants {
 
+    //Server IP Address
+    //public static final String serverHost = "10.0.0.58";
+    public static final String serverHost = "10.250.99.119";
+
     //APIs
-    public static final String serverHost = "10.0.0.58";
     public static final String getAllCategories = "http://"+ Constants.serverHost+":8080/category/fetchAllCategory";
     public static final String postAdvertisement = "http://"+serverHost+":8080/advertisement/addLendingProduct";
     public static final String signUpUser ="http://"+serverHost+":8080/user/signup";

@@ -21,6 +21,7 @@ import org.hibernate.annotations.Type;
 @Table(name="advertisement")
 public class Advertisement {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int adId;

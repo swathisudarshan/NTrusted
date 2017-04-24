@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_list_item_array" >
+        <item></item>
+        <item>Car</item>
+        <item>Camera</item>
+        <item>Book</item>
+        <item>Table</item>
+        <item>Cycle</item>
+    </string-array>
+</resources>

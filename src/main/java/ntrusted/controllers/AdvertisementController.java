@@ -29,6 +29,7 @@ public class AdvertisementController {
 	 @Autowired 
 	 private CategoryDao _catDao;
 	 
+	 
 	 @Autowired
 	 private UserDao _userDao;
 	 
@@ -50,7 +51,6 @@ public class AdvertisementController {
 	  public String createAdvertisement(@RequestParam(value="productName")String productName, 
 			  @RequestParam(value="productDescription") String productDescription, 
 			  @RequestParam(value="productPrice") String productPrice, 
-			  @RequestParam(value="postDate")String postDate,
 			  @RequestParam(value="active") String active, 
 			  @RequestParam(value="categoryId") String categoryId, 
 			  @RequestParam(value="userId") String userId,
@@ -58,20 +58,28 @@ public class AdvertisementController {
 	    try {
 	    	//Category category = new Category(categoryId);
 	    	
-	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!1");
-	    	float productpriceFloat = Float.parseFloat(productPrice);
-	    	int activeInteger = Integer.parseInt(active);
-	    	int categoryInteger = Integer.parseInt(categoryId);
-	    	int adTypeInteger = Integer.parseInt(adType);
-	    	Date postDate1 = new Date(postDate);
+	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!");
+	    	
+	    	System.out.println("The parameters are : "+productName+" "+productDescription+" "+productPrice+" "+active+" "+categoryId+" "+userId+" "+adType);
+	    	
+	    	float productpriceFloat = Float.valueOf(productPrice);
+	    	int activeInteger = Integer.valueOf(active);
+	    	int categoryInteger = Integer.valueOf(categoryId);
+	    	int adTypeInteger = Integer.valueOf(adType);
+	    	System.out.println("***************"+productpriceFloat);
+	    	
 	    	
 	    	Category category = _catDao.getById(categoryInteger);
-	    	
 	    	User user = _userDao.getById(userId);
-	    	System.out.println(category.getCategoryName());
+	    	java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+	    	
+	    	System.out.println("Product Name:"+productName+" Product Desc: "+productDescription+" Product Price:"+productpriceFloat+" Active: "+activeInteger+" Category:"+category.getCategoryName()+" Ad Type:"+adTypeInteger+" User:"+user.getName());
+	    	
+	    	
+	    	
+	    	Advertisement ad = new Advertisement(productName, productDescription, productpriceFloat,date,activeInteger,category,user,adTypeInteger);
 	  
-	    	Advertisement ad = new Advertisement(productName, productDescription, 
-						   productPrice, postDate, active, category, user,adType);	
+
 				 _adDao.save(ad);
 			}
 			catch(Exception ex) {
