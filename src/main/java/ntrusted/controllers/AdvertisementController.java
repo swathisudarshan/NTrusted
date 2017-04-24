@@ -1,5 +1,8 @@
 package ntrusted.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import ntrusted.models.Advertisement;
 import ntrusted.models.AdvertisementDao;
 import ntrusted.models.Category;
 import ntrusted.models.CategoryDao;
+import ntrusted.models.Transaction;
 import ntrusted.models.User;
 import ntrusted.models.UserDao;
 
@@ -56,13 +60,19 @@ public class AdvertisementController {
 	    	Category category = _catDao.getById(categoryId);
 	    	User user = _userDao.getById(userId);
 	    	System.out.println(category.getCategoryName());
-	      Advertisement ad = new Advertisement(productName, productDescription, 
-	    		  							   productPrice, postDate, active, category, user,adType);
-	      _adDao.save(ad);
-	    }
-	    catch(Exception ex) {
-	      return ex.getMessage();
-	    }
+	  
+	    	Advertisement ad = new Advertisement(productName, productDescription, 
+						   productPrice, postDate, active, category, user,adType);	
+				 _adDao.save(ad);
+			}
+			catch(Exception ex) {
+			      return ex.getMessage();
+			    }
+			
+	      
+	     
+	    
+	    
 	    return "Advertisement details saved!";
 	  }
 }

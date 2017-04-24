@@ -2,6 +2,7 @@ package ntrusted.controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import ntrusted.models.Advertisement;
 import ntrusted.models.AdvertisementDao;
@@ -134,19 +136,13 @@ public class RequestController {
 			_adDao.update(ad);
 			req.setResponse(response);
 			//convert date format to desired format
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			Date date = new Date();
-			//System.out.println(formatter.format(date));
-			//Store the date into a string 
-			String d = formatter.format(date); 
-			try {
+			
+				java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+				
 				//parse the string to date using .parse(string) function and add it to transaction table.
 				Transaction trx = new Transaction(ad, req, 0, 0,
-						formatter.parse(d),null,0,0,renter,rentee, 1);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+						date,null,0,0,renter,rentee, 1);
+			
 			
 			//Add to trx i.e start trx
 			
