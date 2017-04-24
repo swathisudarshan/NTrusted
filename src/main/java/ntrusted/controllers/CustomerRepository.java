@@ -8,6 +8,7 @@ import ntrusted.mongoModel.Customer;
 public interface CustomerRepository extends MongoRepository<Customer, String> {
 
     public Customer findByUserId(String userId);
+    
    // public List<Customer> findByLastName(String lastName);
 
 }

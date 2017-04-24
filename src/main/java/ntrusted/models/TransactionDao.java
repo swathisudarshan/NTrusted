@@ -19,6 +19,11 @@ public class TransactionDao {
 		return _sessionFactory.getCurrentSession();
 	}
 	
+	public Transaction getTrxById(int trxId) {
+		Transaction trx = (Transaction) getSession().createQuery("from Transaction where transactionId = "+ trxId);
+		return trx;
+	}
+	
 	public void save(Transaction transaction) {
 		getSession().save(transaction);
 		return;

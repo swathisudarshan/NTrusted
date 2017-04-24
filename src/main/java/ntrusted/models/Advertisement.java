@@ -46,6 +46,7 @@ public class Advertisement {
 	@Column(name="postDate")
 	private Date postDate;
 	
+	// 1 = Active , 2 = Busy, 0 = removed
 	@NotNull 
 	@Column(name="active")
 	private int active;
