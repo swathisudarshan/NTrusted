@@ -34,7 +34,7 @@ public class Advertisement {
 	@Column(name="productDescription")
 	private String productDescription;
 	
-	@NotNull
+
 	@Column(name="productPrice")
 	private float productPrice;
 	
@@ -48,13 +48,16 @@ public class Advertisement {
 	
 	@NotNull 
 	@Column(name="active")
-	private Boolean active;
+	private int active;
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="categoryId")
 	private Category category;
 	
-
+	// 1 = Lend Product, 2 = Borrow Product
+	@Column(name="AdType")
+	private int adType;
+	
 	public Advertisement()
 	{
 		
@@ -66,7 +69,7 @@ public class Advertisement {
 	}
 
 	public Advertisement(String productName, String productDescription, float productPrice, Date postDate,
-			Boolean active, Category category, User user) {
+			int active, Category category, User user, int AdType) {
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.productPrice = productPrice;
@@ -74,6 +77,7 @@ public class Advertisement {
 		this.active = active;
 		this.category = category;
 		this.user = user;
+		this.adType = AdType;
 	}
 
 	public int getAdId() {
@@ -116,11 +120,11 @@ public class Advertisement {
 		this.postDate = postDate;
 	}
 
-	public Boolean getActive() {
+	public int getActive() {
 		return active;
 	}
 
-	public void setActive(Boolean active) {
+	public void setActive(int active) {
 		this.active = active;
 	}
 
@@ -139,4 +143,22 @@ public class Advertisement {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
+
+	public int getAdType() {
+		return adType;
+	}
+
+	public void setAdType(int adType) {
+		this.adType = adType;
+	}
+
+	@Override
+	public String toString() {
+		return "Advertisement [adId=" + adId + ", productName=" + productName + ", productDescription="
+				+ productDescription + ", productPrice=" + productPrice + ", user=" + user + ", postDate=" + postDate
+				+ ", active=" + active + ", category=" + category + "]";
+	}
+	
 }

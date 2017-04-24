@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +50,38 @@ public class AdvertisementDao {
 	  getSession().update(advertisement);
       return;
 	}
+		
+	public List<Advertisement> getAds(int id) {
+		try{
+			Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1");
+			List<Advertisement> ads = query.list();
+			return ads;
+		}catch(Exception e){
+			return null;
+		}		
+	}
 	
-
+	//If one wants to view list of ads from whom they can borrow item
+	public List<Advertisement> getLendingAds(int id) {
+		try{
+			Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 2");
+			List<Advertisement> ads = query.list();
+			return ads;
+		}catch(Exception e){
+			return null;
+		}		
+	}
+	
+	//If one wants to view list of ads to whom they can lend/rent item
+		public List<Advertisement> getBorrowingAds(int id) {
+			try{
+				Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 1");
+				List<Advertisement> ads = query.list();
+				return ads;
+			}catch(Exception e){
+				return null;
+			}		
+		}
 	
 }
 

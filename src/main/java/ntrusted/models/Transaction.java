@@ -29,6 +29,14 @@ public class Transaction {
 	@JoinColumn(name="requestId")
 	private Request request;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="renter")
+	private User renter;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="rentee")
+	private User rentee;
+	
 	@NotNull
 	@Column(name="renterRating")
 	private float renterRating;
@@ -46,19 +54,23 @@ public class Transaction {
 
 	@NotNull
 	@Column(name="renterClose")
-	private Boolean renterClose;
+	private int renterClose;
 	
 	@NotNull
 	@Column(name="renteeClose")
-	private Boolean renteeClose;
+	private int renteeClose;
+	
+	@NotNull
+	@Column(name="status")
+	private int status;
 	
 	public Transaction(){
 		
 	}
 
-	public Transaction(int transactionId, Advertisement ad, Request request, float renterRating, float renteeRating,
-			Date startDate, Date endDate, Boolean renterClose, Boolean renteeClose) {
-		this.transactionId = transactionId;
+	public Transaction(Advertisement ad, Request request, float renterRating, float renteeRating,
+			Date startDate, Date endDate, int renterClose, int renteeClose, User renter, User rentee, int status) {
+		
 		this.ad = ad;
 		this.request = request;
 		this.renterRating = renterRating;
@@ -67,6 +79,9 @@ public class Transaction {
 		this.endDate = endDate;
 		this.renterClose = renterClose;
 		this.renteeClose = renteeClose;
+		this.renter = renter;
+		this.rentee = rentee;
+		this.status = status;
 	}
 
 	public int getTransactionId() {
@@ -109,19 +124,19 @@ public class Transaction {
 		this.renteeRating = renteeRating;
 	}
 
-	public Boolean getRenterClose() {
+	public int getRenterClose() {
 		return renterClose;
 	}
 
-	public void setRenterClose(Boolean renterClose) {
+	public void setRenterClose(int renterClose) {
 		this.renterClose = renterClose;
 	}
 
-	public Boolean getRenteeClose() {
+	public int getRenteeClose() {
 		return renteeClose;
 	}
 
-	public void setRenteeClose(Boolean renteeClose) {
+	public void setRenteeClose(int renteeClose) {
 		this.renteeClose = renteeClose;
 	}
 
@@ -140,5 +155,22 @@ public class Transaction {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+	public User getRenter() {
+		return renter;
+	}
+
+	public void setRenter(User renter) {
+		this.renter = renter;
+	}
+
+	public User getRentee() {
+		return rentee;
+	}
+
+	public void setRentee(User rentee) {
+		this.rentee = rentee;
+	}
+	
 	
 }

@@ -25,7 +25,7 @@ public class FacebookFriendList {
 		List<String> list = new ArrayList<String>();
 		
 		//Use id from input instead of hardcoded value
-		String url = "https://graph.facebook.com/v2.9/1252608348126909/friends?access_token=EAADsZB1QZCdXgBAJrqPyhJa7S9xFfXLxZBhkwL3rQtZCOSMKvXv5S5yQmYKcsyO6khAgcwhWOEcBYoEOZAIDxKiKBl7UlSaBFNdDLaFsH8G49oviPZCLLCMcxekFEtaQ1jx8oiSF9jb3D9ZANxUN1o5rzPi9zxA3GsZD";
+		String url = "https://graph.facebook.com/v2.9/"+id+"/friends?access_token=EAADsZB1QZCdXgBAJrqPyhJa7S9xFfXLxZBhkwL3rQtZCOSMKvXv5S5yQmYKcsyO6khAgcwhWOEcBYoEOZAIDxKiKBl7UlSaBFNdDLaFsH8G49oviPZCLLCMcxekFEtaQ1jx8oiSF9jb3D9ZANxUN1o5rzPi9zxA3GsZD";
 
 		try {
 			URL obj = new URL(url);

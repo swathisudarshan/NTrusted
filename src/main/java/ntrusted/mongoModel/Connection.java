@@ -6,7 +6,7 @@ public class Connection {
 	private int RenterNoTrx;
 	private double RenteTrust;
 	private int RenteeNoTrx;
-	 private int activeFriend;
+	private int activeFriend;
 	
 	public String getUserid() {
 		return userid;
@@ -38,13 +38,15 @@ public class Connection {
 	public void setRenteeNoTrx(int renteeNoTrx) {
 		RenteeNoTrx = renteeNoTrx;
 	}
+	
 	public int getActiveFriend() {
 		return activeFriend;
 	}
 
-public void setActiveFriend(int activeFriend) {
+	public void setActiveFriend(int activeFriend) {
 		this.activeFriend = activeFriend;
 	}
+
 	@Override
 	public String toString() {
 		return "Connection [userid=" + userid + ", RenterTrust=" + RenterTrust + ", RenterNoTrx=" + RenterNoTrx

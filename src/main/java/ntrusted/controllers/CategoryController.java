@@ -39,9 +39,11 @@ public class CategoryController {
 	@ResponseBody
 	  public String getById(int id) {
 	    int categoryId;
+	    String categoryName;
 	    try {
 	      Category category = _categoryDao.getById(id);
 	      categoryId = category.getCategoryId();
+	      categoryName = category.getCategoryName();
 	    }
 	    catch(Exception ex) {
 	      return "Category not found";

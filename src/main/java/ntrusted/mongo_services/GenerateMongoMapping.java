@@ -35,7 +35,7 @@ public class GenerateMongoMapping {
 	{
 		//List<Connection> list1 = new ArrayList<Connection>();
 		Customer customer = new Customer(); 
-		customer.setCustomerId(id);
+		customer.setUserid(id);
 	    //customer.setConnections(list1);
 		for(String str:list)
 		{
@@ -45,11 +45,42 @@ public class GenerateMongoMapping {
 			con.setRenterNoTrx(0);
 			con.setRenterTrust(0.0);
 			con.setRenteTrust(0.0);
-			con.setActiveFriend(0);
+			con.setActiveFriend(1);
 			customer.getConnections().add(con);
 		}	
 		
 	    return customer;
+	}
+	
+	public Customer updateCustomer(Customer cus,List<String> list)
+	{
+		List<Connection> cons = cus.getConnections();
+		
+		for(Connection con: cons)
+		{
+			if(list.contains(con.getUserid()))
+			{
+				con.setActiveFriend(1);
+				list.remove(con.getUserid());
+			}
+		}
+		
+		if(list.size()!=0)
+		{
+			for(String str:list)
+			{
+				Connection con =  new Connection();
+				con.setUserid(str);
+				con.setRenteeNoTrx(0);
+				con.setRenterNoTrx(0);
+				con.setRenterTrust(0.0);
+				con.setRenteTrust(0.0);
+				con.setActiveFriend(1);
+				cus.getConnections().add(con);
+			}	
+		}
+		
+		return cus;
 	}
 	
 	
