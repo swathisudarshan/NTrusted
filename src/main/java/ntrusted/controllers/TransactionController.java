@@ -172,7 +172,7 @@ public class TransactionController {
 		con.setRenteeNoTrx(1);
 		con.setRenteTrust(renteeRating);
 		con.setRenterNoTrx(0);
-		con.setRenterTrust(0.0);
+		con.setRenterTrust(0);
 		con.setActiveFriend(0);
 		rentee.addConnection(con);
 		cuRepo.save(rentee);
@@ -184,7 +184,7 @@ public class TransactionController {
 		con1.setRenterNoTrx(1);
 		con1.setRenterTrust(renterRating);
 		con1.setRenteeNoTrx(0);
-		con1.setRenteTrust(0.0);
+		con1.setRenteTrust(0);
 		con1.setActiveFriend(0);
 		renter.addConnection(con1);
 		cuRepo.save(renter);		

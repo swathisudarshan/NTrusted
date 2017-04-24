@@ -69,10 +69,9 @@ public class AdvertisementController {
 			      return ex.getMessage();
 			    }
 			
-	      
-	     
-	    
 	    
 	    return "Advertisement details saved!";
 	  }
+	 
+	 //Add Borrowing ad
 }

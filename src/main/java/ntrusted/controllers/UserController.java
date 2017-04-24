@@ -49,7 +49,7 @@ public class UserController {
     catch(Exception ex) {
       return "User not found";
     }
-    return "The user id is: " + userId;
+    return userId;
   }
 
   @RequestMapping(value="/signup", method=RequestMethod.POST)

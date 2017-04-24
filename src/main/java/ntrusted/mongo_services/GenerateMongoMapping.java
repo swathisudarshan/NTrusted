@@ -43,8 +43,8 @@ public class GenerateMongoMapping {
 			con.setUserid(str);
 			con.setRenteeNoTrx(0);
 			con.setRenterNoTrx(0);
-			con.setRenterTrust(0.0);
-			con.setRenteTrust(0.0);
+			con.setRenterTrust(0);
+			con.setRenteTrust(0);
 			con.setActiveFriend(1);
 			customer.getConnections().add(con);
 		}	
