@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ntrusted.models.Advertisement;
 import ntrusted.models.AdvertisementDao;
 
+
 @Controller
 @RequestMapping(value="/searchRenters")
 public class SearchProductController {

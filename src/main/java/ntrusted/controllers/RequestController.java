@@ -21,6 +21,7 @@ import ntrusted.models.TransactionDao;
 import ntrusted.models.User;
 import ntrusted.models.UserDao;
 
+
 @Controller
 @RequestMapping(value="/request")
 public class RequestController {

@@ -1,7 +1,6 @@
 package ntrusted.models;
 
 import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.hibernate.Hibernate;

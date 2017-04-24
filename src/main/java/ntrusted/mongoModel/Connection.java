@@ -1,5 +1,6 @@
 package ntrusted.mongoModel;
 
+
 public class Connection {
 	private String userid;
 	private double RenterTrust;

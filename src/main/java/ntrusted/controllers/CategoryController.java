@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 @Controller
 @RequestMapping(value="/category")
 public class CategoryController {
@@ -61,8 +62,5 @@ public class CategoryController {
 		
 		
 	}
-	
-	
-	
 	
 } //CategoryController Class

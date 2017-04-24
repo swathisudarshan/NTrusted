@@ -31,6 +31,7 @@ public class DatabaseConfig {
   @Value("${hibernate.dialect}")
   private String HIBERNATE_DIALECT;
   
+  
   @Value("${hibernate.show_sql}")
   private String HIBERNATE_SHOW_SQL;
   
