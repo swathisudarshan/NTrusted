@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ntrusted.models.Advertisement;
 import ntrusted.models.AdvertisementDao;
+// Add All ads withour cat for both lending and borrowing
+
+
 
 
 @Controller
-@RequestMapping(value="/searchRenters")
+@RequestMapping(value="/search")
 public class SearchProductController {
 	@Autowired
 	private AdvertisementDao _adDao;
