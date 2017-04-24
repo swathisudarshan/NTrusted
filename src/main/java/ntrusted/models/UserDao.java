@@ -50,4 +50,5 @@ public class UserDao {
     getSession().update(user);
     return;
   }
+
 } // class UserDao

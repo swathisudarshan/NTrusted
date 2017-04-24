@@ -44,4 +44,6 @@ public class CategoryDao {
 		getSession().update(category);
 		return;
 	}
+
 }// class CategoryDao
+

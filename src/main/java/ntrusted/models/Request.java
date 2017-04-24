@@ -70,6 +70,7 @@ public class Request {
 		this.requestId = requestId;
 	}
 
+
 	public Advertisement getAdvertisement() {
 		return advertisement;
 	}

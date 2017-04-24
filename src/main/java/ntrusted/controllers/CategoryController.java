@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Controller
@@ -45,6 +48,21 @@ public class CategoryController {
 	    catch(Exception ex) {
 	      return "Category not found";
 	    }
-	    return "The category id is: " + categoryId + "\nThe category Name is: "+ categoryName;
+	    return "The user id is: " + categoryId;
 	  } // function end
+	
+	
+	@RequestMapping(value="/fetchAllCategory")
+	@ResponseBody
+	public List<Category> getAll(){
+		
+		return _categoryDao.getAll();
+		
+		
+		
+	}
+	
+	
+	
+	
 } //CategoryController Class

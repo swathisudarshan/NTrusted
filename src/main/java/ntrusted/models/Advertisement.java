@@ -34,6 +34,7 @@ public class Advertisement {
 	@Column(name="productDescription")
 	private String productDescription;
 	
+
 	@Column(name="productPrice")
 	private float productPrice;
 	
