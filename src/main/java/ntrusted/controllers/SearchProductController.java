@@ -12,6 +12,7 @@ import ntrusted.models.AdvertisementDao;
 
 
 
+
 @Controller
 @RequestMapping(value="/search")
 public class SearchProductController {

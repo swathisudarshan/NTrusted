@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 @Controller
 @RequestMapping(value="/user")
 public class UserController {
@@ -52,7 +53,7 @@ public class UserController {
     return userId;
   }
 
-  @RequestMapping(value="/signup", method=RequestMethod.POST)
+  @RequestMapping(value="/signup",method=RequestMethod.POST)
   @ResponseBody
   public String create(@RequestParam(value="id")String id,
 		  			   @RequestParam(value="name") String name,
@@ -100,8 +101,7 @@ public class UserController {
     	cuRepo.save(cus1);
     			    
     	System.out.println(getCustomerByUserId(id));
-      //Customer cus1=new Customer(name,email);
-      //cuRepo.save(cus1);
+     
     }
     catch(Exception ex) {
       return ex.getMessage();

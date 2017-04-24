@@ -49,15 +49,24 @@ public class AdvertisementController {
 	  @ResponseBody
 	  public String createAdvertisement(@RequestParam(value="productName")String productName, 
 			  @RequestParam(value="productDescription") String productDescription, 
-			  @RequestParam(value="productPrice") float productPrice, 
-			  @RequestParam(value="postDate")Date postDate,
-			  @RequestParam(value="active") int active, 
-			  @RequestParam(value="categoryId") int categoryId, 
+			  @RequestParam(value="productPrice") String productPrice, 
+			  @RequestParam(value="postDate")String postDate,
+			  @RequestParam(value="active") String active, 
+			  @RequestParam(value="categoryId") String categoryId, 
 			  @RequestParam(value="userId") String userId,
-			  @RequestParam(value="adType") int adType) {
+			  @RequestParam(value="adType") String adType) {
 	    try {
 	    	//Category category = new Category(categoryId);
-	    	Category category = _catDao.getById(categoryId);
+	    	
+	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!1");
+	    	float productpriceFloat = Float.parseFloat(productPrice);
+	    	int activeInteger = Integer.parseInt(active);
+	    	int categoryInteger = Integer.parseInt(categoryId);
+	    	int adTypeInteger = Integer.parseInt(adType);
+	    	Date postDate1 = new Date(postDate);
+	    	
+	    	Category category = _catDao.getById(categoryInteger);
+	    	
 	    	User user = _userDao.getById(userId);
 	    	System.out.println(category.getCategoryName());
 	  
