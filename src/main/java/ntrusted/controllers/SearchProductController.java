@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ntrusted.models.Advertisement;
 import ntrusted.models.AdvertisementDao;
-// Add All ads withour cat for both lending and borrowing
+// Add All ads without cat for both lending and borrowing
 
 
 
@@ -21,9 +21,13 @@ public class SearchProductController {
 	@Autowired
 	private TrustCalcController TCC;
 	
+	public List<Advertisement> sortedRenterAds;
+	public List<Advertisement> sortedRenteeAds;
+	
+	
 	@RequestMapping(value="/fetchRenters")
 	  @ResponseBody
-	  public String getRenterAds(int catId, String RenteeId) {
+	  public List<Advertisement> getRenterAds(int catId, String RenteeId) {
 	    List<Advertisement> ads;
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
 	    
@@ -39,17 +43,21 @@ public class SearchProductController {
 	      }
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
 	      System.out.println(sortedResult.toString());
+	      for(Advertisement ad:sortedResult.keySet())
+	      {
+	    	  sortedRenterAds.add(ad);
+	      }
 	    }
 	    catch(Exception ex) {
 	    	System.out.println(ex);
-	      return "Ad not found";
+	      return null;
 	    }
-		return ads.toString();
+		return sortedRenterAds;
 	  }
 	
 	@RequestMapping(value="/fetchRentees")
 	  @ResponseBody
-	  public String getRenteeAds(int catId, String RenterId) {
+	  public List<Advertisement> getRenteeAds(int catId, String RenterId) {
 	    List<Advertisement> ads;
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
 	    
@@ -64,12 +72,16 @@ public class SearchProductController {
 	      }
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
 	      System.out.println(sortedResult.toString());
+	      for(Advertisement ad:sortedResult.keySet())
+	      {
+	    	  sortedRenteeAds.add(ad);
+	      }
 	    }
 	    catch(Exception ex) {
 	    	System.out.println(ex);
-	      return "Ad not found";
+	      return null;
 	    }
-		return ads.toString();
+		return sortedRenteeAds;
 	  }
 	
 	private static Map<Advertisement, Double> sortByValue(Map<Advertisement, Double> unsortMap) {

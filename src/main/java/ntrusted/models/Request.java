@@ -53,13 +53,14 @@ public class Request {
 		
 	}
 
-	public Request(User sender, User receiver, Advertisement advertisement, int response, int requestType) {
+	public Request(User sender, User receiver, Advertisement advertisement, int response, int requestType,Date reqDate) {
 		
 		this.sender = sender;
 		this.receiver = receiver;
 		this.advertisement = advertisement;
 		this.response = response;
 		this.requestType = requestType;
+		this.requestDate = reqDate;
 	}
 
 	public int getRequestId() {

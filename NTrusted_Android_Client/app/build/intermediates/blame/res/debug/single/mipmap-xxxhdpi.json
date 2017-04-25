@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ntrusted_launcher.png",
+        "source": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/src/main/res/mipmap-xxxhdpi/ntrusted_launcher.png"
+    },
+    {
+        "merged": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    }
+]
