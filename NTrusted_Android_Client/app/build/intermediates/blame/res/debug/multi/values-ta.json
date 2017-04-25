@@ -1,0 +1,444 @@
+[
+    {
+        "outputFile": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ta/values-ta.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 154,
+                    "endOffset": 205
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 154,
+                        "endOffset": 205
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 210,
+                    "endColumn": 112,
+                    "endOffset": 318
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 210,
+                        "endColumn": 112,
+                        "endOffset": 318
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 323,
+                    "endColumn": 112,
+                    "endOffset": 431
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 323,
+                        "endColumn": 112,
+                        "endOffset": 431
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 436,
+                    "endColumn": 93,
+                    "endOffset": 525
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 436,
+                        "endColumn": 93,
+                        "endOffset": 525
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 530,
+                    "endColumn": 74,
+                    "endOffset": 600
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 530,
+                        "endColumn": 74,
+                        "endOffset": 600
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 605,
+                    "endColumn": 72,
+                    "endOffset": 673
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 605,
+                        "endColumn": 72,
+                        "endOffset": 673
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 678,
+                    "endColumn": 60,
+                    "endOffset": 734
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 678,
+                        "endColumn": 60,
+                        "endOffset": 734
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 739,
+                    "endColumn": 74,
+                    "endOffset": 809
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 739,
+                        "endColumn": 74,
+                        "endOffset": 809
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 814,
+                    "endColumn": 74,
+                    "endOffset": 884
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 814,
+                        "endColumn": 74,
+                        "endOffset": 884
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 889,
+                    "endColumn": 95,
+                    "endOffset": 980
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 889,
+                        "endColumn": 95,
+                        "endOffset": 980
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 985,
+                    "endColumn": 97,
+                    "endOffset": 1078
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 985,
+                        "endColumn": 97,
+                        "endOffset": 1078
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 1083,
+                    "endColumn": 74,
+                    "endOffset": 1153
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1083,
+                        "endColumn": 74,
+                        "endOffset": 1153
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 1158,
+                    "endColumn": 74,
+                    "endOffset": 1228
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1158,
+                        "endColumn": 74,
+                        "endOffset": 1228
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 1233,
+                    "endColumn": 91,
+                    "endOffset": 1320
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1233,
+                        "endColumn": 91,
+                        "endOffset": 1320
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 1325,
+                    "endColumn": 111,
+                    "endOffset": 1432
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1325,
+                        "endColumn": 111,
+                        "endOffset": 1432
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1437,
+                    "endColumn": 65,
+                    "endOffset": 1498
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1437,
+                        "endColumn": 65,
+                        "endOffset": 1498
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 1503,
+                    "endColumn": 64,
+                    "endOffset": 1563
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1503,
+                        "endColumn": 64,
+                        "endOffset": 1563
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1568,
+                    "endColumn": 174,
+                    "endOffset": 1738
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1568,
+                        "endColumn": 174,
+                        "endOffset": 1738
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1743,
+                    "endColumn": 80,
+                    "endOffset": 1819
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1743,
+                        "endColumn": 80,
+                        "endOffset": 1819
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 1824,
+                    "endColumn": 89,
+                    "endOffset": 1909
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 1824,
+                        "endColumn": 89,
+                        "endOffset": 1909
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1914,
+                    "endColumn": 99,
+                    "endOffset": 2009
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1914,
+                        "endColumn": 99,
+                        "endOffset": 2009
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 2014,
+                    "endColumn": 142,
+                    "endOffset": 2152
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 2014,
+                        "endColumn": 142,
+                        "endOffset": 2152
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 2157,
+                    "endColumn": 62,
+                    "endOffset": 2215
+                },
+                "from": {
+                    "file": "/Users/saurabhkulkarni/NTrusted/NTrusted_Android_Client/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.22.0/res/values-ta/values-ta.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 2157,
+                        "endColumn": 62,
+                        "endOffset": 2215
+                    }
+                }
+            }
+        ]
+    }
+]

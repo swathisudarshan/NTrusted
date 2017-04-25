@@ -39,36 +39,28 @@ public class RequestController {
 
 	@RequestMapping(value="/addBorrowRequest", method=RequestMethod.POST)
 	@ResponseBody
-	public String createBorrowRequest(@RequestParam(value="adId")int adId,
-			  			   @RequestParam(value="senderId") String senderId,
-			  			   @RequestParam(value="Date") Date date,
-			  			   @RequestParam(value="requestType") int requestType 
+	public String createBorrowRequest(@RequestParam(value="adId")String adId,
+			  			   @RequestParam(value="senderId") String senderId
 			  			   ) 
 	{
-		Advertisement ad = _adDao.getById(adId);
-		Request req = new Request(_userDao.getById(senderId),ad.getUser(), ad, 1, 1);
-		
+		Advertisement ad = _adDao.getById(Integer.valueOf(adId));
+		java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+		Request req = new Request(_userDao.getById(senderId),ad.getUser(), ad, 1, 1,date);	
 		_reDao.save(req);
-
 		return "Borrowing Request Added in Request table";
-
 	}
 	
 	@RequestMapping(value="/addLendingRequest", method=RequestMethod.POST)
 	@ResponseBody
-	public String createLendRequest(@RequestParam(value="adId")int adId,
-			  			   @RequestParam(value="senderId") String senderId,
-			  			   @RequestParam(value="Date") Date date,
-			  			   @RequestParam(value="requestType") int requestType 
+	public String createLendRequest(@RequestParam(value="adId")String adId,
+			  			   @RequestParam(value="senderId") String senderId 
 			  			   ) 
 	{
-		Advertisement ad = _adDao.getById(adId);
-		Request req = new Request(_userDao.getById(senderId),ad.getUser(), ad, 1, 2);
-		
+		Advertisement ad = _adDao.getById(Integer.valueOf(adId));
+		java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+		Request req = new Request(_userDao.getById(senderId),ad.getUser(), ad, 1, 2,date);	
 		_reDao.save(req);
-
 		return "Lending Request Added in Request table";
-
 	}
 	 	
 	//Requests from someone who wants to borrwo my items
@@ -78,6 +70,14 @@ public class RequestController {
 	{
 		return (List<Request>)_reDao.getBorrowRequest(receiverId);
 	}
+	
+	//Requests from someone who wants to borrwo my perticular category
+		@RequestMapping(value="/getBorrowRequestsforCat", method=RequestMethod.GET)
+		@ResponseBody
+		public List<Request> getBorrowRequestsforCat(String receiverId,String catId)
+		{ 
+			return (List<Request>)_reDao.getBorrowRequestforCat(receiverId, Integer.valueOf(catId));
+		}
 	
 	//Requests from someone who wants to Lend me their items
 	@RequestMapping(value="/getLendingRequests", method=RequestMethod.GET)
