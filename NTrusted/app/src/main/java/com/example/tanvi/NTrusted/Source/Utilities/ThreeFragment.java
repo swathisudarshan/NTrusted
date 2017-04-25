@@ -15,6 +15,11 @@ public class ThreeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public ThreeFragment(int categoryId) {
+
+        System.out.println("Category is : "+categoryId);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

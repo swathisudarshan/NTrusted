@@ -45,7 +45,7 @@ public class UserDao {
 
   public User getById(String id) {	
 	  return (User) getSession().createQuery(
-		        "from User where userId = :id")
+		        "from User where fbId = :id")
 		        .setParameter("id", id)
 		        .uniqueResult();
   }

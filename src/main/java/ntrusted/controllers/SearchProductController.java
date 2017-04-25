@@ -24,6 +24,8 @@ public class SearchProductController {
 	@RequestMapping(value="/fetchRenters")
 	  @ResponseBody
 	  public String getRenterAds(int catId, String RenteeId) {
+		
+		System.out.println("In method !!!!! fetch renters");
 	    List<Advertisement> ads;
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
 	    
@@ -50,6 +52,9 @@ public class SearchProductController {
 	@RequestMapping(value="/fetchRentees")
 	  @ResponseBody
 	  public String getRenteeAds(int catId, String RenterId) {
+		
+		System.out.println("Category id is : "+catId+" Renter Id is :"+RenterId);
+		
 	    List<Advertisement> ads;
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
 	    

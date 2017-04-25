@@ -14,6 +14,7 @@ public interface Constants {
     public static final String postAdvertisement = "http://"+serverHost+":8080/advertisement/addLendingProduct";
     public static final String signUpUser ="http://"+serverHost+":8080/user/signup";
     public static final String getUserByEmail ="http://"+serverHost+":8080/user/get-by-email?email=";
+    public static final String getRentees="http://"+serverHost+":8080/search/fetchRentees";
 
     //Shared Preferences
     public static final String UserID = "UserID";

@@ -21,6 +21,11 @@ public class OneFragment extends ListFragment {
         // Required empty public constructor
     }
 
+    public OneFragment(int categoryId) {
+        System.out.println("Category is : "+categoryId);
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -61,4 +61,7 @@ public class Advertisement {
     public void setProductCategory(int productCategory) {
         this.productCategory = productCategory;
     }
+
+    @Override
+    public String toString(){return getProductName();}
 }

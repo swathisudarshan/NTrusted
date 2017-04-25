@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerActionBar"
         android:title="Search by Category"
         app:actionViewClass="android.widget.Spinner"
         android:background="#ff00"

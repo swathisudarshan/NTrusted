@@ -2,15 +2,20 @@ package com.example.tanvi.NTrusted.Source.Utilities;
 
 import android.content.Context;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by tanvi on 4/22/2017.
@@ -30,6 +35,18 @@ public class GETOperation {
         this.context = context;
     }
 
+
+
+
+
+
+    public void getJSONData(final VolleyGETCallBack volleyGetCallBack){
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+
+
+    }
 
     public void getData(final VolleyGETCallBack volleyGetCallBack){
 
@@ -87,5 +104,7 @@ public class GETOperation {
         queue.add(getRequest);
 
     }
+
+
 
 }

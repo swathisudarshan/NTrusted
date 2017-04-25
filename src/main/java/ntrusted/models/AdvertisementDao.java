@@ -63,7 +63,7 @@ public class AdvertisementDao {
 	//If one wants to view list of ads from whom they can borrow item
 	public List<Advertisement> getLendingAds(int id) {
 		try{
-			Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 2");
+			Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 1");
 			List<Advertisement> ads = query.list();
 			return ads;
 		}catch(Exception e){
@@ -74,8 +74,10 @@ public class AdvertisementDao {
 	//If one wants to view list of ads to whom they can lend/rent item
 		public List<Advertisement> getBorrowingAds(int id) {
 			try{
-				Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 1");
+				Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 2");
+				
 				List<Advertisement> ads = query.list();
+				System.out.println("Ads are : "+ ads.toString());
 				return ads;
 			}catch(Exception e){
 				return null;
