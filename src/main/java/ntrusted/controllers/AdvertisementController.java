@@ -48,9 +48,43 @@ public class AdvertisementController {
 	 
 	 @RequestMapping(value="/addLendingProduct", method=RequestMethod.POST)
 	  @ResponseBody
-	  public String createAdvertisement(@RequestParam(value="productName")String productName, 
+	  public String createLendingAdvertisement(@RequestParam(value="productName")String productName, 
 			  @RequestParam(value="productDescription") String productDescription, 
 			  @RequestParam(value="productPrice") String productPrice, 
+			  @RequestParam(value="active") String active, 
+			  @RequestParam(value="categoryId") String categoryId, 
+			  @RequestParam(value="userId") String userId,
+			  @RequestParam(value="adType") String adType) {
+	    try {
+	
+	    	
+	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!");
+	    	
+	    	//System.out.println("The parameters are : "+productName+" "+productDescription+" "+productPrice+" "+active+" "+categoryId+" "+userId+" "+adType);
+	    	
+	    	float productpriceFloat = Float.valueOf(productPrice);
+	    	int activeInteger = Integer.valueOf(active);
+	    	int categoryInteger = Integer.valueOf(categoryId);
+	    	int adTypeInteger = Integer.valueOf(adType);
+	    	
+	    	Category category = _catDao.getById(categoryInteger);
+	    	User user = _userDao.getById(userId);
+	    	java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+	    	//System.out.println("Product Name:"+productName+" Product Desc: "+productDescription+" Product Price:"+productpriceFloat+" Active: "+activeInteger+" Category:"+category.getCategoryName()+" Ad Type:"+adTypeInteger+" User:"+user.getName());
+	    	Advertisement ad = new Advertisement(productName, productDescription, productpriceFloat,date,activeInteger,category,user,adTypeInteger);
+	     	 _adDao.save(ad);
+			}
+			catch(Exception ex) {
+			      return ex.getMessage();
+			    }
+	    return "Lending Advertisement saved!";
+	  }
+	 
+	 //Add Borrowing ad
+	 @RequestMapping(value="/addBorrowingProduct", method=RequestMethod.POST)
+	  @ResponseBody
+	  public String createBorrowingAdvertisement(@RequestParam(value="productName")String productName, 
+			  @RequestParam(value="productDescription") String productDescription, 
 			  @RequestParam(value="active") String active, 
 			  @RequestParam(value="categoryId") String categoryId, 
 			  @RequestParam(value="userId") String userId,
@@ -60,35 +94,23 @@ public class AdvertisementController {
 	    	
 	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!");
 	    	
-	    	System.out.println("The parameters are : "+productName+" "+productDescription+" "+productPrice+" "+active+" "+categoryId+" "+userId+" "+adType);
-	    	
-	    	float productpriceFloat = Float.valueOf(productPrice);
+	    	System.out.println("The parameters are : "+productName+" "+productDescription+" "+active+" "+categoryId+" "+userId+" "+adType);
+	 
 	    	int activeInteger = Integer.valueOf(active);
 	    	int categoryInteger = Integer.valueOf(categoryId);
-	    	int adTypeInteger = Integer.valueOf(adType);
-	    	System.out.println("***************"+productpriceFloat);
-	    	
+	    	int adTypeInteger = Integer.valueOf(adType);  	
 	    	
 	    	Category category = _catDao.getById(categoryInteger);
 	    	User user = _userDao.getById(userId);
 	    	java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 	    	
-	    	System.out.println("Product Name:"+productName+" Product Desc: "+productDescription+" Product Price:"+productpriceFloat+" Active: "+activeInteger+" Category:"+category.getCategoryName()+" Ad Type:"+adTypeInteger+" User:"+user.getName());
-	    	
-	    	
-	    	
-	    	Advertisement ad = new Advertisement(productName, productDescription, productpriceFloat,date,activeInteger,category,user,adTypeInteger);
-	  
-
+	    	Advertisement ad = new Advertisement(productName, productDescription,0,date,activeInteger,category,user,adTypeInteger);
 				 _adDao.save(ad);
 			}
 			catch(Exception ex) {
 			      return ex.getMessage();
 			    }
-			
-	    
-	    return "Advertisement details saved!";
+	
+	    return "Borrowing Advertisement saved!";
 	  }
-	 
-	 //Add Borrowing ad
 }
