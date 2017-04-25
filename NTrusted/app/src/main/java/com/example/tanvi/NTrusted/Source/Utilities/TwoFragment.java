@@ -38,8 +38,8 @@ public class TwoFragment extends ListFragment {
 
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
 
-    String[] AndroidOS = new String[] { "Cupcake","Donut","Eclair","Froyo","Gingerbread","Honeycomb","Ice Cream SandWich","Jelly Bean","KitKat" };
-    String[] Version = new String[]{"1.5","1.6","2.0-2.1","2.2","2.3","3.0-3.2","4.0","4.1-4.3","4.4"};
+//    String[] AndroidOS = new String[] { "Cupcake","Donut","Eclair","Froyo","Gingerbread","Honeycomb","Ice Cream SandWich","Jelly Bean","KitKat" };
+//    String[] Version = new String[]{"1.5","1.6","2.0-2.1","2.2","2.3","3.0-3.2","4.0","4.1-4.3","4.4"};
 
 
     public TwoFragment() {
@@ -53,6 +53,7 @@ public class TwoFragment extends ListFragment {
         SharedPreferences pref = context.getSharedPreferences("MyPref",0);
         this.userId = pref.getString(Constants.UserID,null);
 
+
         System.out.println("Category is : "+this.categoryId+" User is:"+this.userId);
 
     }
@@ -65,36 +66,17 @@ public class TwoFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        this.advertisements.clear();
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_one, container, false);
 
-        System.out.println("**********Category ID is "+categoryId+" Renter Id is "+userId);
+        System.out.println("**********Category ID is "+this.categoryId+" Renter Id is "+this.userId);
 
-        getOperation = new GETOperation(Constants.getRentees+"?catId="+categoryId+"&RenterId="+userId,context);
-        getOperation.getStringData(new VolleyGETCallBack() {
+        getOperation = new GETOperation(Constants.getRentees+"?catId="+this.categoryId+"&RenterId="+this.userId,context);
+        getOperation.getData(new VolleyGETCallBack() {
             @Override
             public void onSuccess(String result) {
-
-               System.out.println("Result is --------------->"+result);
-
-
-//                try {
-//                    JSONObject json = new JSONObject(result);
-//                    String[] arr = new String[json.length()];
-//
-//                    for(int i=0;i<arr.length;i++){
-//
-//                        arr[i] = json.getString(i);
-//
-//
-//
-//                    }
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-
-
             }
 
             @Override

@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="advertisement")
 public class Advertisement {
@@ -41,6 +43,7 @@ public class Advertisement {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="fbId")
+	@JsonManagedReference
 	private User user;
 	
 	@NotNull
@@ -54,6 +57,7 @@ public class Advertisement {
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="categoryId")
+	@JsonManagedReference
 	private Category category;
 	
 	// 1 = Lend Product, 2 = Borrow Product
@@ -158,7 +162,7 @@ public class Advertisement {
 
 	@Override
 	public String toString() {
-		return "Advertisement [adId=" + adId + ", productName=" + productName + ", productDescription="
+		return "[adId=" + adId + ", productName=" + productName + ", productDescription="
 				+ productDescription + ", productPrice=" + productPrice + ", user=" + user + ", postDate=" + postDate
 				+ ", active=" + active + ", category=" + category + "]";
 	}

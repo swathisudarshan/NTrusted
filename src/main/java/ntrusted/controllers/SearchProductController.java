@@ -2,6 +2,8 @@ package ntrusted.controllers;
 
 import java.util.*;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,8 @@ public class SearchProductController {
 	@Autowired
 	private TrustCalcController TCC;
 	
-	public List<Advertisement> sortedRenterAds;
-	public List<Advertisement> sortedRenteeAds;
+	public List<Advertisement> sortedRenterAds = new ArrayList<Advertisement>();
+	public List<Advertisement> sortedRenteeAds = new ArrayList<Advertisement>();
 	
 	
 	@RequestMapping(value="/fetchRenters")
@@ -43,6 +45,7 @@ public class SearchProductController {
 	      }
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
 	      System.out.println(sortedResult.toString());
+	      
 	      for(Advertisement ad:sortedResult.keySet())
 	      {
 	    	  sortedRenterAds.add(ad);
@@ -57,11 +60,12 @@ public class SearchProductController {
 	
 	@RequestMapping(value="/fetchRentees")
 	  @ResponseBody
-	  public List<Advertisement> getRenteeAds(int catId, String RenterId) {
+	  public String getRenteeAds(int catId, String RenterId) {
 	    List<Advertisement> ads;
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
-	    
-	    try {
+	    JSONObject mainObj = new JSONObject();
+	    JSONArray array = new JSONArray();
+	    try{
 	      ads = _adDao.getBorrowingAds(catId);
 	      //Get List of user Id's for each ad
 	      List<String> userIds = new ArrayList<String>();
@@ -71,17 +75,38 @@ public class SearchProductController {
 	    	  UnsortedResult.put(ad,TCC.calcRenteeRank(RenterId,tempUserID));
 	      }
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
-	      System.out.println(sortedResult.toString());
+	      System.out.println("Sorted Result is ---- >"+sortedResult.toString());
+	      
+	      
+	      
 	      for(Advertisement ad:sortedResult.keySet())
 	      {
+	    	  System.out.println("Ad : "+ad.toString());
 	    	  sortedRenteeAds.add(ad);
+	    	  JSONObject jsonObject = new JSONObject();
+	    	  jsonObject.put("adId", ad.getAdId());
+	    	  jsonObject.put("productName", ad.getProductName());
+	    	  jsonObject.put("productDescription", ad.getProductDescription());
+	    	  jsonObject.put("productPrice", ad.getProductPrice());
+	    	  jsonObject.put("user", ad.getUser().getName());
+	    	  jsonObject.put("postDate", ad.getPostDate());
+	    	  jsonObject.put("category", ad.getCategory().getCategoryId());
+	    	  jsonObject.put("active", ad.getActive());
+	    	  jsonObject.put("adType", ad.getAdType());
+	    	  
+	    	  array.put(jsonObject);
+	    	      	  
 	      }
+	      
+	      //System.out.println("The List is ==============   "+sortedRenteeAds.toString());
 	    }
 	    catch(Exception ex) {
 	    	System.out.println(ex);
 	      return null;
 	    }
-		return sortedRenteeAds;
+	    
+	    
+		return array.toString();
 	  }
 	
 	private static Map<Advertisement, Double> sortByValue(Map<Advertisement, Double> unsortMap) {

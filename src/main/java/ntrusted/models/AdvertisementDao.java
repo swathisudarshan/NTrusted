@@ -30,7 +30,8 @@ public class AdvertisementDao {
 	
 	
 	public List<Advertisement> getAll() {
-		return (List<Advertisement>)getSession().createQuery("from Advertisement where active = 1 ORDER BY postDate DESC").list();
+		//return getSession().createQuery("from Advertisement where active = 1 ORDER BY postDate DESC").list();
+		return getSession().createQuery("from Advertisement where active = :value").setParameter("value", 1).list();
 	}
 	
 	public List<Advertisement> getAllBorrowAds() {

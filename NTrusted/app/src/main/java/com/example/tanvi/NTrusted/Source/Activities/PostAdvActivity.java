@@ -104,8 +104,6 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
 
         }
 
-
-
         });
 
 
