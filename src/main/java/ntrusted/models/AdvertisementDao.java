@@ -28,9 +28,17 @@ public class AdvertisementDao {
 		return;
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	public List<Advertisement> getAll() {
-		return getSession().createQuery("from Advertisement").list();
+		return (List<Advertisement>)getSession().createQuery("from Advertisement where active = 1 ORDER BY postDate DESC").list();
+	}
+	
+	public List<Advertisement> getAllBorrowAds() {
+		return (List<Advertisement>)getSession().createQuery("from Advertisement where active = 1 and adType = 2 ORDER BY postDate DESC").list();
+	}
+	
+	public List<Advertisement> getAllLendAds() {
+		return (List<Advertisement>)getSession().createQuery("from Advertisement where active = 1 and adType = 1 ORDER BY postDate DESC").list();
 	}
 	
 	public Advertisement getByProductName(String name) {

@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,24 @@ public class AdvertisementController {
 	    }
 	    return "Advertisement succesfully deleted!";
 	  }
+	 
+	 @RequestMapping(value="/getAllAds")
+	  @ResponseBody
+	  public List<Advertisement> getAllAds() {
+	      return _adDao.getAll();
+	    }
+	   
+	 @RequestMapping(value="/getAllBorrowAds")
+	  @ResponseBody
+	  public List<Advertisement> getAllBorrowAds() {
+	      return _adDao.getAllBorrowAds();
+	    }
+	 
+	 @RequestMapping(value="/getAllLendingAds")
+	  @ResponseBody
+	  public List<Advertisement> getAllLendingAds() {
+	      return _adDao.getAllLendAds();
+	    }
 	 
 	 @RequestMapping(value="/addLendingProduct", method=RequestMethod.POST)
 	  @ResponseBody
