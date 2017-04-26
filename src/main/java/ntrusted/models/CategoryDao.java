@@ -28,11 +28,13 @@ public class CategoryDao {
 		return;
 	}
 	
+	//working Fine
 	@SuppressWarnings("unchecked")
 	public List<Category> getAll() {
 		return getSession().createQuery("from Category").list();
 	}
 	
+	//working Fine
 	public Category getById(int id){
 		System.out.println("id is: "+id);
 		return (Category) getSession().createQuery(

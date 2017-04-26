@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,18 +29,30 @@ public class AdvertisementDao {
 		return;
 	}
 	
-	
+	//working Fine. Output: full JSON along with all the nested JSONs -- Test for the time calues being fetched!!
+	@SuppressWarnings("unchecked")
 	public List<Advertisement> getAll() {
-		//return getSession().createQuery("from Advertisement where active = 1 ORDER BY postDate DESC").list();
-		return getSession().createQuery("from Advertisement where active = :value").setParameter("value", 1).list();
-	}
+		System.out.println("Inside get All ads in AdvertisementDao");
+		
+		return getSession().createQuery("from Advertisement a join a.category c join a.user u "
+				+ "where a.active = :value"
+				+ " ORDER BY a.postDate DESC").setParameter("value", 1).list();
+		} 
 	
+	@SuppressWarnings("unchecked")
 	public List<Advertisement> getAllBorrowAds() {
-		return (List<Advertisement>)getSession().createQuery("from Advertisement where active = 1 and adType = 2 ORDER BY postDate DESC").list();
+		return (List<Advertisement>)getSession().createQuery(
+				"from Advertisement a join a.category c join a.user u "
+				+ "where a.active = 1 and adType = 2"
+				+ " ORDER BY a.postDate DESC").list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Advertisement> getAllLendAds() {
-		return (List<Advertisement>)getSession().createQuery("from Advertisement where active = 1 and adType = 1 ORDER BY postDate DESC").list();
+		return (List<Advertisement>)getSession().createQuery(
+				"from Advertisement a join a.category c join a.user u "
+						+ "where a.active = 1 and adType = 1"
+						+ " ORDER BY a.postDate DESC").list();
 	}
 	
 	public Advertisement getByProductName(String name) {
@@ -50,11 +63,14 @@ public class AdvertisementDao {
     }
 
 	public Advertisement getById(int id) {
-	    return (Advertisement) getSession().load(Advertisement.class, id);
+	    return (Advertisement) getSession().createQuery(
+		        "from Advertisement where adId = :id")
+		        .setParameter("id", id)
+		        .uniqueResult();
 	}
 
-
 	public void update(Advertisement advertisement) {
+		System.out.println("Inside Advertisement update");
 	  getSession().update(advertisement);
       return;
 	}
@@ -62,6 +78,7 @@ public class AdvertisementDao {
 	public List<Advertisement> getAds(int id) {
 		try{
 			Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1");
+			@SuppressWarnings("unchecked")
 			List<Advertisement> ads = query.list();
 			return ads;
 		}catch(Exception e){
@@ -73,6 +90,7 @@ public class AdvertisementDao {
 	public List<Advertisement> getLendingAds(int id) {
 		try{
 			Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 1");
+			@SuppressWarnings("unchecked")
 			List<Advertisement> ads = query.list();
 			return ads;
 		}catch(Exception e){
@@ -84,7 +102,7 @@ public class AdvertisementDao {
 		public List<Advertisement> getBorrowingAds(int id) {
 			try{
 				Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 2");
-				
+				@SuppressWarnings("unchecked")
 				List<Advertisement> ads = query.list();
 				System.out.println("Ads are : "+ ads.toString());
 				return ads;
