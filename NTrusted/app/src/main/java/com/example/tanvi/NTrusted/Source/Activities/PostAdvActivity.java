@@ -1,5 +1,6 @@
 package com.example.tanvi.NTrusted.Source.Activities;
 
+import android.content.Intent;
 import android.icu.text.DateFormat;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
@@ -163,7 +165,9 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
             public void onSuccess(Object result) {
 
              System.out.println("Success !! Ad posted");
-
+                Toast.makeText(PostAdvActivity.this, "Ad Posted Successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PostAdvActivity.this,UserHomepageActivity.class);
+                startActivity(intent);
             }
         });
 

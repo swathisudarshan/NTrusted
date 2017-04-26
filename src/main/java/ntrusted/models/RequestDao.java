@@ -21,11 +21,16 @@ public class RequestDao {
 	}
 	
 	public Request getRequestById(int requestId) {
-		Request req = (Request) getSession().createQuery("from Request where requestId = "+ requestId);
-		return req;
+		System.out.println("Inside Request Dao getByRequestId");
+		return (Request) getSession().createQuery(
+		        "from Request where requestId = :id")
+		        .setParameter("id", requestId)
+		        .uniqueResult();
+		//return req;
 	}
 	
 	public void save(Request request) {
+		System.out.println("Inside save request");
 		getSession().save(request);
 		return;
 	}
@@ -36,6 +41,7 @@ public class RequestDao {
 	}
 	
 	public void update(Request request) {
+		System.out.println("Inside requestDao");
 		  getSession().update(request);
 	      return;
 	}
@@ -43,26 +49,35 @@ public class RequestDao {
 	@SuppressWarnings("unchecked")
 	public List<Request> getBorrowRequest(String receiverId) {
 	    return (List<Request>) getSession().createQuery(
-		        "from Request where receiver = "+ receiverId +" and requestType= 1 and response =1 ORDER BY requestDate DESC" ).list();	        
+	    		"from Request r join r.advertisement a join a.category c "
+			        + "where r.receiver = "+ receiverId +" and r.requestType= 1 and r.response =1" 
+			        + " ORDER BY requestDate DESC" ).list();	        
     }
 	
 	@SuppressWarnings("unchecked")
 	public List<Request> getBorrowRequestforCat(String receiverId, int catId) {
 		
 		 return (List<Request>) getSession().createQuery(
-			        "from Request r join Advertisement a on (r.adId = a.adId) where receiver = "+ receiverId +" and requestType= 1 and response =1 and a.categoryId = " + catId +" ORDER BY requestDate DESC" ).list();
+			          "from Request r join r.advertisement a join a.category c "
+			        + "where r.receiver = "+ receiverId +" and r.requestType= 1 and r.response =1 and c.categoryId = " + catId 
+			        + " ORDER BY requestDate DESC" ).list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Request> getLendRequest(String receiverId) {
 	    return (List<Request>) getSession().createQuery(
-		        "from Request where receiver = "+ receiverId +" and requestType= 2 and response =1 ORDER BY requestDate DESC" ).list();	        
+	    		"from Request r join r.advertisement a join a.category c "
+				        + "where r.receiver = "+ receiverId +" and r.requestType= 2 and r.response =1" 
+				        + " ORDER BY requestDate DESC" ).list();	        
     }
 
 	@SuppressWarnings("unchecked")
 	public List<Request> getLendRequestforCat(String receiverId, int catId) {
-	    return (List<Request>) getSession().createQuery(
-		        "from Request where receiver = "+ receiverId +" and requestType= 2 and response =1 ORDER BY requestDate DESC" ).list();	        
+	    
+		 return (List<Request>) getSession().createQuery(
+		          "from Request r join r.advertisement a join a.category c "
+		        + "where r.receiver = "+ receiverId +" and r.requestType= 2 and r.response =1 and c.categoryId = " + catId 
+		        + " ORDER BY requestDate DESC" ).list();	        
     }
 	
 	

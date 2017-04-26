@@ -6,13 +6,39 @@ package com.example.tanvi.NTrusted.Source.Models;
 
 public class Advertisement {
 
-
+    private String adId;
     private String productName;
     private int productCategory;
     private String productDesc;
     private String productPrice;
     private String postDate;
     private String status;
+    private int adType;
+    private String user;
+
+    public String getAdId() {
+        return this.adId;
+    }
+
+    public void setAdId(String adId) {
+        this.adId = adId;
+    }
+
+    public String getAdPostedby() {
+        return user;
+    }
+
+    public void setAdPostedby(String adPostedby) {
+        this.user = adPostedby;
+    }
+
+    public int getAdType() {
+        return adType;
+    }
+
+    public void setAdType(int adType) {
+        this.adType = adType;
+    }
 
     public String getProductName() {
         return productName;

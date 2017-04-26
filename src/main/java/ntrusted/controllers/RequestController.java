@@ -37,12 +37,15 @@ public class RequestController {
 	@Autowired
 	private TransactionDao _trxDao;
 
+	//Send request to renter asking for his / her item 
+	//working
 	@RequestMapping(value="/addBorrowRequest", method=RequestMethod.POST)
 	@ResponseBody
 	public String createBorrowRequest(@RequestParam(value="adId")String adId,
 			  			   @RequestParam(value="senderId") String senderId
 			  			   ) 
 	{
+		//requestType: 1 
 		Advertisement ad = _adDao.getById(Integer.valueOf(adId));
 		java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 		Request req = new Request(_userDao.getById(senderId),ad.getUser(), ad, 1, 1,date);	
@@ -50,12 +53,15 @@ public class RequestController {
 		return "Borrowing Request Added in Request table";
 	}
 	
+	//Send request to borrower informing the item he / she needs is available
+	//working
 	@RequestMapping(value="/addLendingRequest", method=RequestMethod.POST)
 	@ResponseBody
 	public String createLendRequest(@RequestParam(value="adId")String adId,
 			  			   @RequestParam(value="senderId") String senderId 
 			  			   ) 
 	{
+		//requestType: 2 
 		Advertisement ad = _adDao.getById(Integer.valueOf(adId));
 		java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 		Request req = new Request(_userDao.getById(senderId),ad.getUser(), ad, 1, 2,date);	
@@ -64,6 +70,7 @@ public class RequestController {
 	}
 	 	
 	//Requests from someone who wants to borrwo my items
+	//working
 	@RequestMapping(value="/getBorrowRequests", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Request> getBorrowRequests(String receiverId)
@@ -72,6 +79,7 @@ public class RequestController {
 	}
 	
 	//Requests from someone who wants to borrwo my perticular category
+	//working
 		@RequestMapping(value="/getBorrowRequestsforCat", method=RequestMethod.GET)
 		@ResponseBody
 		public List<Request> getBorrowRequestsforCat(String receiverId,String catId)
@@ -80,6 +88,7 @@ public class RequestController {
 		}
 	
 	//Requests from someone who wants to Lend me their items
+	//working
 	@RequestMapping(value="/getLendingRequests", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Request> getLendingRequests(String receiverId)
@@ -88,6 +97,7 @@ public class RequestController {
 	}
 	
 	//Update if request Accepted by accepted/Declined
+	//working
 	@RequestMapping(value="/AcceptDeclineRequest", method=RequestMethod.GET)
 	@ResponseBody
 	public String AcceptDeclineRequests(int requestId, int response)
@@ -100,10 +110,12 @@ public class RequestController {
 		//Request Type: Who is sending the request - int 1: borrow 2:lend
 		if(response == 0 )
 		{
+			System.out.println("inside response =0");
 			req.setResponse(response);	
 		}
 		else
 		{
+			System.out.println("inside response =1");
 			req.setResponse(response);
 			
 			//Get renter and rentee according to advertisement
@@ -146,7 +158,8 @@ public class RequestController {
 				//parse the string to date using .parse(string) function and add it to transaction table.
 				Transaction trx = new Transaction(ad, req, 0, 0,
 						date,null,0,0,renter,rentee, 1);
-			
+				
+				_trxDao.save(trx);
 			//Add to trx i.e start trx
 			
 		}

@@ -25,7 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Source.Activities.HomePageActivity"></activity>
+        <activity android:name=".Source.AdDetailsActivity" />
+<activity android:name=".Source.Activities.HomePageActivity"></activity>
+        <activity android:name=".Source.Activities.BorrowingAdDetailsActivity" />
+        <activity android:name=".Source.Activities.LendingAdDetailsActivity"></activity>
     </application>
 
 </manifest>
