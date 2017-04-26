@@ -62,7 +62,7 @@ public class UserHomepageActivity extends AppCompatActivity {
 //        toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         //setupViewPager(viewPager,0);
@@ -121,12 +121,12 @@ public class UserHomepageActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.android_action_bar_spinner_menu, menu);
 
         MenuItem item = menu.findItem(R.id.spinnerActionBar);
-       categorySpinner =(Spinner) MenuItemCompat.getActionView(item);
+        categorySpinner =(Spinner) MenuItemCompat.getActionView(item);
 
         getCategories();
 
 
-       // spinner.setAdapter(adapter);
+        // spinner.setAdapter(adapter);
         return true;
     }
 
@@ -169,31 +169,31 @@ public class UserHomepageActivity extends AppCompatActivity {
                 categoryArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
                 categorySpinner.setAdapter(categoryArrayAdapter);
 
-              categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                  @Override
-                  public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                      view.setBackgroundColor(Color.WHITE);
+                        view.setBackgroundColor(Color.WHITE);
 
-                     if(i>0)
+                        if(i>0)
 
-                     {
-                         Category item = (Category) adapterView.getItemAtPosition(i);
-                         System.out.println("Item selected !!!!" + item.getCategoryName() + " ID " + item.getCategoryID());
-                         setupViewPager(viewPager,item.getCategoryID());
-                     }
-
-
+                        {
+                            Category item = (Category) adapterView.getItemAtPosition(i);
+                            System.out.println("Item selected !!!!" + item.getCategoryName() + " ID " + item.getCategoryID());
+                            setupViewPager(viewPager,item.getCategoryID());
+                        }
 
 
-                  }
-
-                  @Override
-                  public void onNothingSelected(AdapterView<?> adapterView) {
 
 
-                  }
-              });
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+                    }
+                });
 
 
             }

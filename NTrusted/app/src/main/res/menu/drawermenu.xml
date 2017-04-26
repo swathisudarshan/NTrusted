@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item android:title="Home"
+    android:id="@+id/nav_item_home"/>
+
+    <item android:title="Search by Category"
+        android:id="@+id/nav_item_search" />
+
+    <item android:title="Post an Adv"
+        android:id="@+id/nav_item_post" />
+
+    <item android:title="Logout"
+        android:id="@+id/nav_item_logout"/>
+
+
+</menu>

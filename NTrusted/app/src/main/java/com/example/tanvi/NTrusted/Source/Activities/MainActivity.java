@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     if(result.equals(userID))
                                     {
-                                        Intent intent = new Intent(MainActivity.this,UserHomepageActivity.class);
+                                        Intent intent = new Intent(MainActivity.this,HomePageActivity.class);
                                         startActivity(intent);
                                     }
 

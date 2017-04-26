@@ -73,8 +73,8 @@ public class TwoFragment extends ListFragment {
 
         System.out.println("**********Category ID is "+this.categoryId+" Renter Id is "+this.userId);
 
-        getOperation = new GETOperation(Constants.getRentees+"?catId="+this.categoryId+"&RenterId="+this.userId,context);
-        getOperation.getData(new VolleyGETCallBack() {
+        //getOperation = new GETOperation(Constants.getRentees+"?catId="+this.categoryId+"&RenterId="+this.userId,context);
+        /*getOperation.getData(new VolleyGETCallBack() {
             @Override
             public void onSuccess(String result) {
             }
@@ -105,7 +105,7 @@ public class TwoFragment extends ListFragment {
 
             }
 
-        });
+        });*/
         return view;
     }
 

@@ -74,7 +74,7 @@ public class UserInformationActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Object result) {
 
-                Intent intent = new Intent(UserInformationActivity.this,UserHomepageActivity.class);
+                Intent intent = new Intent(UserInformationActivity.this,HomePageActivity.class);
                 startActivity(intent);
 
             }

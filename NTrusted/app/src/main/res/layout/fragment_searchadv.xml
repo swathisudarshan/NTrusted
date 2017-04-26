@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tanvi.NTrusted.Source.Utilities.SearchFragment"
+    android:orientation="vertical"
+    android:background="@color/appBackground">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Select Product Category"
+        android:textSize="23dp"
+        android:layout_marginTop="65dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:id="@+id/appCompatSpinner"></android.support.v7.widget.AppCompatSpinner>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Select Advertisement Type"
+        android:textSize="23dp"
+        android:layout_marginTop="62dp"
+        android:id="@+id/textView1"
+        android:layout_below="@+id/appCompatSpinner"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="54dp"
+        android:id="@+id/appCompatSpinner1"
+        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/appCompatSpinner"
+        android:layout_alignStart="@+id/appCompatSpinner"></android.support.v7.widget.AppCompatSpinner>
+
+</RelativeLayout>

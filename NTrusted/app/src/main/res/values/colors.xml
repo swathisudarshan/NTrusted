@@ -6,4 +6,7 @@
     <color name="fbSignUpButton">#2196f3</color>
     <color name="appBackground">#033076</color>
     <color name="appBar">#120639</color>
+    <color name="black">#000</color>
+    <color name="orange">#FA0</color>
+    <color name="white">#FFF</color>
 </resources>

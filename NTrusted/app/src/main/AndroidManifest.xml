@@ -14,20 +14,18 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".Source.Activities.MainActivity">
-        </activity>
+        <activity android:name=".Source.Activities.MainActivity"></activity>
         <activity android:name=".Source.Activities.UserHomepageActivity" />
         <activity android:name=".Source.Activities.PostAdvActivity" />
         <activity android:name=".Source.Activities.UserInformationActivity" />
         <activity android:name=".Source.Activities.LauncherActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".Source.Activities.HomePageActivity"></activity>
     </application>
 
 </manifest>

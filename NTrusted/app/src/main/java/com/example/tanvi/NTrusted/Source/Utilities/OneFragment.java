@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.example.tanvi.NTrusted.R;
 public class OneFragment extends ListFragment {
 
-    String[] AndroidOS = new String[] { "Cupcake","Donut","Eclair","Froyo","Gingerbread","Honeycomb","Ice Cream SandWich","Jelly Bean","KitKat" };
-    String[] Version = new String[]{"1.5","1.6","2.0-2.1","2.2","2.3","3.0-3.2","4.0","4.1-4.3","4.4"};
+    String[] AndroidOS = new String[] { "Camera","Table","Camera","Books"};
+
 
     public OneFragment() {
         // Required empty public constructor
