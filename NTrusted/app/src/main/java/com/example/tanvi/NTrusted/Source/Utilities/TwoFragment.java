@@ -1,6 +1,7 @@
 package com.example.tanvi.NTrusted.Source.Utilities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,10 @@ import android.widget.Toast;
 
 
 import com.example.tanvi.NTrusted.R;
+import com.example.tanvi.NTrusted.Source.Activities.BorrowingAdDetailsActivity;
+import com.example.tanvi.NTrusted.Source.Activities.LendingAdDetailsActivity;
+import com.example.tanvi.NTrusted.Source.Activities.MainActivity;
+import com.example.tanvi.NTrusted.Source.Activities.UserInformationActivity;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
@@ -87,10 +92,16 @@ public class TwoFragment extends ListFragment {
 
                     Advertisement adv = new Advertisement();
                     try {
-
+                        System.out.print("************** Object of Result is "+result.getJSONObject(i));
+                        adv.setAdId(String.valueOf(result.getJSONObject(i).get("adId")));
+                        adv.setAdPostedby((String)result.getJSONObject(i).get("user"));
                         adv.setProductName((String) result.getJSONObject(i).get("productName"));
-                        adv.setPostDate(result.getJSONObject(i).getString("postDate"));
-
+                        adv.setProductDesc((String) result.getJSONObject(i).get("productDescription"));
+                        adv.setProductPrice(String.valueOf(result.getJSONObject(i).get("productPrice")) );
+                        adv.setAdType((int)result.getJSONObject(i).get("adType"));
+                        adv.setProductCategory((int) result.getJSONObject(i).get("category"));
+                        adv.setPostDate(String.valueOf(result.getJSONObject(i).getString("postDate")));
+                        adv.setStatus(String.valueOf(result.getJSONObject(i).get("active")) );
                         advertisements.add(adv);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -111,8 +122,31 @@ public class TwoFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+    Advertisement ad = advertisements.get(position);
 
+        System.out.println("Ad clicked is : " + ad.toString());
+        //Ad type 1 = Lend product , 2= Borrow product
+        if(ad.getAdType() == 1)
+        {
+            Intent intent = new Intent(getActivity().getApplicationContext(),LendingAdDetailsActivity.class);
+            Bundle bundle = new Bundle();
 
+            bundle.putString("adId",ad.getAdId());
+            bundle.putInt("catId",ad.getProductCategory());
+            bundle.putString("Postedby",ad.getAdPostedby());
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+        else
+        {
+            Intent intent = new Intent(getActivity().getApplicationContext(), BorrowingAdDetailsActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("adId",ad.getAdId());
+            bundle.putInt("catId",ad.getProductCategory());
+            bundle.putString("Postedby",ad.getAdPostedby());
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
 
 
 

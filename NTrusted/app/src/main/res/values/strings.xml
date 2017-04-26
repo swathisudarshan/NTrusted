@@ -5,4 +5,5 @@
     <string name="one">One</string>
     <string name="two">Two</string>
     <string name="three">Three</string>
+    <string name="title_activity_ad_details">AdDetailsActivity</string>
 </resources>
