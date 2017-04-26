@@ -30,7 +30,6 @@ public class AdvertisementController {
 	 @Autowired 
 	 private CategoryDao _catDao;
 	 
-	 
 	 @Autowired
 	 private UserDao _userDao;
 	 
@@ -47,24 +46,29 @@ public class AdvertisementController {
 	    return "Advertisement succesfully deleted!";
 	  }
 	 
+	 //Working 
 	 @RequestMapping(value="/getAllAds")
 	  @ResponseBody
 	  public List<Advertisement> getAllAds() {
 	      return _adDao.getAll();
 	    }
 	   
+	 //Working
 	 @RequestMapping(value="/getAllBorrowAds")
 	  @ResponseBody
 	  public List<Advertisement> getAllBorrowAds() {
 	      return _adDao.getAllBorrowAds();
 	    }
 	 
+	 //Working
 	 @RequestMapping(value="/getAllLendingAds")
 	  @ResponseBody
 	  public List<Advertisement> getAllLendingAds() {
 	      return _adDao.getAllLendAds();
 	    }
 	 
+	 //Add Lending ad -- I have an item on rent. I'm adding the advertisement to let know people who can borrow the product
+	 //Working
 	 @RequestMapping(value="/addLendingProduct", method=RequestMethod.POST)
 	  @ResponseBody
 	  public String createLendingAdvertisement(@RequestParam(value="productName")String productName, 
@@ -75,12 +79,9 @@ public class AdvertisementController {
 			  @RequestParam(value="userId") String userId,
 			  @RequestParam(value="adType") String adType) {
 	    try {
-	
+	    	//adType: 1 & active: 1 for new Lending advertisement 
 	    	
 	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!");
-	    	
-	    	//System.out.println("The parameters are : "+productName+" "+productDescription+" "+productPrice+" "+active+" "+categoryId+" "+userId+" "+adType);
-	    	
 	    	float productpriceFloat = Float.valueOf(productPrice);
 	    	int activeInteger = Integer.valueOf(active);
 	    	int categoryInteger = Integer.valueOf(categoryId);
@@ -99,7 +100,8 @@ public class AdvertisementController {
 	    return "Lending Advertisement saved!";
 	  }
 	 
-	 //Add Borrowing ad
+	 //Add Borrowing ad -- I want an item on rent. I'm adding the advertisement to let know people who can lend the product
+	 //Working
 	 @RequestMapping(value="/addBorrowingProduct", method=RequestMethod.POST)
 	  @ResponseBody
 	  public String createBorrowingAdvertisement(@RequestParam(value="productName")String productName, 
@@ -109,12 +111,8 @@ public class AdvertisementController {
 			  @RequestParam(value="userId") String userId,
 			  @RequestParam(value="adType") String adType) {
 	    try {
-	    	//Category category = new Category(categoryId);
-	    	
-	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!");
-	    	
-	    	System.out.println("The parameters are : "+productName+" "+productDescription+" "+active+" "+categoryId+" "+userId+" "+adType);
-	 
+	    	//adType: 2 & active: 1 for new Borrowing advertisement	    	
+	    	System.out.println("In Add Borrowing product !!!!!!!!!!!!!!!!");
 	    	int activeInteger = Integer.valueOf(active);
 	    	int categoryInteger = Integer.valueOf(categoryId);
 	    	int adTypeInteger = Integer.valueOf(adType);  	
@@ -129,7 +127,6 @@ public class AdvertisementController {
 			catch(Exception ex) {
 			      return ex.getMessage();
 			    }
-	
 	    return "Borrowing Advertisement saved!";
 	  }
 }

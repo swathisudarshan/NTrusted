@@ -36,7 +36,6 @@ public class Advertisement {
 	@NotNull
 	@Column(name="productDescription")
 	private String productDescription;
-	
 
 	@Column(name="productPrice")
 	private float productPrice;
@@ -119,7 +118,8 @@ public class Advertisement {
 	}
 
 	public Date getPostDate() {
-		return postDate;
+		return (java.sql.Timestamp)postDate;
+		
 	}
 
 	public void setPostDate(Date postDate) {
@@ -150,8 +150,6 @@ public class Advertisement {
 		this.user = user;
 	}
 	
-	
-
 	public int getAdType() {
 		return adType;
 	}
