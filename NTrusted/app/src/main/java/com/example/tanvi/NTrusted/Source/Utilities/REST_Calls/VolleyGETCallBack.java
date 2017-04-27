@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities;
+package com.example.tanvi.NTrusted.Source.Utilities.REST_Calls;
 
 import org.json.JSONArray;
 

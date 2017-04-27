@@ -15,11 +15,14 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
+        //Check if user is logged in, if yes then go to HomePage
         if(isLoggedIn()){
 
              intent= new Intent(LauncherActivity.this,HomePageActivity.class);
 
-        }else{
+        }
+        //Else go to MainActivity where user can sign in using Facebook
+        else{
 
             intent = new Intent(LauncherActivity.this,MainActivity.class);
         }
@@ -29,6 +32,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     }
 
+    //Method which checks using Facebook access token whether the user has signed in
     public boolean isLoggedIn(){
 
         AccessToken accessToken = AccessToken.getCurrentAccessToken();

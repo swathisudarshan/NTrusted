@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tanvi.NTrusted.Source.Utilities.SearchFragment"
+    tools:context="com.example.tanvi.NTrusted.Source.Utilities.Fragments.SearchFragment"
     android:orientation="vertical"
     android:background="@color/appBackground">
 
@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/orange"
         android:text="Select Product Category"
         android:textSize="23dp"
         android:layout_marginTop="65dp"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/orange"
         android:text="Select Advertisement Type"
         android:textSize="23dp"
         android:layout_marginTop="62dp"
@@ -43,7 +43,17 @@
         android:layout_marginTop="54dp"
         android:id="@+id/appCompatSpinner1"
         android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
         android:layout_alignLeft="@+id/appCompatSpinner"
         android:layout_alignStart="@+id/appCompatSpinner"></android.support.v7.widget.AppCompatSpinner>
+
+    <Button
+        android:text="Get Me Ads !"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appCompatSpinner1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:id="@+id/getMeAds" />
 
 </RelativeLayout>

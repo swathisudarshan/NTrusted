@@ -88,7 +88,8 @@ public class SearchProductController {
 	    	  jsonObject.put("productName", ad.getProductName());
 	    	  jsonObject.put("productDescription", ad.getProductDescription());
 	    	  jsonObject.put("productPrice", ad.getProductPrice());
-	    	  jsonObject.put("user", ad.getUser().getName());
+	    	  System.out.println(ad.getUser());
+	    	  jsonObject.put("user", ad.getUser());
 	    	  jsonObject.put("postDate", ad.getPostDate());
 	    	  jsonObject.put("category", ad.getCategory().getCategoryId());
 	    	  jsonObject.put("active", ad.getActive());

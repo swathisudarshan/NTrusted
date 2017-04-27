@@ -1,10 +1,12 @@
 package com.example.tanvi.NTrusted.Source.Models;
 
+import java.io.Serializable;
+
 /**
  * Created by tanvi on 4/22/2017.
  */
 
-public class Category {
+public class Category implements Serializable {
 
     private int categoryID;
     private String categoryName;

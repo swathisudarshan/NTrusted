@@ -1,31 +1,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appBackground">
-
-    <ImageView
-        android:layout_gravity="center"
-        android:paddingLeft="15dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/ntrusted_logo"
-        android:id="@+id/imageView2" />
+    android:background="@color/appBackground"
+    android:paddingTop="50dp"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="2dp"
         android:layout_marginBottom="10dp"
         android:text="Add your Advertisement Details: "
         android:layout_gravity="center"
+        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:paddingBottom="10dp"/>
+        android:paddingBottom="10dp"
+        android:layout_weight="0.23"
+        android:id="@+id/textView3"
+        />
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -37,12 +36,14 @@
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Category :"/>
+                android:text="Category :"
+                android:textColor="@color/orange"/>
 
-            <Spinner
-                android:layout_width="match_parent"
+            <android.support.v7.widget.AppCompatSpinner
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner" />
+                android:id="@+id/spinner"
+               ></android.support.v7.widget.AppCompatSpinner>
 
         </TableRow>
 
@@ -57,7 +58,8 @@
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Product Name :"/>
+                android:text="Product Name :"
+                android:textColor="@color/orange"/>
 
             <EditText
                 android:paddingBottom="-5dp"
@@ -79,7 +81,8 @@
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Description :"/>
+                android:text="Description :"
+                android:textColor="@color/orange"/>
 
             <EditText
                 android:layout_width="0dp"
@@ -99,26 +102,30 @@
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Advertisement Type :"/>
+                android:text="Advertisement Type :"
+                android:textColor="@color/orange"/>
 
 
             <RadioGroup
                 android:id="@+id/radioAdType"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <RadioButton
                     android:id="@+id/radioBorrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Borrow a product"
-                    android:checked="true" />
+                    android:checked="true"
+                    android:textColor="@color/orange"/>
 
                 <RadioButton
                     android:id="@+id/radioLend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lend a product" />
+                    android:text="Lend a product"
+                    android:textColor="@color/orange"/>
 
             </RadioGroup>
 
@@ -129,8 +136,10 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/productPriceText"
                 android:layout_width="wrap_content"
                 android:layout_weight="2"
+                android:textColor="@color/orange"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Product Rent Price :"/>
@@ -150,7 +159,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Send"
+        android:text="Post Adv"
+        android:textColor="@color/orange"
+        android:background="@color/black"
         android:id="@+id/send"/>
 
 

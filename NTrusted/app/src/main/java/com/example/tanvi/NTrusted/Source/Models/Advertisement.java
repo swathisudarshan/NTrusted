@@ -1,20 +1,23 @@
 package com.example.tanvi.NTrusted.Source.Models;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * Created by tanvi on 4/22/2017.
  */
 
-public class Advertisement {
+public class Advertisement implements Serializable {
 
     private String adId;
     private String productName;
-    private int productCategory;
+    private Category productCategory;
     private String productDesc;
     private String productPrice;
-    private String postDate;
+    private Date postDate;
     private String status;
     private int adType;
-    private String user;
+    private User user;
 
     public String getAdId() {
         return this.adId;
@@ -24,11 +27,11 @@ public class Advertisement {
         this.adId = adId;
     }
 
-    public String getAdPostedby() {
+    public User getAdPostedby() {
         return user;
     }
 
-    public void setAdPostedby(String adPostedby) {
+    public void setAdPostedby(User adPostedby) {
         this.user = adPostedby;
     }
 
@@ -64,11 +67,11 @@ public class Advertisement {
         this.productPrice = productPrice;
     }
 
-    public String getPostDate() {
+    public Date getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(String postDate) {
+    public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
 
@@ -80,11 +83,11 @@ public class Advertisement {
         this.status = status;
     }
 
-    public int getProductCategory() {
+    public Category getProductCategory() {
         return productCategory;
     }
 
-    public void setProductCategory(int productCategory) {
+    public void setProductCategory(Category productCategory) {
         this.productCategory = productCategory;
     }
 

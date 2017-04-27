@@ -15,7 +15,6 @@
             android:value="@string/facebook_app_id" />
 
         <activity android:name=".Source.Activities.MainActivity"></activity>
-        <activity android:name=".Source.Activities.UserHomepageActivity" />
         <activity android:name=".Source.Activities.PostAdvActivity" />
         <activity android:name=".Source.Activities.UserInformationActivity" />
         <activity android:name=".Source.Activities.LauncherActivity">
@@ -27,8 +26,6 @@
         </activity>
         <activity android:name=".Source.AdDetailsActivity" />
 <activity android:name=".Source.Activities.HomePageActivity"></activity>
-        <activity android:name=".Source.Activities.BorrowingAdDetailsActivity" />
-        <activity android:name=".Source.Activities.LendingAdDetailsActivity"></activity>
     </application>
 
 </manifest>

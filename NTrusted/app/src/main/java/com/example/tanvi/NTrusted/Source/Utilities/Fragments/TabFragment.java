@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -65,7 +65,7 @@ public class TabFragment extends Fragment {
     }
 
 
-
+    //Adapter class for attaching three fragments to the tab fragment
     class MyAdapter extends FragmentPagerAdapter {
 
         public MyAdapter(FragmentManager fm) {
@@ -80,9 +80,9 @@ public class TabFragment extends Fragment {
         public Fragment getItem(int position)
         {
             switch (position){
-                case 0 : return new OneFragment();
-                case 1 : return new TwoFragment();
-                case 2 : return new ThreeFragment();
+                case 0 : return new AllAdsFragment();
+                case 1 : return new BorrowAdFragment();
+                case 2 : return new LendAdFragment();
             }
             return null;
         }

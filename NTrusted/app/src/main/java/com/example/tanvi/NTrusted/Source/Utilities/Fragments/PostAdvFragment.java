@@ -1,12 +1,15 @@
-package com.example.tanvi.NTrusted.Source.Activities;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,8 +26,8 @@ import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.POSTOperation;
-import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyPOSTCallBack;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
+import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyPOSTCallBack;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,8 +36,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PostAdvActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+    // TODO: Rename parameter arguments, choose names that match
 
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
     private Spinner categorySpinner;
     private EditText productName, productDesc, productPrice;
@@ -58,23 +68,58 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
 
     private String userId;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_adv);
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref",0);
+    private OnFragmentInteractionListener mListener;
+
+    public PostAdvFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment PostAdvFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static PostAdvFragment newInstance(String param1, String param2) {
+        PostAdvFragment fragment = new PostAdvFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+
+        View rootView = inflater.inflate(R.layout.activity_post_adv, container, false);
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref",0);
         userId = pref.getString(Constants.UserID,null);
 
-        categorySpinner = (Spinner) findViewById(R.id.spinner);
-        productName = (EditText) findViewById(R.id.productName);
-        productDesc = (EditText) findViewById(R.id.productDesc);
-        productPrice = (EditText) findViewById(R.id.productPrice);
-        postAdv = (Button) findViewById(R.id.send);
-        radioGroup = (RadioGroup) findViewById(R.id.radioAdType);
-        radioBorrow = (RadioButton) findViewById(R.id.radioBorrow);
-        radioLend = (RadioButton) findViewById(R.id.radioLend);
-        productPriceTitle = (TextView) findViewById(R.id.productPriceText);
+        categorySpinner = (Spinner) rootView.findViewById(R.id.spinner);
+        productName = (EditText) rootView.findViewById(R.id.productName);
+        productDesc = (EditText) rootView.findViewById(R.id.productDesc);
+        productPrice = (EditText) rootView.findViewById(R.id.productPrice);
+        postAdv = (Button) rootView.findViewById(R.id.send);
+        radioGroup = (RadioGroup) rootView.findViewById(R.id.radioAdType);
+        radioBorrow = (RadioButton) rootView.findViewById(R.id.radioBorrow);
+        radioLend = (RadioButton) rootView.findViewById(R.id.radioLend);
+        productPriceTitle = (TextView) rootView.findViewById(R.id.productPriceText);
         productPrice.setVisibility(View.INVISIBLE);
         productPriceTitle.setVisibility(View.INVISIBLE);
 
@@ -102,13 +147,13 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
         categorySpinner.setOnItemSelectedListener(this);
         getCategories();
 
-
+        return rootView;
     }
 
     private void getCategories() {
 
         System.out.println("In get categories");
-        getOperation = new GETOperation(Constants.getAllCategories, getApplicationContext());
+        getOperation = new GETOperation(Constants.getAllCategories, getActivity().getApplicationContext());
         getOperation.getData(new VolleyGETCallBack(){
             @Override
             public void onSuccess(String result) {
@@ -133,7 +178,7 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
                 }
 
 
-                adapter = new ArrayAdapter<Category>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item,categories);
+                adapter = new ArrayAdapter<Category>(getActivity().getApplicationContext(), R.layout.support_simple_spinner_dropdown_item,categories);
 
                 //adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
@@ -143,12 +188,41 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
                 for(int i=0;i<categories.size();i++)
                     System.out.println(categories.get(i).getCategoryName());
 
-        }
+            }
 
         });
 
 
+
+
+
     }
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -163,6 +237,15 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+
+
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -204,18 +287,25 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
         System.out.println("Category :"+parameters.get("categoryId")+" User:"+parameters.get("userId")+" Active:" +parameters.get("active") +"Type:"+parameters.get("adType"));
 
 
-        postOperation = new POSTOperation(Constants.postAdvertisement, parameters, getApplicationContext());
+        postOperation = new POSTOperation(Constants.postAdvertisement, parameters, getActivity().getApplicationContext());
         postOperation.postData(new VolleyPOSTCallBack() {
             @Override
             public void onSuccess(Object result) {
 
-             System.out.println("Success !! Ad posted");
-                Toast.makeText(PostAdvActivity.this, "Ad Posted Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(PostAdvActivity.this,HomePageActivity.class);
-                startActivity(intent);
+                Toast.makeText(getActivity().getApplicationContext(),"Your Ad successfully posted !",Toast.LENGTH_SHORT).show();
+
+                TabFragment tabFragment = new TabFragment();
+                android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.containerView,tabFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
 
     }
+
+
+
+
 }

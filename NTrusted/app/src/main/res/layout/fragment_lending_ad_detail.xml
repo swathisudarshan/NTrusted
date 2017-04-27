@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_borrowing_ad_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/appBackground"
+    >
+
+    <TextView
+        android:text="Advertisement Details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <TableLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingTop="50dp"
+        android:background="@color/appBackground">
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/desciption"
+                android:textColor="@color/orange"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Product: "
+                android:textColor="@color/orange"
+                android:textSize="15dp"/>
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/product"
+                android:textColor="@color/orange"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Product Category: "
+                android:textColor="@color/orange"
+                android:textSize="15dp"/>
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/cat"
+                android:textColor="@color/orange"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+
+        <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:paddingBottom="30dp">
+
+        <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Product Rent Price: "
+        android:textColor="@color/orange"/>
+        <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text=""
+        android:id="@+id/price"
+        android:textColor="@color/orange"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Posted By: "
+                android:textColor="@color/orange"
+                android:textSize="15dp"/>
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/by"
+                android:textColor="@color/orange"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="15dp"
+                android:text="Posted on:"
+                android:textColor="@color/orange"
+                />
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/date"
+                android:textColor="@color/orange"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <Button android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Borrow"
+                android:textColor="@color/orange"
+                android:background="@color/black"
+                android:id="@+id/send"
+                android:elegantTextHeight="true"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+
+                />
+
+            <Button android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Cancel"
+                android:layout_marginLeft="70dp"
+                android:textColor="@color/orange"
+                android:background="@color/black"
+                android:id="@+id/cancel"
+                android:elegantTextHeight="true"
+                android:textAllCaps="false"/>
+
+
+        </TableRow>
+
+
+
+    </TableLayout>
+
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Advertisement Description: "
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:id="@+id/textView7" />
+
+
+
+</RelativeLayout>

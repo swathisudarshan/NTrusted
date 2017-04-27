@@ -108,6 +108,12 @@ public class User {
 		this.address = address;
 	}
 	
+	@Override
+	public String toString(){
+		return getFbId();
+		
+		
+	}
 
 /*	public Collection<Request> getRenter() {
 		return renter;

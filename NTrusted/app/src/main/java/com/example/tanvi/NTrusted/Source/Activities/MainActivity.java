@@ -8,8 +8,8 @@ import android.os.Bundle;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.User;
-import com.example.tanvi.NTrusted.Source.Utilities.GETOperation;
-import com.example.tanvi.NTrusted.Source.Utilities.VolleyGETCallBack;
+import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
+import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
                             user.setName(userName);
                             user.setEmail(userEmail);
 
-                            /*Session Management - Add User details to Shared Preferences*/
+                            /*Session Management - Add User details to Shared Preferences
+                            * So that session for this user will be maintained on other screens as well*/
                             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref",0);
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString(Constants.UserID,userID);
@@ -104,12 +105,14 @@ public class MainActivity extends AppCompatActivity {
 
                                     System.out.println(result);
 
+                                    /*That means that user has previously signed up for the app and that
+                                    * he is returning by logging in using Facebook*/
                                     if(result.equals(userID))
                                     {
+                                        //Go to user's homepage
                                         Intent intent = new Intent(MainActivity.this,HomePageActivity.class);
                                         startActivity(intent);
                                     }
-
                                 }
 
                                 @Override
@@ -119,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
 
                             });
 
-
+                            //Else user has signed up with the app for first time, redirect him
+                            // to information activity
                             Intent intent = new Intent(MainActivity.this,UserInformationActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("User",user);

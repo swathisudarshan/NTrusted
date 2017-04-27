@@ -101,7 +101,7 @@ public class AdvertisementDao {
 	//If one wants to view list of ads to whom they can lend/rent item
 		public List<Advertisement> getBorrowingAds(int id) {
 			try{
-				Query query = getSession().createQuery("from Advertisement where categoryId = "+id+"and active = 1 and adType = 2");
+				Query query = getSession().createQuery("from Advertisement a join a.category c join a.user u where c.categoryId = "+id+"and a.active = 1 and a.adType = 2");
 				@SuppressWarnings("unchecked")
 				List<Advertisement> ads = query.list();
 				System.out.println("Ads are : "+ ads.toString());

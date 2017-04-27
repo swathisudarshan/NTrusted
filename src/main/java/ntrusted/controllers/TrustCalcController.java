@@ -115,7 +115,7 @@ public class TrustCalcController {
 		double reputation = 0.0;
 		
 		Customer cus1 = cuRepo.findByUserId(RenteeId);
-	//	System.out.println("Customer obtained is **********"+cus1.toString());
+	
 		List<Connection> cons = cus1.getConnections();
 		//System.out.println("Inside calcRenterRank");
 	//	System.out.println("Connections are: "+cons);
