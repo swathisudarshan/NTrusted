@@ -42,7 +42,6 @@ public class Advertisement {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="fbId")
-	@JsonManagedReference
 	private User user;
 	
 	@NotNull
@@ -54,9 +53,8 @@ public class Advertisement {
 	@Column(name="active")
 	private int active;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="categoryId")
-	@JsonManagedReference
 	private Category category;
 	
 	// 1 = Lend Product, 2 = Borrow Product
@@ -158,11 +156,11 @@ public class Advertisement {
 		this.adType = adType;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "[adId=" + adId + ", productName=" + productName + ", productDescription="
 				+ productDescription + ", productPrice=" + productPrice + ", user=" + user + ", postDate=" + postDate
 				+ ", active=" + active + ", category=" + category + "]";
-	}
+	}*/
 	
 }

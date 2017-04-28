@@ -31,10 +31,20 @@ public class SearchProductController {
 	  @ResponseBody
 	  public List<Advertisement> getRenterAds(int catId, String RenteeId) {
 	    List<Advertisement> ads;
+	    sortedRenterAds.clear();
+	    sortedRenteeAds.clear();
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
 	    
 	    try {
-	      ads = _adDao.getLendingAds(catId);
+	      ads = (List<Advertisement>) _adDao.getLendingAds(catId);
+	      for(Advertisement ad: ads)
+	      {
+	    	  //System.out.println("Inside search controller: "+ ad.getProductName());
+	    	  String tempUserID = ad.getUser().getFbId();
+	    	  UnsortedResult.put(ad,TCC.calcRenterRank(RenteeId,tempUserID));
+	      }
+	      System.out.println("Inside search controller: "+ ads.size());
+	    
 	      //Get List of user Id's for each ad
 	      List<String> userIds = new ArrayList<String>();
 	      for(Advertisement ad: ads)
@@ -60,45 +70,57 @@ public class SearchProductController {
 	
 	@RequestMapping(value="/fetchRentees")
 	  @ResponseBody
-	  public String getRenteeAds(int catId, String RenterId) {
+	  public List<Advertisement> getRenteeAds(int catId, String RenterId) {
 	    List<Advertisement> ads;
+	    
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
-	    JSONObject mainObj = new JSONObject();
-	    JSONArray array = new JSONArray();
+	    sortedRenterAds.clear();
+	    sortedRenteeAds.clear();
+	    
+//	    JSONObject mainObj = new JSONObject();
+//	    JSONArray array = new JSONArray();
 	    try{
 	      ads = _adDao.getBorrowingAds(catId);
+	      System.out.println("getBorrowing ads: "+ads.toString());
 	      //Get List of user Id's for each ad
 	      List<String> userIds = new ArrayList<String>();
 	      for(Advertisement ad: ads)
 	      {
+	    	  System.out.println("Infor getBorrowing ads: "+ad.toString());
 	    	  String tempUserID = ad.getUser().getFbId();
 	    	  UnsortedResult.put(ad,TCC.calcRenteeRank(RenterId,tempUserID));
 	      }
+//	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
+//	      System.out.println("Sorted Result is ---- >"+sortedResult.toString());
+//	      
+//	      
+//	      
+//	      for(Advertisement ad:sortedResult.keySet())
+//	      {
+//	    	  System.out.println("Ad : "+ad.toString());
+//	    	  sortedRenteeAds.add(ad);
+//	    	  JSONObject jsonObject = new JSONObject();
+//	    	  jsonObject.put("adId", ad.getAdId());
+//	    	  jsonObject.put("productName", ad.getProductName());
+//	    	  jsonObject.put("productDescription", ad.getProductDescription());
+//	    	  jsonObject.put("productPrice", ad.getProductPrice());
+//	    	  System.out.println(ad.getUser());
+//	    	  jsonObject.put("user", ad.getUser());
+//	    	  jsonObject.put("postDate", ad.getPostDate());
+//	    	  jsonObject.put("category", ad.getCategory().getCategoryId());
+//	    	  jsonObject.put("active", ad.getActive());
+//	    	  jsonObject.put("adType", ad.getAdType());
+//	    	  
+//	    	  array.put(jsonObject);
+//	    	      	  
+//	      }
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
-	      System.out.println("Sorted Result is ---- >"+sortedResult.toString());
-	      
-	      
+	      System.out.println(sortedResult.toString());
 	      
 	      for(Advertisement ad:sortedResult.keySet())
 	      {
-	    	  System.out.println("Ad : "+ad.toString());
 	    	  sortedRenteeAds.add(ad);
-	    	  JSONObject jsonObject = new JSONObject();
-	    	  jsonObject.put("adId", ad.getAdId());
-	    	  jsonObject.put("productName", ad.getProductName());
-	    	  jsonObject.put("productDescription", ad.getProductDescription());
-	    	  jsonObject.put("productPrice", ad.getProductPrice());
-	    	  System.out.println(ad.getUser());
-	    	  jsonObject.put("user", ad.getUser());
-	    	  jsonObject.put("postDate", ad.getPostDate());
-	    	  jsonObject.put("category", ad.getCategory().getCategoryId());
-	    	  jsonObject.put("active", ad.getActive());
-	    	  jsonObject.put("adType", ad.getAdType());
-	    	  
-	    	  array.put(jsonObject);
-	    	      	  
 	      }
-	      
 	      //System.out.println("The List is ==============   "+sortedRenteeAds.toString());
 	    }
 	    catch(Exception ex) {
@@ -107,7 +129,7 @@ public class SearchProductController {
 	    }
 	    
 	    
-		return array.toString();
+		return sortedRenteeAds;
 	  }
 	
 	private static Map<Advertisement, Double> sortByValue(Map<Advertisement, Double> unsortMap) {

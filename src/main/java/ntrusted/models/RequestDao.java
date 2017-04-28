@@ -59,7 +59,8 @@ public class RequestDao {
 		
 		 return (List<Request>) getSession().createQuery(
 			          "from Request r join r.advertisement a join a.category c "
-			        + "where r.receiver = "+ receiverId +" and r.requestType= 1 and r.response =1 and c.categoryId = " + catId 
+			        + "where r.receiver = "+ receiverId 
+			        + " and r.requestType= 1 and r.response =1 and c.categoryId = " + catId 
 			        + " ORDER BY requestDate DESC" ).list();
 	}
 	

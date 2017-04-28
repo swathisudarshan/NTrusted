@@ -43,7 +43,6 @@
         android:layout_marginTop="54dp"
         android:id="@+id/appCompatSpinner1"
         android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
         android:layout_alignLeft="@+id/appCompatSpinner"
         android:layout_alignStart="@+id/appCompatSpinner"></android.support.v7.widget.AppCompatSpinner>
 

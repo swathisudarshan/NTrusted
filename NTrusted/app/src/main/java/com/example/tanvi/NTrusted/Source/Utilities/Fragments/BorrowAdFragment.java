@@ -160,25 +160,35 @@ public class BorrowAdFragment extends ListFragment {
                         Advertisement adv = new Advertisement();
                         try {
 
-                            System.out.print("************** Borrow Ad Fragment "+result.getJSONObject(i));
-                            adv.setAdId(String.valueOf(result.getJSONObject(i).get("adId")));
+                            System.out.println("Advertisement in success is ------>"+result.getJSONObject(i).toString());
+                            JSONObject advObj = result.getJSONObject(i);
+                            JSONObject userObj = (JSONObject) advObj.get("user");
+                            JSONObject catObj = (JSONObject) advObj.get("category");
 
-                            User user = new User();
-                            user.setId((String) result.getJSONObject(i).get("user"));
-                            adv.setAdPostedby(user);
-                            adv.setProductName((String) result.getJSONObject(i).get("productName"));
-                            adv.setProductDesc((String) result.getJSONObject(i).get("productDescription"));
-                            adv.setProductPrice(String.valueOf(result.getJSONObject(i).get("productPrice")) );
-                            adv.setAdType((int)result.getJSONObject(i).get("adType"));
-
-                            Category category = new Category();
-                            category.setCategoryID(Integer.parseInt(String.valueOf(result.getJSONObject(i).get("category"))));
-                            adv.setProductCategory(category);
+                            //Set ad details
+                            adv.setAdId(String.valueOf(advObj.get("adId")));
+                            adv.setProductName(String.valueOf(advObj.get("productName")));
+                            adv.setProductDesc(String.valueOf(advObj.get("productDescription")));
+                            adv.setProductPrice(String.valueOf(advObj.get("productPrice")));
+                            adv.setAdType((Integer) advObj.get("adType"));
                             Date date = new Date();
-                            date.setTime((Long) result.getJSONObject(i).get("postDate"));
+                            date.setTime((Long) advObj.get("postDate"));
                             adv.setPostDate(date);
-                            adv.setStatus(String.valueOf(result.getJSONObject(i).get("active")) );
+                            adv.setStatus(String.valueOf(advObj.get("active")));
 
+                            //set user details
+                            User user = new User();
+                            user.setId((String) userObj.get("fbId"));
+                            user.setName((String) userObj.get("name"));
+                            user.setPhone((String) userObj.get("phoneNumber"));
+                            user.setAddress((String) userObj.get("address"));
+                            adv.setAdPostedby(user);
+
+                            //set category details
+                            Category category = new Category();
+                            category.setCategoryID(catObj.getInt("categoryId"));
+                            category.setCategoryName(catObj.getString("categoryName"));
+                            adv.setProductCategory(category);
 
                             if(adv.getAdPostedby().getId().equals(userId))
                             {
@@ -193,15 +203,15 @@ public class BorrowAdFragment extends ListFragment {
                                 System.out.println("Advertisment "+adv.getAdId()+" added to the list !!");
                             }
 
-                        } catch (JSONException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
                     }
 
 
-                    ArrayAdapter<Advertisement> adapter = new ArrayAdapter<Advertisement>(getActivity(), android.R.layout.simple_list_item_1, advertisements);
-                    setListAdapter(adapter);
+                    adverAdapter = new AdverAdapter(getActivity().getApplicationContext(),advertisements);
+                    setListAdapter(adverAdapter);
 
 
                 }
