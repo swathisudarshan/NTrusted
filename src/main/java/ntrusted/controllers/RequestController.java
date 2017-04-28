@@ -86,6 +86,15 @@ public class RequestController {
 		{ 
 			return (List<Request>)_reDao.getBorrowRequestforCat(receiverId, Integer.valueOf(catId));
 		}
+		
+		//Requests from someone who wants to lend me perticular category
+		//working
+			@RequestMapping(value="/getLendingRequestsforCat", method=RequestMethod.GET)
+			@ResponseBody
+			public List<Request> getLendingRequestsforCat(String receiverId,String catId)
+			{ 
+				return (List<Request>)_reDao.getLendRequestforCat(receiverId, Integer.valueOf(catId));
+			}
 	
 	//Requests from someone who wants to Lend me their items
 	//working

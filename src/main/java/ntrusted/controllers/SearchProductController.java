@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import ntrusted.models.AdWithRank;
 import ntrusted.models.Advertisement;
 import ntrusted.models.AdvertisementDao;
 // Add All ads without cat for both lending and borrowing
@@ -26,10 +28,12 @@ public class SearchProductController {
 	public List<Advertisement> sortedRenterAds = new ArrayList<Advertisement>();
 	public List<Advertisement> sortedRenteeAds = new ArrayList<Advertisement>();
 	
+	public List<AdWithRank> sortedRenterAds1 = new ArrayList<AdWithRank>();
+	public List<AdWithRank> sortedRenteeAds1 = new ArrayList<AdWithRank>();
 	
 	@RequestMapping(value="/fetchRenters")
 	  @ResponseBody
-	  public List<Advertisement> getRenterAds(int catId, String RenteeId) {
+	  public List<AdWithRank> getRenterAds(int catId, String RenteeId) {
 	    List<Advertisement> ads;
 	    sortedRenterAds.clear();
 	    sortedRenteeAds.clear();
@@ -56,21 +60,23 @@ public class SearchProductController {
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
 	      System.out.println(sortedResult.toString());
 	      
-	      for(Advertisement ad:sortedResult.keySet())
+	      for(Map.Entry<Advertisement,Double> entry:sortedResult.entrySet())
 	      {
-	    	  sortedRenterAds.add(ad);
+	    	  AdWithRank obj1 = new AdWithRank(entry.getKey(),entry.getValue());
+	    	  sortedRenterAds1.add(obj1);
+	    	  sortedRenterAds.add(entry.getKey());
 	      }
 	    }
 	    catch(Exception ex) {
 	    	System.out.println(ex);
 	      return null;
 	    }
-		return sortedRenterAds;
+		return sortedRenterAds1;
 	  }
 	
 	@RequestMapping(value="/fetchRentees")
 	  @ResponseBody
-	  public List<Advertisement> getRenteeAds(int catId, String RenterId) {
+	  public List<AdWithRank> getRenteeAds(int catId, String RenterId) {
 	    List<Advertisement> ads;
 	    
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
@@ -117,9 +123,11 @@ public class SearchProductController {
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
 	      System.out.println(sortedResult.toString());
 	      
-	      for(Advertisement ad:sortedResult.keySet())
+	      for(Map.Entry<Advertisement,Double> entry:sortedResult.entrySet())
 	      {
-	    	  sortedRenteeAds.add(ad);
+	    	  AdWithRank obj1 = new AdWithRank(entry.getKey(),entry.getValue());
+	    	  sortedRenteeAds1.add(obj1);
+	    	  sortedRenteeAds.add(entry.getKey());
 	      }
 	      //System.out.println("The List is ==============   "+sortedRenteeAds.toString());
 	    }
@@ -129,7 +137,7 @@ public class SearchProductController {
 	    }
 	    
 	    
-		return sortedRenteeAds;
+		return sortedRenteeAds1;
 	  }
 	
 	private static Map<Advertisement, Double> sortByValue(Map<Advertisement, Double> unsortMap) {
