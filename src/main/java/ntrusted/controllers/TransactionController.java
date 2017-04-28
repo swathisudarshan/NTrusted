@@ -37,11 +37,11 @@ public class TransactionController {
 	private AdvertisementDao _adDao;
 	@Autowired
 	private TransactionDao _trxDao;
-	
 	@Autowired
 	  private CustomerRepository cuRepo;
 
-	//Get all Active Transactions
+	//Get all Active transactions where user is renter
+	//working
 	@RequestMapping(value="/getAllRenterTrx", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Transaction> getRenterTrx(String userId) 
@@ -50,6 +50,8 @@ public class TransactionController {
 		return (List<Transaction>) _trxDao.getRenterActiveTransaction(user);	
 	}
 	
+	//Get all Active transactions where user is rentee
+	//working
 	@RequestMapping(value="/getAllRenteeTrx", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Transaction> getRenteeTrx(String userId) 
@@ -58,8 +60,8 @@ public class TransactionController {
 		return (List<Transaction>) _trxDao.getRenteeActiveTransaction(user);
 	}
 	
-	
-	//Get Close  Requested transaction
+	//Get Close Requested transaction where user is renter
+	//working
 	@RequestMapping(value="/getRenterCloseReqTrx", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Transaction> getRenterCloseReqTrx(String userId) 
@@ -68,6 +70,8 @@ public class TransactionController {
 		return (List<Transaction>) _trxDao.getRenterCloseReqTran(user);	
 	}
 	
+	//Get Close Requested transaction where user is rentee
+	//working
 	@RequestMapping(value="/getRenteeCloseReqTrx", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Transaction> getRenteeCloseReqTrx(String userId) 
@@ -76,8 +80,8 @@ public class TransactionController {
 		return (List<Transaction>) _trxDao.getRenteeCloseReqTran(user);
 	}
 	
-	
 	//Get All Closed Transactions
+	//working
 	@RequestMapping(value="/getRenterClosedTrx", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Transaction> getRenterClosedTrx(String userId) 
@@ -86,6 +90,7 @@ public class TransactionController {
 		return (List<Transaction>) _trxDao.getRenterClosedTran(user);	
 	}
 	
+	//working
 	@RequestMapping(value="/getRenteeClosedTrx", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Transaction> getRenteeClosedTrx(String userId) 
@@ -95,6 +100,7 @@ public class TransactionController {
 	}
 	
 	//Close Requested
+	//working for mySQL - have to test for MongoDB 
 	@RequestMapping(value="/CloseTrxUpdate", method=RequestMethod.GET)
 	@ResponseBody
 	public Transaction CloseTrxUpdate(int trxId, String userId , float rating) 
@@ -161,7 +167,6 @@ public class TransactionController {
 				return;
 			}
 		}
-		
 		
 		//Add Connecitons if both users are not friends
 		
