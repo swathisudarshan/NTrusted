@@ -96,30 +96,7 @@ public class SearchProductController {
 	    	  String tempUserID = ad.getUser().getFbId();
 	    	  UnsortedResult.put(ad,TCC.calcRenteeRank(RenterId,tempUserID));
 	      }
-//	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
-//	      System.out.println("Sorted Result is ---- >"+sortedResult.toString());
-//	      
-//	      
-//	      
-//	      for(Advertisement ad:sortedResult.keySet())
-//	      {
-//	    	  System.out.println("Ad : "+ad.toString());
-//	    	  sortedRenteeAds.add(ad);
-//	    	  JSONObject jsonObject = new JSONObject();
-//	    	  jsonObject.put("adId", ad.getAdId());
-//	    	  jsonObject.put("productName", ad.getProductName());
-//	    	  jsonObject.put("productDescription", ad.getProductDescription());
-//	    	  jsonObject.put("productPrice", ad.getProductPrice());
-//	    	  System.out.println(ad.getUser());
-//	    	  jsonObject.put("user", ad.getUser());
-//	    	  jsonObject.put("postDate", ad.getPostDate());
-//	    	  jsonObject.put("category", ad.getCategory().getCategoryId());
-//	    	  jsonObject.put("active", ad.getActive());
-//	    	  jsonObject.put("adType", ad.getAdType());
-//	    	  
-//	    	  array.put(jsonObject);
-//	    	      	  
-//	      }
+
 	      Map<Advertisement, Double> sortedResult = sortByValue(UnsortedResult);
 	      System.out.println(sortedResult.toString());
 	      
