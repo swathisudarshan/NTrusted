@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import com.example.tanvi.NTrusted.R;
@@ -17,6 +18,8 @@ import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
 import com.example.tanvi.NTrusted.Source.Models.User;
 import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverWithoutRankAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.AdvJSONParser;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
@@ -39,6 +42,12 @@ public class LendAdFragment extends ListFragment {
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
 
     private AdverAdapter adverAdapter;
+
+    private AdverWithoutRankAdapter adverWithoutRankAdapter;
+
+    private Advertisement advertisement;
+
+    private AdvJSONParser advJSONParser = new AdvJSONParser();
 
 
     public LendAdFragment() {
@@ -82,62 +91,31 @@ public class LendAdFragment extends ListFragment {
                 @Override
                 public void onSuccess(JSONArray result) {
 
+                    if(result.length()==0)
+                        Toast.makeText(getActivity().getApplicationContext(), "No lending advertisements available", Toast.LENGTH_SHORT).show();
+
+
                     System.out.println("In volley call back !!!!!!!!!!!!!!!!!!" + result.toString());
                     for (int i = 0; i < result.length(); i++) {
 
-                        Advertisement adv = new Advertisement();
+
                         try {
                             //System.out.print("************** Object of Result is "+result.getJSONObject(i));
 
-                            JSONArray array = result.getJSONArray(i);
-                            System.out.println("*************************" + i + "*********************");
-                            System.out.println("0 ------> " + array.get(0));
-                            System.out.println("1 ------> " + array.get(1));
-                            System.out.println("2 ------> " + array.get(2));
+                            JSONObject advObj = result.getJSONObject(i);
+                           advertisement = advJSONParser.parseJSONWithoutRank(advObj);
 
-                            JSONObject advObj = array.getJSONObject(0);
-
-                            JSONObject userObj = array.getJSONObject(2);
-
-                            JSONObject catObj = array.getJSONObject(1);
-
-                            adv.setAdId(String.valueOf(advObj.get("adId")));
-                            adv.setProductName(String.valueOf(advObj.get("productName")));
-                            adv.setProductDesc(String.valueOf(advObj.get("productDescription")));
-                            adv.setProductPrice(String.valueOf(advObj.get("productPrice")));
-                            adv.setAdType((Integer) advObj.get("adType"));
-                            Date date = new Date();
-                            date.setTime((Long) advObj.get("postDate"));
-                            adv.setPostDate(date);
-                            adv.setStatus(String.valueOf(advObj.get("active")));
-
-
-                            User user = new User();
-                            user.setId((String) userObj.get("fbId"));
-                            user.setName((String) userObj.get("name"));
-                            user.setPhone((String) userObj.get("phoneNumber"));
-                            user.setAddress((String) userObj.get("address"));
-
-                            adv.setAdPostedby(user);
-
-                            Category category = new Category();
-                            category.setCategoryID(catObj.getInt("categoryId"));
-                            category.setCategoryName(catObj.getString("categoryName"));
-
-                            adv.setProductCategory(category);
-
-
-                            if (adv.getAdPostedby().getId().equals(userId))
+                            if (advertisement.getAdPostedby().getId().equals(userId))
                                 continue;
                             else
-                                advertisements.add(adv);
+                                advertisements.add(advertisement);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                     }
-                    adverAdapter = new AdverAdapter(getActivity().getApplicationContext(), advertisements);
-                    setListAdapter(adverAdapter);
+                    adverWithoutRankAdapter = new AdverWithoutRankAdapter(getActivity().getApplicationContext(), advertisements);
+                    setListAdapter(adverWithoutRankAdapter);
 
                 }
 
@@ -156,66 +134,43 @@ public class LendAdFragment extends ListFragment {
                 @Override
                 public void onSuccess(JSONArray result) {
 
-                    for (int i = 0; i < result.length(); i++) {
 
-                        Advertisement adv = new Advertisement();
-                        try {
+                    if (result.length() == 0) {
+                        Toast.makeText(getActivity().getApplicationContext(), "No advertisements available for this selection", Toast.LENGTH_SHORT).show();
+                        getFragmentManager().popBackStack();
+                    }
+                    else {
+                        for (int i = 0; i < result.length(); i++) {
 
-                            System.out.print("************** Lend Ad Fragment "+result.getJSONObject(i));
 
-                            JSONObject advObj = result.getJSONObject(i);
-                            JSONObject userObj = (JSONObject) advObj.get("user");
-                            JSONObject catObj = (JSONObject) advObj.get("category");
+                            try {
 
-                            //Set ad details
-                            adv.setAdId(String.valueOf(advObj.get("adId")));
-                            adv.setProductName(String.valueOf(advObj.get("productName")));
-                            adv.setProductDesc(String.valueOf(advObj.get("productDescription")));
-                            adv.setProductPrice(String.valueOf(advObj.get("productPrice")));
-                            adv.setAdType((Integer) advObj.get("adType"));
-                            Date date = new Date();
-                            date.setTime((Long) advObj.get("postDate"));
-                            adv.setPostDate(date);
-                            adv.setStatus(String.valueOf(advObj.get("active")));
+                                System.out.print("************** Lend Ad Fragment " + result.getJSONObject(i));
 
-                            //set user details
-                            User user = new User();
-                            user.setId((String) userObj.get("fbId"));
-                            user.setName((String) userObj.get("name"));
-                            user.setPhone((String) userObj.get("phoneNumber"));
-                            user.setAddress((String) userObj.get("address"));
-                            adv.setAdPostedby(user);
+                                JSONObject object = result.getJSONObject(i);
+                                advertisement=advJSONParser.parseJSONWithRank(object);
 
-                            //set category details
-                            Category category = new Category();
-                            category.setCategoryID(catObj.getInt("categoryId"));
-                            category.setCategoryName(catObj.getString("categoryName"));
-                            adv.setProductCategory(category);
+                                if (advertisement.getAdPostedby().getId().equals(userId)) {
+                                    System.out.println("ITS MEEEE !!!!!!!!!!!!!!!!!!!!!!!!!");
+                                    continue;
 
-                            if(adv.getAdPostedby().getId().equals(userId))
-                            {
-                                System.out.println("ITS MEEEE !!!!!!!!!!!!!!!!!!!!!!!!!");
-                                continue;
+                                } else {
+                                    advertisements.add(advertisement);
+                                    System.out.println("Advertisment " + advertisement.getAdId() + " added to the list !!");
+                                }
 
-                            }
-                            else {
-                                advertisements.add(adv);
-                                System.out.println("Advertisment "+adv.getAdId()+" added to the list !!");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
 
+
+                        adverAdapter = new AdverAdapter(getActivity().getApplicationContext(), advertisements);
+                        setListAdapter(adverAdapter);
+
+
                     }
-
-
-
-                    adverAdapter = new AdverAdapter(getActivity().getApplicationContext(),advertisements);
-                    setListAdapter(adverAdapter);
-
-
-
                 }
 
             });

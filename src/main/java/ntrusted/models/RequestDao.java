@@ -49,7 +49,7 @@ public class RequestDao {
 	@SuppressWarnings("unchecked")
 	public List<Request> getBorrowRequest(String receiverId) {
 	    return (List<Request>) getSession().createQuery(
-	    		"from Request r join r.advertisement a join a.category c "
+	    		"select r from Request r join r.advertisement a join a.category c "
 			        + "where r.receiver = "+ receiverId +" and r.requestType= 1 and r.response =1" 
 			        + " ORDER BY requestDate DESC" ).list();	        
     }
@@ -58,7 +58,7 @@ public class RequestDao {
 	public List<Request> getBorrowRequestforCat(String receiverId, int catId) {
 		
 		 return (List<Request>) getSession().createQuery(
-			          "from Request r join r.advertisement a join a.category c "
+			          "select r from Request r join r.advertisement a join a.category c "
 			        + "where r.receiver = "+ receiverId 
 			        + " and r.requestType= 1 and r.response =1 and c.categoryId = " + catId 
 			        + " ORDER BY requestDate DESC" ).list();
@@ -67,7 +67,7 @@ public class RequestDao {
 	@SuppressWarnings("unchecked")
 	public List<Request> getLendRequest(String receiverId) {
 	    return (List<Request>) getSession().createQuery(
-	    		"from Request r join r.advertisement a join a.category c "
+	    		"select r from Request r join r.advertisement a join a.category c "
 				        + "where r.receiver = "+ receiverId +" and r.requestType= 2 and r.response =1" 
 				        + " ORDER BY requestDate DESC" ).list();	        
     }
@@ -76,7 +76,7 @@ public class RequestDao {
 	public List<Request> getLendRequestforCat(String receiverId, int catId) {
 	    
 		 return (List<Request>) getSession().createQuery(
-		          "from Request r join r.advertisement a join a.category c "
+		          "select r from Request r join r.advertisement a join a.category c "
 		        + "where r.receiver = "+ receiverId +" and r.requestType= 2 and r.response =1 and c.categoryId = " + catId 
 		        + " ORDER BY requestDate DESC" ).list();	        
     }

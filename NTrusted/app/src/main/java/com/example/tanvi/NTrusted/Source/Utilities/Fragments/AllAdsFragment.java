@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import com.example.tanvi.NTrusted.R;
@@ -16,6 +17,8 @@ import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
 import com.example.tanvi.NTrusted.Source.Models.User;
 import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverWithoutRankAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.AdvJSONParser;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
@@ -39,7 +42,11 @@ public class AllAdsFragment extends ListFragment {
 
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
 
-    private AdverAdapter adverAdapter;
+    private AdverWithoutRankAdapter adverWithoutRankAdapter;
+
+    private AdvJSONParser advJSONParser;
+
+    private Advertisement advertisement;
 
 
     public AllAdsFragment() {
@@ -81,54 +88,23 @@ public class AllAdsFragment extends ListFragment {
             @Override
             public void onSuccess(JSONArray result) {
 
+                if(result.length()==0)
+                    Toast.makeText(getActivity().getApplicationContext(), "No advertisements available", Toast.LENGTH_SHORT).show();
+
                 System.out.println("In volley call back !!!!!!!!!!!!!!!!!!" + result.toString());
+
+                advJSONParser = new AdvJSONParser();
+
                 for (int i = 0; i < result.length(); i++) {
 
-                    Advertisement adv = new Advertisement();
                     try {
+                        JSONObject advObj = result.getJSONObject(i);
+                        advertisement = advJSONParser.parseJSONWithoutRank(advObj);
 
-                        JSONArray array = result.getJSONArray(i);
-                        System.out.println("*************************"+i+"*********************");
-                        System.out.println("0 ------> "+array.get(0));
-                        System.out.println("1 ------> "+array.get(1));
-                        System.out.println("2 ------> "+array.get(2));
-
-                        JSONObject advObj = array.getJSONObject(0);
-
-                        JSONObject userObj = array.getJSONObject(2);
-
-                        JSONObject catObj = array.getJSONObject(1);
-
-                        adv.setAdId(String.valueOf(advObj.get("adId")));
-                        adv.setProductName(String.valueOf(advObj.get("productName")));
-                        adv.setProductDesc(String.valueOf(advObj.get("productDescription")));
-                        adv.setProductPrice(String.valueOf(advObj.get("productPrice")) );
-                        adv.setAdType((Integer) advObj.get("adType"));
-                        Date date = new Date();
-                        date.setTime((Long) advObj.get("postDate"));
-                        adv.setPostDate(date);
-                        adv.setStatus(String.valueOf(advObj.get("active")));
-
-
-                        User user = new User();
-                        user.setId((String) userObj.get("fbId"));
-                        user.setName((String) userObj.get("name"));
-                        user.setPhone((String) userObj.get("phoneNumber"));
-                        user.setAddress((String) userObj.get("address"));
-
-                        adv.setAdPostedby(user);
-
-                        Category category = new Category();
-                        category.setCategoryID(catObj.getInt("categoryId"));
-                        category.setCategoryName(catObj.getString("categoryName"));
-
-                        adv.setProductCategory(category);
-
-
-                        if(adv.getAdPostedby().getId().equals(userId))
+                        if(advertisement.getAdPostedby().getId().equals(userId))
                             continue;
                         else
-                        advertisements.add(adv);
+                        advertisements.add(advertisement);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -136,8 +112,8 @@ public class AllAdsFragment extends ListFragment {
 
                 }
 
-                adverAdapter = new AdverAdapter(getActivity().getApplicationContext(),advertisements);
-                setListAdapter(adverAdapter);
+                adverWithoutRankAdapter = new AdverWithoutRankAdapter(getActivity().getApplicationContext(),advertisements);
+                setListAdapter(adverWithoutRankAdapter);
 
             }
 

@@ -35,8 +35,8 @@ public class SearchProductController {
 	  @ResponseBody
 	  public List<AdWithRank> getRenterAds(int catId, String RenteeId) {
 	    List<Advertisement> ads;
-	    sortedRenterAds.clear();
-	    sortedRenteeAds.clear();
+	    sortedRenterAds1.clear();
+	    sortedRenteeAds1.clear();
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
 	    
 	    try {
@@ -80,8 +80,8 @@ public class SearchProductController {
 	    List<Advertisement> ads;
 	    
 	    HashMap<Advertisement,Double> UnsortedResult = new HashMap<Advertisement,Double>();
-	    sortedRenterAds.clear();
-	    sortedRenteeAds.clear();
+	    sortedRenterAds1.clear();
+	    sortedRenteeAds1.clear();
 	    
 //	    JSONObject mainObj = new JSONObject();
 //	    JSONArray array = new JSONArray();

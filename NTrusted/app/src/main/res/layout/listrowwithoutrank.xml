@@ -7,18 +7,18 @@
     android:paddingBottom="30dp">
 
     <!--<LinearLayout-->
-        <!--android:id="@+id/thumbnail"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="3dip"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_marginRight="5dip"-->
-        <!--&gt;-->
-        <!--<ImageView-->
-            <!--android:id="@+id/list_image"-->
-            <!--android:layout_width="50dip"-->
-            <!--android:layout_height="50dip"-->
-            <!--android:src="@color/com_facebook_button_background_color"/>-->
+    <!--android:id="@+id/thumbnail"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:padding="3dip"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_marginRight="5dip"-->
+    <!--&gt;-->
+    <!--<ImageView-->
+    <!--android:id="@+id/list_image"-->
+    <!--android:layout_width="50dip"-->
+    <!--android:layout_height="50dip"-->
+    <!--android:src="@color/com_facebook_button_background_color"/>-->
 
 
     <!--</LinearLayout>-->
@@ -51,18 +51,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0"
-        android:layout_below="@+id/wantsTo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:clickable="false"
-        android:longClickable="false"
-        android:isIndicator="true"
+
 
         />
 
@@ -91,12 +80,12 @@
         android:id="@+id/adType"
         android:textSize="15dip"
         android:textStyle="bold"
-        android:layout_alignBottom="@+id/ratingBar"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_below="@+id/userName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="13dp" />
+        android:layout_marginTop="10dp" />
 
 
 </RelativeLayout>

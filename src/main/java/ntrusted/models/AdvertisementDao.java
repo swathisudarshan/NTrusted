@@ -34,7 +34,7 @@ public class AdvertisementDao {
 	public List<Advertisement> getAll() {
 		System.out.println("Inside get All ads in AdvertisementDao");
 		
-		return getSession().createQuery("from Advertisement a join a.category c join a.user u "
+		return getSession().createQuery("select a from Advertisement a join a.category c join a.user u "
 				+ "where a.active = :value"
 				+ " ORDER BY a.postDate DESC").setParameter("value", 1).list();
 		} 
@@ -42,7 +42,7 @@ public class AdvertisementDao {
 	@SuppressWarnings("unchecked")
 	public List<Advertisement> getAllBorrowAds() {
 		return (List<Advertisement>)getSession().createQuery(
-				"from Advertisement a join a.category c join a.user u "
+				"select a from Advertisement a join a.category c join a.user u "
 				+ "where a.active = 1 and adType = 2"
 				+ " ORDER BY a.postDate DESC").list();
 	}
@@ -50,7 +50,7 @@ public class AdvertisementDao {
 	@SuppressWarnings("unchecked")
 	public List<Advertisement> getAllLendAds() {
 		return (List<Advertisement>)getSession().createQuery(
-				"from Advertisement a join a.category c join a.user u "
+				"select a from Advertisement a join a.category c join a.user u "
 						+ "where a.active = 1 and adType = 1"
 						+ " ORDER BY a.postDate DESC").list();
 	}
