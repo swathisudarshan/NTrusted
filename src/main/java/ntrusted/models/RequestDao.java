@@ -81,5 +81,50 @@ public class RequestDao {
 		        + " ORDER BY requestDate DESC" ).list();	        
     }
 	
+	//*****************Requests sent by me*************************//
 	
+	@SuppressWarnings("unchecked")
+	public List<Request> getAllSentRequest(String senderId) {
+	    return (List<Request>) getSession().createQuery(
+	    		"select r from Request r join r.advertisement a join a.category c "
+			        + "where r.sender = "+ senderId +" and r.response =1" 
+			        + " ORDER BY requestDate DESC" ).list();	        
+    }
+	
+	@SuppressWarnings("unchecked")
+	public List<Request> getSentBorrowRequest(String senderId) {
+	    return (List<Request>) getSession().createQuery(
+	    		"select r from Request r join r.advertisement a join a.category c "
+			        + "where r.sender = "+ senderId +" and r.requestType= 1 and r.response =1" 
+			        + " ORDER BY requestDate DESC" ).list();	        
+    }
+	
+	@SuppressWarnings("unchecked")
+	public List<Request> getSentBorrowRequestforCat(String senderId, int catId) {
+		
+		 return (List<Request>) getSession().createQuery(
+			          "select r from Request r join r.advertisement a join a.category c "
+			        + "where r.sender = "+ senderId 
+			        + " and r.requestType= 1 and r.response =1 and c.categoryId = " + catId 
+			        + " ORDER BY requestDate DESC" ).list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Request> getSentLendRequest(String senderId) {
+	    return (List<Request>) getSession().createQuery(
+	    		"select r from Request r join r.advertisement a join a.category c "
+				        + "where r.sender = "+ senderId +" and r.requestType= 2 and r.response =1" 
+				        + " ORDER BY requestDate DESC" ).list();	        
+    }
+
+	@SuppressWarnings("unchecked")
+	public List<Request> getSentLendRequestforCat(String senderId, int catId) {
+	    
+		 return (List<Request>) getSession().createQuery(
+		          "select r from Request r join r.advertisement a join a.category c "
+		        + "where r.sender = "+ senderId +" and r.requestType= 2 and r.response =1 and c.categoryId = " + catId 
+		        + " ORDER BY requestDate DESC" ).list();	        
+    }
+	
+	//************************************************************//
 }

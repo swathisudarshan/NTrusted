@@ -80,7 +80,9 @@ public class RequestController {
 		_reDao.save(req);
 		return "Lending Request Added in Request table";
 	}
-	 	
+	
+	//*****************Requests received for me*************************//
+	
 	//Requests from someone who wants to borrwo my items
 	//working
 	@RequestMapping(value="/getBorrowRequests", method=RequestMethod.GET)
@@ -90,6 +92,15 @@ public class RequestController {
 		return (List<Request>)_reDao.getBorrowRequest(receiverId);
 	}
 	
+	//Requests from someone who wants to Lend me their items
+	//working
+	@RequestMapping(value="/getLendingRequests", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Request> getLendingRequests(String receiverId)
+	{			
+		return (List<Request>)_reDao.getLendRequest(receiverId);
+	}
+		
 	//Requests from someone who wants to borrwo my perticular category
 	//working
 		@RequestMapping(value="/getBorrowRequestsforCat", method=RequestMethod.GET)
@@ -173,14 +184,50 @@ public class RequestController {
 			    return SortedLendRequestsforCat;
 			}
 	
-	//Requests from someone who wants to Lend me their items
-	//working
-	@RequestMapping(value="/getLendingRequests", method=RequestMethod.GET)
+	
+	
+	//*****************Requests sent by me*************************//
+			
+	@RequestMapping(value="/getAllSentRequests", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Request> getLendingRequests(String receiverId)
+	public List<Request> getAllRequests(String senderId)
 	{			
-		return (List<Request>)_reDao.getLendRequest(receiverId);
+		return (List<Request>)_reDao.getAllSentRequest(senderId);
 	}
+			
+	@RequestMapping(value="/getSentLendingRequests", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Request> getSentLendingRequests(String senderId)
+	{			
+		return (List<Request>)_reDao.getSentLendRequest(senderId);
+	}
+	
+	@RequestMapping(value="/getSentBorrowRequests", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Request> getSentBorrowRequests(String senderId)
+	{
+		return (List<Request>)_reDao.getSentBorrowRequest(senderId);
+	}
+	
+	@RequestMapping(value="/getSentBorrowRequestsforCat", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Request> getSentBorrowRequestsforCat(String senderId,String catId)
+	{ 
+	
+	      return (List<Request>) _reDao.getSentBorrowRequestforCat(senderId, Integer.valueOf(catId));
+	  
+	}
+	
+	@RequestMapping(value="/getSentLendRequestsforCat", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Request> getSentLendRequestsforCat(String senderId,String catId)
+	{ 
+	
+	      return (List<Request>) _reDao.getSentLendRequestforCat(senderId, Integer.valueOf(catId));
+	  
+	}
+	
+	//************************************************************//
 	
 	//Update if request Accepted by accepted/Declined
 	//working

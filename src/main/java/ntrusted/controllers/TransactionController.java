@@ -60,6 +60,7 @@ public class TransactionController {
 		return (List<Transaction>) _trxDao.getRenteeActiveTransaction(user);
 	}
 	
+	//******Outgoing*****//
 	//Get Close Requested transaction where user is renter
 	//working
 	@RequestMapping(value="/getRenterCloseReqTrx", method=RequestMethod.GET)
@@ -79,6 +80,30 @@ public class TransactionController {
 		User user = _userDao.getById(userId);
 		return (List<Transaction>) _trxDao.getRenteeCloseReqTran(user);
 	}
+	//***********************//
+	
+	//******Incoming reqs*****//
+	
+	//Has to be called on HomePage
+	
+	@RequestMapping(value="/getSubmitRenteeCloseReqTran", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Transaction> getSubmitRenteeCloseReqTran(String userId) 
+	{
+		User user = _userDao.getById(userId);
+		return (List<Transaction>) _trxDao.getSubmitRenteeCloseReqTran(user);	
+	}
+	
+	//Get Close Requested transaction where user is rentee
+	//working
+	@RequestMapping(value="/getSubmitRenterCloseReqTran", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Transaction> getSubmitRenterCloseReqTran(String userId) 
+	{
+		User user = _userDao.getById(userId);
+		return (List<Transaction>) _trxDao.getSubmitRenterCloseReqTran(user);
+	}
+	//***********************//
 	
 	//Get All Closed Transactions
 	//working

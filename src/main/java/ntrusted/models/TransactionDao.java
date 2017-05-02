@@ -49,14 +49,7 @@ public class TransactionDao {
 				  "select t from Transaction t join t.renter r "
 				+ "where t.status = 1 and r.fbId = "+ id).list();
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Transaction> getRenterCloseReqTran(User user) {
-		String id = user.getFbId();
-		return (List<Transaction>) getSession().createQuery(
-				  "select t from Transaction t join t.renter r where r.fbId = "+ id 
-				+ " and t.renterClose = 1 and t.renteeClose =0").list();
-	}
+
 	
 	@SuppressWarnings("unchecked")
 	public List<Transaction> getRenterClosedTran(User user) {
@@ -76,7 +69,7 @@ public class TransactionDao {
 				+ "where t.status = 1 and r.fbId = "+ id).list();
 		//return getSession().createQuery("from Transaction where status = 1 and rentee = "+ user.getFbId()).list();
 	}
-	
+	//Outgoing --sent close req from me
 	@SuppressWarnings("unchecked")
 	public List<Transaction> getRenteeCloseReqTran(User user) {
 		String id = user.getFbId();
@@ -85,6 +78,36 @@ public class TransactionDao {
 				+ " and t.renterClose = 0 and t.renteeClose =1").list();
 		//return getSession().createQuery("from Transaction where and rentee = "+ user.getFbId() +" and renteeClose = 1 and renterClose =0").list();
 	}
+	
+	//Outgoing--sent close req from me 
+	@SuppressWarnings("unchecked")
+	public List<Transaction> getRenterCloseReqTran(User user) {
+		String id = user.getFbId();
+		return (List<Transaction>) getSession().createQuery(
+				  "select t from Transaction t join t.renter r where r.fbId = "+ id 
+				+ " and t.renterClose = 1 and t.renteeClose =0").list();
+	}
+	
+	
+	//incoming close requested with me/user as Renter --Has to be checked on Login 
+	@SuppressWarnings("unchecked")
+	public List<Transaction> getSubmitRenteeCloseReqTran(User user) {
+		String id = user.getFbId();
+		return (List<Transaction>) getSession().createQuery(
+				  "select t from Transaction t join t.renter r where r.fbId = "+ id 
+				+ " and t.renterClose = 0 and t.renteeClose =1").list();
+		//return getSession().createQuery("from Transaction where and rentee = "+ user.getFbId() +" and renteeClose = 1 and renterClose =0").list();
+	}
+	
+	//incoming close requested with me/user as Rentee --Has to be checked on Login
+		@SuppressWarnings("unchecked")
+		public List<Transaction> getSubmitRenterCloseReqTran(User user) {
+			String id = user.getFbId();
+			return (List<Transaction>) getSession().createQuery(
+					  "select t from Transaction t join t.rentee r where r.fbId = "+ id 
+					+ " and t.renterClose = 1 and t.renteeClose =0").list();
+			//return getSession().createQuery("from Transaction where and rentee = "+ user.getFbId() +" and renteeClose = 1 and renterClose =0").list();
+		}
 	
 	@SuppressWarnings("unchecked")
 	public List<Transaction> getRenteeClosedTran(User user) {
