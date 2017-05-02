@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.BorrowingAdDetailFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.LendingAdDetailFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MyReqTabFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.PostAdvFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.SearchFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.TabFragment;
@@ -60,6 +61,11 @@ public class HomePageActivity extends AppCompatActivity implements LendingAdDeta
                 if (menuItem.getItemId() == R.id.nav_item_home) {
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
+                }
+
+                if (menuItem.getItemId() == R.id.nav_item_myreq) {
+                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView,new MyReqTabFragment()).commit();
                 }
 
                 // If post ad selected the  redirect to Post Adv Fragment

@@ -13,5 +13,8 @@
     <item android:title="Logout"
         android:id="@+id/nav_item_logout"/>
 
+    <item android:title="My Requests"
+        android:id="@+id/nav_item_myreq"/>
+
 
 </menu>

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
+import com.example.tanvi.NTrusted.Source.Models.Request;
 
 import java.util.List;
 
@@ -21,34 +22,49 @@ import java.util.List;
 
 public class AdverAdapter extends BaseAdapter {
 
+    static boolean isRequest=false;
+
     private Context context;
     List<Advertisement> advertisementList;
+    List<Request> requestList;
+
+    public AdverAdapter() {
+
+    }
 
     public AdverAdapter(Context context, List<Advertisement> advertisementList) {
         this.context = context;
         this.advertisementList = advertisementList;
     }
 
-    private class ViewHolder{
-
-        //TextView productName;
-        TextView userName;
-        TextView category;
-        //TextView datePosted;
-        TextView adType;
-        RatingBar ratingBar;
-
-
+    public AdverAdapter(Context context, List<Request> requestList, int req) {
+        this.context = context;
+        this.requestList= requestList;
+        isRequest=true;
     }
 
+    private class ViewHolder{
+
+        TextView userName;
+        TextView category;
+        TextView adType;
+        RatingBar ratingBar;
+    }
 
     @Override
     public int getCount() {
+
+        if(isRequest)
+            return requestList.size();
+
         return advertisementList.size();
     }
 
     @Override
     public Object getItem(int i) {
+
+        if(isRequest)
+            return requestList.get(i);
 
         return advertisementList.get(i);
 
@@ -72,10 +88,8 @@ public class AdverAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.list_row,null);
 
             holder = new ViewHolder();
-            //holder.productName = (TextView) view.findViewById(R.id.productName);
             holder.adType = (TextView) view.findViewById(R.id.adType);
             holder.category = (TextView) view.findViewById(R.id.category);
-           // holder.datePosted = (TextView) view.findViewById(R.id.dateTime);
             holder.userName = (TextView) view.findViewById(R.id.userName);
             holder.ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
 
@@ -85,23 +99,36 @@ public class AdverAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        Advertisement advertisement = (Advertisement) getItem(i);
-        System.out.println("Advertisment is--------------->"+advertisement.getProductName());
+        if(isRequest){
 
-        holder.userName.setText(advertisement.getAdPostedby().getName());
-        holder.category.setText(advertisement.getProductCategory().getCategoryName());
-        System.out.println("Rank in adapter is ------>"+advertisement.getRank());
-        holder.ratingBar.setRating(advertisement.getRank());
+           Request request = (Request) getItem(i);
 
-
-
-        int ad = advertisement.getAdType();
-        if(ad == 1)
-        holder.adType.setText("lend");
-        else if(ad==2)
-            holder.adType.setText("borrow");
+            holder.userName.setText(request.getSender().getName());
+            holder.category.setText(request.getAd().getProductCategory().getCategoryName());
+            System.out.println("Rank in adapter is ------>" + request.getRank());
+            holder.ratingBar.setRating(request.getRank());
 
 
+
+        }
+
+        else {
+            Advertisement advertisement = (Advertisement) getItem(i);
+            System.out.println("Advertisment is--------------->" + advertisement.getProductName());
+
+            holder.userName.setText(advertisement.getAdPostedby().getName());
+            holder.category.setText(advertisement.getProductCategory().getCategoryName());
+            System.out.println("Rank in adapter is ------>" + advertisement.getRank());
+            holder.ratingBar.setRating(advertisement.getRank());
+
+
+            int ad = advertisement.getAdType();
+            if (ad == 1)
+                holder.adType.setText("lend");
+            else if (ad == 2)
+                holder.adType.setText("borrow");
+
+        }
 
         return view;
     }

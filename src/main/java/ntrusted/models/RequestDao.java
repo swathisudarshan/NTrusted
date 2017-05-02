@@ -23,7 +23,7 @@ public class RequestDao {
 	public Request getRequestById(int requestId) {
 		System.out.println("Inside Request Dao getByRequestId");
 		return (Request) getSession().createQuery(
-		        "from Request where requestId = :id")
+		        "from Request r where requestId = :id")
 		        .setParameter("id", requestId)
 		        .uniqueResult();
 		//return req;

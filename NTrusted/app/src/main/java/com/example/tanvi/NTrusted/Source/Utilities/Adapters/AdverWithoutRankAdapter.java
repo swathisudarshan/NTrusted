@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
+import com.example.tanvi.NTrusted.Source.Models.Request;
 
 import java.util.List;
 
@@ -22,10 +23,12 @@ public class AdverWithoutRankAdapter extends BaseAdapter {
         private Context context;
         List<Advertisement> advertisementList;
 
+
         public AdverWithoutRankAdapter(Context context, List<Advertisement> advertisementList) {
             this.context = context;
             this.advertisementList = advertisementList;
         }
+
 
         private class ViewHolderWithoutRank{
 

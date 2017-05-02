@@ -201,11 +201,12 @@ public class RequestController {
 		}
 		else
 		{
-			System.out.println("inside response =1");
+			System.out.println("inside response =2");
 			req.setResponse(response);
 			
 			//Get renter and rentee according to advertisement
 			Advertisement ad = req.getAdvertisement();
+			System.out.println("Ad in A/D --------------------------------->"+ad.toString());
 			if(ad.getAdType() == 1)
 			{
 				renter = ad.getUser();
@@ -235,7 +236,9 @@ public class RequestController {
 			
 			//set Advertisemnt active status as busy
 			ad.setActive(2);
-			_adDao.update(ad);
+			System.out.println("Ad in A/D ---------------------------------> before update"+ad.getActive());
+			_adDao.save(ad);
+			System.out.println("Ad in A/D ---------------------------------> after update"+ad.getActive());
 			
 			//convert date format to desired format
 			

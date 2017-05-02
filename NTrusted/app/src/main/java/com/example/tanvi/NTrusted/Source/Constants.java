@@ -6,8 +6,8 @@ package com.example.tanvi.NTrusted.Source;
 public interface Constants {
 
     //Server IP Address
-    public static final String serverHost = "10.0.0.58";
-    //public static final String serverHost = "10.250.99.119";
+    //public static final String serverHost = "10.0.0.58";
+    public static final String serverHost = "10.250.99.119";
     //public static final String serverHost = "10.250.99.119";
 
     //APIs
@@ -24,6 +24,9 @@ public interface Constants {
     public static final String sendBorrowRequest = "http://"+serverHost+":8080/request/addBorrowRequest";
     public static final String sendLendingRequest = "http://"+serverHost+":8080/request/addLendingRequest";
 
+    public static final String getBorrowRequestsforCat = "http://"+serverHost+":8080/request/getBorrowRequestsforCat";
+
+    public static final String acceptDeclineRequest = "http://"+serverHost+":8080/request/AcceptDeclineRequest";
 
     //Shared Preferences
     public static final String UserID = "UserID";

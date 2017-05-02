@@ -2,6 +2,7 @@ package com.example.tanvi.NTrusted.Source.Utilities.JSONParser;
 
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
+import com.example.tanvi.NTrusted.Source.Models.Request;
 import com.example.tanvi.NTrusted.Source.Models.User;
 
 import org.json.JSONArray;
@@ -17,6 +18,8 @@ import java.util.Date;
 public class AdvJSONParser {
 
     private Advertisement adv;
+
+    private Request request;
 
     public Advertisement parseJSONWithoutRank(JSONObject advObj) throws JSONException {
 
@@ -64,17 +67,18 @@ public class AdvJSONParser {
         JSONObject catObj = (JSONObject) advObj.get("category");
 
         double rank = (double) object.get("rank");
+        rank = Math.floor(rank);
         System.out.println("Rank is : " + rank);
 
-        if (rank == -0.2)
+        if (rank == -2.0)
             adv.setRank(1);
-        if (rank == -0.1)
+        if (rank == -1.0)
             adv.setRank(2);
         if (rank == 0.0)
             adv.setRank(3);
-        if (rank == 0.1)
+        if (rank == 1.0)
             adv.setRank(4);
-        if (rank == 0.2)
+        if (rank == 2.0)
             adv.setRank(5);
 
 
@@ -105,6 +109,70 @@ public class AdvJSONParser {
 
           return adv;
 
+
+    }
+
+    public Request parseJSONRequest(JSONObject object) throws JSONException {
+
+        request= new Request();
+        //get request object
+        JSONObject reqObject = (JSONObject) object.get("request");
+
+        //set req fields
+        request.setRequestId((Integer) reqObject.get("requestId"));
+        request.setRequestDate(String.valueOf(reqObject.get("requestDate")));
+        request.setResponse((Integer) reqObject.get("response"));
+        request.setRequestType((Integer) reqObject.get("requestType"));
+
+        //set adv in req
+        Advertisement ad = new Advertisement();
+        ad.setAdId(String.valueOf(reqObject.getJSONObject("advertisement").get("adId")));
+        ad.setProductName((String) reqObject.getJSONObject("advertisement").get("productName"));
+
+        Category category = new Category();
+        category.setCategoryName((String) reqObject.getJSONObject("advertisement").getJSONObject("category").get("categoryName"));
+        category.setCategoryID((Integer) reqObject.getJSONObject("advertisement").getJSONObject("category").get("categoryId"));
+        ad.setProductCategory(category);
+
+        //set participants in req
+        User receiver = new User();
+        receiver.setId((String) reqObject.getJSONObject("receiver").get("fbId"));
+        receiver.setName((String) reqObject.getJSONObject("receiver").get("name"));
+        receiver.setAddress((String) reqObject.getJSONObject("receiver").get("address"));
+        receiver.setPhone((String) reqObject.getJSONObject("receiver").get("phoneNumber"));
+        receiver.setEmail((String) reqObject.getJSONObject("receiver").get("email"));
+
+        User sender = new User();
+        sender.setId((String) reqObject.getJSONObject("sender").get("fbId"));
+        sender.setName((String) reqObject.getJSONObject("sender").get("name"));
+        sender.setAddress((String) reqObject.getJSONObject("sender").get("address"));
+        sender.setPhone((String) reqObject.getJSONObject("sender").get("phoneNumber"));
+        sender.setEmail((String) reqObject.getJSONObject("sender").get("email"));
+
+        request.setReceiver(receiver);
+        request.setSender(sender);
+        request.setAd(ad);
+
+
+        //set rank
+        double rank = (double) object.get("rank");
+        rank = Math.floor(rank);
+
+
+        if (rank == -2.0)
+            request.setRank(1);
+        if (rank == -1.0)
+            request.setRank(2);
+        if (rank == 0.0)
+            request.setRank(3);
+        if (rank == 1.0)
+            request.setRank(4);
+        if (rank == 2.0)
+            request.setRank(5);
+
+
+        System.out.println("Rank is "+request.getRank());
+        return request;
 
     }
 }
