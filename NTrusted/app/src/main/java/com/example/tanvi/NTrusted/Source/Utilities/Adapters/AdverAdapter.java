@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.tanvi.NTrusted.R;
@@ -30,11 +31,12 @@ public class AdverAdapter extends BaseAdapter {
 
     private class ViewHolder{
 
-        TextView productName;
+        //TextView productName;
         TextView userName;
         TextView category;
-        TextView datePosted;
+        //TextView datePosted;
         TextView adType;
+        RatingBar ratingBar;
 
 
     }
@@ -70,11 +72,12 @@ public class AdverAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.list_row,null);
 
             holder = new ViewHolder();
-            holder.productName = (TextView) view.findViewById(R.id.productName);
+            //holder.productName = (TextView) view.findViewById(R.id.productName);
             holder.adType = (TextView) view.findViewById(R.id.adType);
             holder.category = (TextView) view.findViewById(R.id.category);
-            holder.datePosted = (TextView) view.findViewById(R.id.dateTime);
+           // holder.datePosted = (TextView) view.findViewById(R.id.dateTime);
             holder.userName = (TextView) view.findViewById(R.id.userName);
+            holder.ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
 
             view.setTag(holder);
         }
@@ -84,15 +87,21 @@ public class AdverAdapter extends BaseAdapter {
 
         Advertisement advertisement = (Advertisement) getItem(i);
         System.out.println("Advertisment is--------------->"+advertisement.getProductName());
-        holder.productName.setText(advertisement.getProductName());
+
         holder.userName.setText(advertisement.getAdPostedby().getName());
+        holder.category.setText(advertisement.getProductCategory().getCategoryName());
+        System.out.println("Rank in adapter is ------>"+advertisement.getRank());
+        holder.ratingBar.setRating(advertisement.getRank());
+
+
+
         int ad = advertisement.getAdType();
         if(ad == 1)
         holder.adType.setText("lend");
         else if(ad==2)
             holder.adType.setText("borrow");
-        holder.datePosted.setText(advertisement.getPostDate().toString());
-        holder.category.setText(advertisement.getProductCategory().getCategoryName());
+
+
 
         return view;
     }

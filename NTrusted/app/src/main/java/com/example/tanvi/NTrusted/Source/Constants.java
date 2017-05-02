@@ -6,8 +6,8 @@ package com.example.tanvi.NTrusted.Source;
 public interface Constants {
 
     //Server IP Address
-    //public static final String serverHost = "10.0.0.58";
-    public static final String serverHost = "10.250.99.119";
+    public static final String serverHost = "10.0.0.58";
+    //public static final String serverHost = "10.250.99.119";
     //public static final String serverHost = "10.250.99.119";
 
     //APIs
@@ -20,7 +20,6 @@ public interface Constants {
     public static final String getAllAds = "http://"+serverHost+":8080/advertisement/getAllAds";
     public static final String getAllBorrowAds = "http://"+serverHost+":8080/advertisement/getAllBorrowAds";
     public static final String getAllLendingAds = "http://"+serverHost+":8080/advertisement/getAllLendingAds";
-
 
     public static final String sendBorrowRequest = "http://"+serverHost+":8080/request/addBorrowRequest";
     public static final String sendLendingRequest = "http://"+serverHost+":8080/request/addLendingRequest";

@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ntrusted.models.AdWithRank;
+
 import ntrusted.models.Advertisement;
 import ntrusted.models.AdvertisementDao;
 import ntrusted.models.ReqWithRank;
+
 import ntrusted.models.Request;
 import ntrusted.models.RequestDao;
 import ntrusted.models.Transaction;

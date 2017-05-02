@@ -18,6 +18,23 @@ public class Advertisement implements Serializable {
     private String status;
     private int adType;
     private User user;
+    float rank;
+
+    public float getRank() {
+        return rank;
+    }
+
+    public void setRank(float rank) {
+        this.rank = rank;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getAdId() {
         return this.adId;

@@ -1,5 +1,6 @@
 ntrusted\models\UserDao.class
 ntrusted\configs\DatabaseConfig.class
+ntrusted\controllers\RequestController$1.class
 ntrusted\models\Transaction.class
 ntrusted\controllers\RequestController.class
 ntrusted\controllers\CategoryController.class
@@ -8,6 +9,7 @@ ntrusted\models\Request.class
 ntrusted\models\AdvertisementDao.class
 ntrusted\Application.class
 ntrusted\models\TransactionDao.class
+ntrusted\models\ReqWithRank.class
 ntrusted\controllers\SearchProductController.class
 ntrusted\mongoModel\Customer.class
 ntrusted\controllers\SearchProductController$1.class
@@ -18,6 +20,7 @@ ntrusted\controllers\CustomerRepository.class
 ntrusted\controllers\FacebookFriendList.class
 ntrusted\controllers\TransactionController.class
 ntrusted\mongoModel\Connection.class
+ntrusted\models\AdWithRank.class
 ntrusted\models\Advertisement.class
 ntrusted\mongo_services\GenerateMongoMapping.class
 ntrusted\controllers\TrustCalcController.class
