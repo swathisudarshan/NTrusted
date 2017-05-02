@@ -187,7 +187,14 @@ public class RequestController {
 	
 	
 	//*****************Requests sent by me*************************//
-	
+			
+	@RequestMapping(value="/getAllSentRequests", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Request> getAllRequests(String senderId)
+	{			
+		return (List<Request>)_reDao.getAllSentRequest(senderId);
+	}
+			
 	@RequestMapping(value="/getSentLendingRequests", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Request> getSentLendingRequests(String senderId)
