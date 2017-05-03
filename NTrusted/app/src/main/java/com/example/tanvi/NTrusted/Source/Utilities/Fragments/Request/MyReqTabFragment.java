@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,15 +15,13 @@ import android.view.ViewGroup;
 import com.example.tanvi.NTrusted.R;
 
 /**
- * Created by tanvi on 4/25/2017.
+ * Created by tanvi on 5/1/2017.
  */
-
-public class TabFragment extends Fragment {
-
+public class MyReqTabFragment extends Fragment {
 
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3 ;
+    public static int int_items = 2 ;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,9 +78,9 @@ public class TabFragment extends Fragment {
         public Fragment getItem(int position)
         {
             switch (position){
-                case 0 : return new AllAdsFragment();
-                case 1 : return new BorrowAdFragment();
-                case 2 : return new LendAdFragment();
+                case 0 : return new sentReqFragment();
+                case 1 : return new ReceivedReqSearchFragment();
+
             }
             return null;
         }
@@ -103,15 +101,16 @@ public class TabFragment extends Fragment {
 
             switch (position){
                 case 0 :
-                    return "All";
+                    return "Sent Requests";
                 case 1 :
-                    return "Borrow";
-                case 2 :
-                    return "Lend";
+                    return "Received Requests";
+
             }
             return null;
         }
     }
+
+
 
 
 }

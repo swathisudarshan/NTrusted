@@ -6,8 +6,8 @@ package com.example.tanvi.NTrusted.Source;
 public interface Constants {
 
     //Server IP Address
-    //public static final String serverHost = "10.0.0.58";
-    public static final String serverHost = "10.250.99.119";
+    public static final String serverHost = "10.0.0.58";
+    //public static final String serverHost = "10.250.99.119";
     //public static final String serverHost = "10.250.99.119";
 
     //APIs
@@ -25,8 +25,26 @@ public interface Constants {
     public static final String sendLendingRequest = "http://"+serverHost+":8080/request/addLendingRequest";
 
     public static final String getBorrowRequestsforCat = "http://"+serverHost+":8080/request/getBorrowRequestsforCat";
+    public static final String getLendRequestsforCat = "http://"+serverHost+":8080/request/getLendRequestsforCat";
+    public static final String getAllSentRequests = "http://"+serverHost+":8080/request/getAllSentRequests";
 
     public static final String acceptDeclineRequest = "http://"+serverHost+":8080/request/AcceptDeclineRequest";
+
+    public static final String activeTransactionsWhenUserIsRenter = "http://"+serverHost+":8080/transaction/getAllRenterTrx";
+    public static final String activeTransactionsWhenUserIsRentee = "http://"+serverHost+":8080/transaction/getAllRenteeTrx";
+
+    public static final String closedTransactionsWhenUserIsRenter = "http://"+serverHost+":8080/transaction/getRenterClosedTrx";
+    public static final String closedTransactionsWhenUserIsRentee = "http://"+serverHost+":8080/transaction/getRenteeClosedTrx";
+
+    public static final String getIncomingRenterCloseReq = "http://"+serverHost+":8080/transaction/getSubmitRenterCloseReqTran";
+    public static final String getIncomingRenteeCloseReq = "http://"+serverHost+":8080/transaction/getSubmitRenteeCloseReqTran";
+
+    public static final String getOutgoingRenterCloseReq = "http://"+serverHost+":8080/transaction/getRenterCloseReqTrx";
+    public static final String getOutgoingRenteeCloseReq = "http://"+serverHost+":8080/transaction/getRenteeCloseReqTrx";
+
+
+    public static final String addRating = "http://"+serverHost+":8080/transaction/CloseTrxUpdate";
+
 
     //Shared Preferences
     public static final String UserID = "UserID";

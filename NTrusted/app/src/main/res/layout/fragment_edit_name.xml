@@ -1,0 +1,158 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:theme="@style/CustomDialog"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+
+
+
+    <TableLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       >
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="15dp"
+                android:text="Transaction ID:"
+                android:textColor="@color/black"
+                />
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/tid"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Product: "
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/product"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Rentee: "
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/renteeName"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+
+        <!--<TableRow-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:paddingBottom="30dp">-->
+
+        <!--<TextView android:layout_height="wrap_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:text="Product Price: "-->
+        <!--android:textColor="@color/orange"/>-->
+        <!--<TextView android:layout_height="wrap_content"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:text=""-->
+        <!--android:id="@+id/price"-->
+        <!--android:textColor="@color/orange"/>-->
+
+        <!--</TableRow>-->
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Start Date:"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/start"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="15dp"
+                android:text="Rentee Phone:"
+                android:textColor="@color/black"
+                />
+            <TextView android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text=""
+                android:id="@+id/phone"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="30dp">
+
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0"
+                android:clickable="true"
+                />
+
+
+
+        </TableRow>
+
+
+
+    </TableLayout>
+</LinearLayout>

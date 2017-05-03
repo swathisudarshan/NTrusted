@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement;
 
 import  android.content.Context;
 import android.content.SharedPreferences;
@@ -7,7 +7,6 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,11 +14,9 @@ import android.widget.Toast;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
-import com.example.tanvi.NTrusted.Source.Models.Category;
-import com.example.tanvi.NTrusted.Source.Models.User;
-import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverAdapter;
-import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverWithoutRankAdapter;
-import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.AdvJSONParser;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.WithRankAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.WithoutRankAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.JSONParser;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
@@ -29,7 +26,6 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -44,11 +40,11 @@ public class BorrowAdFragment extends ListFragment {
 
     private List<Advertisement> advertisements = new ArrayList<Advertisement>();
 
-    private AdverAdapter adverAdapter;
+    private WithRankAdapter withRankAdapter;
 
-    private AdverWithoutRankAdapter adverWithoutRankAdapter;
+    private WithoutRankAdapter withoutRankAdapter;
 
-    private AdvJSONParser advJSONParser = new AdvJSONParser();
+    private JSONParser JSONParser = new JSONParser();
 
     private Advertisement advertisement;
 
@@ -98,7 +94,7 @@ public class BorrowAdFragment extends ListFragment {
                         try {
 
                             JSONObject advObj = result.getJSONObject(i);
-                            advertisement = advJSONParser.parseJSONWithoutRank(advObj);
+                            advertisement = JSONParser.parseAdvJSONWithoutRank(advObj);
 
                             if(advertisement.getAdPostedby().getId().equals(userId))
                                 continue;
@@ -112,8 +108,8 @@ public class BorrowAdFragment extends ListFragment {
 
                     }
 
-                    adverWithoutRankAdapter = new AdverWithoutRankAdapter(getActivity().getApplicationContext(),advertisements);
-                    setListAdapter(adverWithoutRankAdapter);
+                    withoutRankAdapter = new WithoutRankAdapter(getActivity().getApplicationContext(),advertisements);
+                    setListAdapter(withoutRankAdapter);
 
 
 
@@ -149,7 +145,7 @@ public class BorrowAdFragment extends ListFragment {
 
                                 System.out.println("Advertisement in success is ------>" + result.getJSONObject(i).toString());
                                 JSONObject object = result.getJSONObject(i);
-                                advertisement = advJSONParser.parseJSONWithRank(object);
+                                advertisement = JSONParser.parseAdvJSONWithRank(object);
 
 
                                 if (advertisement.getAdPostedby().getId().equals(userId)) {
@@ -169,8 +165,8 @@ public class BorrowAdFragment extends ListFragment {
                         }
 
 
-                        adverAdapter = new AdverAdapter(getActivity().getApplicationContext(), advertisements);
-                        setListAdapter(adverAdapter);
+                        withRankAdapter = new WithRankAdapter(getActivity().getApplicationContext(), advertisements);
+                        setListAdapter(withRankAdapter);
 
 
                     }

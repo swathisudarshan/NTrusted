@@ -1,6 +1,8 @@
 package com.example.tanvi.NTrusted.Source.Activities;
 
+import android.app.DialogFragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -12,13 +14,23 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.tanvi.NTrusted.R;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.BorrowingAdDetailFragment;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.LendingAdDetailFragment;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MyReqTabFragment;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.PostAdvFragment;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.SearchFragment;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.TabFragment;
+import com.example.tanvi.NTrusted.Source.Constants;
+import com.example.tanvi.NTrusted.Source.Models.Transaction;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.BorrowingAdDetailFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.LendingAdDetailFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Transaction.MyAlertDialogFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request.MyReqTabFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Transaction.MyTransactionsFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC.PostAdvFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC.SearchFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC.TabFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.JSONParser;
+import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
+import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 import com.facebook.login.LoginManager;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class HomePageActivity extends AppCompatActivity implements LendingAdDetailFragment.OnFragmentInteractionListener,SearchFragment.OnFragmentInteractionListener,PostAdvFragment.OnFragmentInteractionListener, BorrowingAdDetailFragment.OnFragmentInteractionListener{
@@ -28,12 +40,26 @@ public class HomePageActivity extends AppCompatActivity implements LendingAdDeta
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
 
+    GETOperation getOperation;
+
+    Transaction transaction;
+
+    JSONParser jsonParser;
+
+    private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //This is the main activity home page layout
         setContentView(R.layout.activity_home_page);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref",0);
+        this.userId = pref.getString(Constants.UserID,null);
+
+        checkTransactionClosedReq();
+
 
 
         //Setup the DrawerLayout and NavigationView
@@ -63,9 +89,16 @@ public class HomePageActivity extends AppCompatActivity implements LendingAdDeta
                     xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
                 }
 
+                //MyRequest Fragment
                 if (menuItem.getItemId() == R.id.nav_item_myreq) {
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView,new MyReqTabFragment()).commit();
+                }
+
+                //MyTransaction Fragment
+                if (menuItem.getItemId() == R.id.nav_item_transac) {
+                    FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
+                    xfragmentTransaction.replace(R.id.containerView,new MyTransactionsFragment()).commit();
                 }
 
                 // If post ad selected the  redirect to Post Adv Fragment
@@ -107,6 +140,89 @@ public class HomePageActivity extends AppCompatActivity implements LendingAdDeta
         mDrawerToggle.syncState();
 
 
+
+
+    }
+
+    private void checkTransactionClosedReq() {
+
+System.out.println("In check transaction close requests");
+        getOperation = new GETOperation(Constants.getIncomingRenteeCloseReq+"?userId="+userId, getApplicationContext());
+        getOperation.getData(new VolleyGETCallBack() {
+            @Override
+            public void onSuccess(String result) {
+            }
+
+            @Override
+            public void onSuccess(JSONArray result) {
+                jsonParser = new JSONParser();
+
+                FragmentManager fm = getSupportFragmentManager();
+                Bundle bundle = new Bundle();
+                MyAlertDialogFragment editNameDialogFragment;
+
+                    for (int i = 0; i < result.length(); i++) {
+
+                        try {
+
+                            System.out.println("Advertisement in success is ------>" + result.getJSONObject(i).toString());
+                            JSONObject object = result.getJSONObject(i);
+                            transaction= jsonParser.parseTransactionJSON(object);
+                            editNameDialogFragment = MyAlertDialogFragment.newInstance("Rate your transaction",transaction);
+                            editNameDialogFragment.setStyle(DialogFragment.STYLE_NORMAL,R.style.CustomDialog);
+                            editNameDialogFragment.show(fm, "fragment_edit_name");
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+
+
+                }
+
+        });
+
+
+
+        //getrenter close req
+        getOperation = new GETOperation(Constants.getIncomingRenterCloseReq+"?userId="+userId, getApplicationContext());
+        getOperation.getData(new VolleyGETCallBack() {
+            @Override
+            public void onSuccess(String result) {
+            }
+
+            @Override
+            public void onSuccess(JSONArray result) {
+                jsonParser = new JSONParser();
+
+                FragmentManager fm = getSupportFragmentManager();
+                Bundle bundle = new Bundle();
+                MyAlertDialogFragment editNameDialogFragment;
+
+                for (int i = 0; i < result.length(); i++) {
+
+                    try {
+
+                        System.out.println("Advertisement in success is ------>" + result.getJSONObject(i).toString());
+                        JSONObject object = result.getJSONObject(i);
+                        transaction= jsonParser.parseTransactionJSON(object);
+                        editNameDialogFragment = MyAlertDialogFragment.newInstance("Rate your transaction",transaction);
+                        editNameDialogFragment.setStyle(DialogFragment.STYLE_NORMAL,R.style.CustomDialog);
+                        editNameDialogFragment.show(fm, "fragment_edit_name");
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+
+
+            }
+
+        });
 
 
     }

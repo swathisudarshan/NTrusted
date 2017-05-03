@@ -3,6 +3,7 @@ package com.example.tanvi.NTrusted.Source.Utilities.JSONParser;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
 import com.example.tanvi.NTrusted.Source.Models.Request;
+import com.example.tanvi.NTrusted.Source.Models.Transaction;
 import com.example.tanvi.NTrusted.Source.Models.User;
 
 import org.json.JSONArray;
@@ -15,13 +16,15 @@ import java.util.Date;
  * Created by tanvi on 4/29/2017.
  */
 
-public class AdvJSONParser {
+public class JSONParser {
 
     private Advertisement adv;
 
     private Request request;
 
-    public Advertisement parseJSONWithoutRank(JSONObject advObj) throws JSONException {
+    private Transaction transaction;
+
+    public Advertisement parseAdvJSONWithoutRank(JSONObject advObj) throws JSONException {
 
         adv = new Advertisement();
 
@@ -58,7 +61,7 @@ public class AdvJSONParser {
     }
 
 
-    public Advertisement parseJSONWithRank(JSONObject object) throws JSONException {
+    public Advertisement parseAdvJSONWithRank(JSONObject object) throws JSONException {
 
 
         adv = new Advertisement();
@@ -173,6 +176,82 @@ public class AdvJSONParser {
 
         System.out.println("Rank is "+request.getRank());
         return request;
+
+    }
+
+
+    public Transaction parseTransactionJSON(JSONObject object) throws JSONException {
+
+        transaction = new Transaction();
+
+        transaction.setTransactionId((Integer) object.get("transactionId"));
+        Date date = new Date();
+        date.setTime((Long) object.get("startDate"));
+        transaction.setStartDate(date);
+
+        transaction.setEndDate(null);
+        transaction.setRenterClose((Integer) object.get("renterClose"));
+        transaction.setRenteeClose((Integer) object.get("renteeClose"));
+        transaction.setStatus((Integer) object.get("status"));
+
+        JSONObject advObj = (JSONObject) object.get("ad");
+        JSONObject userObj = (JSONObject) advObj.get("user");
+        JSONObject catObj = (JSONObject) advObj.get("category");
+        JSONObject reqObj = (JSONObject) object.get("request");
+        JSONObject renterObj = (JSONObject) object.get("renter");
+        JSONObject renteeObj = (JSONObject) object.get("rentee");
+
+
+        Advertisement adv = new Advertisement();
+        //Set ad details
+        adv.setAdId(String.valueOf(advObj.get("adId")));
+        adv.setProductName(String.valueOf(advObj.get("productName")));
+        adv.setProductDesc(String.valueOf(advObj.get("productDescription")));
+        adv.setProductPrice(String.valueOf(advObj.get("productPrice")));
+        adv.setAdType((Integer) advObj.get("adType"));
+        date = new Date();
+        date.setTime((Long) advObj.get("postDate"));
+        adv.setPostDate(date);
+        adv.setStatus(String.valueOf(advObj.get("active")));
+
+        //set user details
+        User user = new User();
+        user.setId((String) userObj.get("fbId"));
+        user.setName((String) userObj.get("name"));
+        user.setPhone((String) userObj.get("phoneNumber"));
+        user.setAddress((String) userObj.get("address"));
+        adv.setAdPostedby(user);
+
+        //set category details
+        Category category = new Category();
+        category.setCategoryID(catObj.getInt("categoryId"));
+        category.setCategoryName(catObj.getString("categoryName"));
+        adv.setProductCategory(category);
+
+        transaction.setAd(adv);
+
+
+        //set req details
+        transaction.setRequest((Integer) reqObj.get("requestId"));
+
+        User renter = new User();
+        renter.setId((String) renterObj.get("fbId"));
+        renter.setEmail((String) renterObj.get("email"));
+        renter.setName((String) renterObj.get("name"));
+        renter.setAddress((String) renterObj.get("address"));
+        renter.setPhone((String) renteeObj.get("phoneNumber"));
+
+        User rentee = new User();
+        rentee.setId((String) renteeObj.get("fbId"));
+        rentee.setName((String) renteeObj.get("name"));
+        rentee.setEmail((String) renteeObj.get("email"));
+        rentee.setAddress((String) renteeObj.get("address"));
+        rentee.setPhone((String) renteeObj.get("phoneNumber"));
+
+        transaction.setRenter(renter);
+        transaction.setRentee(rentee);
+        return transaction;
+
 
     }
 }

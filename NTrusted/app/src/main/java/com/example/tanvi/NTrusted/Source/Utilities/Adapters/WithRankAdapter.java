@@ -20,7 +20,7 @@ import java.util.List;
  * Created by tanvi on 4/26/2017.
  */
 
-public class AdverAdapter extends BaseAdapter {
+public class WithRankAdapter extends BaseAdapter {
 
     static boolean isRequest=false;
 
@@ -28,16 +28,16 @@ public class AdverAdapter extends BaseAdapter {
     List<Advertisement> advertisementList;
     List<Request> requestList;
 
-    public AdverAdapter() {
+    public WithRankAdapter() {
 
     }
 
-    public AdverAdapter(Context context, List<Advertisement> advertisementList) {
+    public WithRankAdapter(Context context, List<Advertisement> advertisementList) {
         this.context = context;
         this.advertisementList = advertisementList;
     }
 
-    public AdverAdapter(Context context, List<Request> requestList, int req) {
+    public WithRankAdapter(Context context, List<Request> requestList, int req) {
         this.context = context;
         this.requestList= requestList;
         isRequest=true;

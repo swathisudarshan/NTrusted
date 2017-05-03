@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,17 +25,16 @@ import java.util.HashMap;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LendingAdDetailFragment.OnFragmentInteractionListener} interface
+ * {@link BorrowingAdDetailFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link LendingAdDetailFragment#newInstance} factory method to
+ * Use the {@link BorrowingAdDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LendingAdDetailFragment extends Fragment {
-
+public class BorrowingAdDetailFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private TextView product,description,category,postedBy,date,price;
+    private TextView product,description,category,postedBy,date;
 
     private Button send,cancel;
 
@@ -43,20 +42,26 @@ public class LendingAdDetailFragment extends Fragment {
 
     private POSTOperation postOperation;
 
-
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public LendingAdDetailFragment() {
+    public BorrowingAdDetailFragment() {
         // Required empty public constructor
     }
 
-
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment BorrowingAdDetailFragment.
+     */
     // TODO: Rename and change types and number of parameters
-    public static LendingAdDetailFragment newInstance(String param1, String param2) {
-        LendingAdDetailFragment fragment = new LendingAdDetailFragment();
+    public static BorrowingAdDetailFragment newInstance(String param1, String param2) {
+        BorrowingAdDetailFragment fragment = new BorrowingAdDetailFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -76,9 +81,10 @@ public class LendingAdDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_lending_ad_detail, container, false);
+        // Inflate the layout for this fragmen
 
+
+        View view = inflater.inflate(R.layout.activity_borrowing_ad_details, container, false);
 
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref",0);
         userId = pref.getString(Constants.UserID,null);
@@ -88,7 +94,7 @@ public class LendingAdDetailFragment extends Fragment {
         postedBy = (TextView) view.findViewById(R.id.by);
         category = (TextView) view.findViewById(R.id.cat);
         date = (TextView) view.findViewById(R.id.date);
-        price= (TextView) view.findViewById(R.id.price);
+
         send= (Button) view.findViewById(R.id.send);
         cancel= (Button) view.findViewById(R.id.cancel);
 
@@ -101,7 +107,6 @@ public class LendingAdDetailFragment extends Fragment {
         postedBy.setText(advertisement.getAdPostedby().getName());
         category.setText(advertisement.getProductCategory().getCategoryName());
         date.setText(String.valueOf(advertisement.getPostDate()));
-        price.setText(advertisement.getProductPrice());
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,9 +115,9 @@ public class LendingAdDetailFragment extends Fragment {
                 parameters.put("adId",advertisement.getAdId()); //Replace it by actual adId obtained from Extra bundle
                 parameters.put("senderId",userId);
 
-                System.out.println("******* Lend Ad Details Parameters: adId: "+parameters.get("adId")+" senderId:  "+ userId);
+                System.out.println("******* Borrow Ad Details Parameters: adId: "+parameters.get("adId")+" senderId:  "+ userId);
 
-                postOperation = new POSTOperation(Constants.sendBorrowRequest, parameters, getActivity().getApplicationContext());
+                postOperation = new POSTOperation(Constants.sendLendingRequest, parameters, getActivity().getApplicationContext());
                 postOperation.postData(new VolleyPOSTCallBack() {
                     @Override
                     public void onSuccess(Object result) {
@@ -144,8 +149,6 @@ public class LendingAdDetailFragment extends Fragment {
 
 
         return view;
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -186,4 +189,7 @@ public class LendingAdDetailFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
+
 }

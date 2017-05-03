@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC;
 
 import android.content.Context;
 import android.content.SharedPreferences;

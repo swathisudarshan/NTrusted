@@ -16,5 +16,8 @@
     <item android:title="My Requests"
         android:id="@+id/nav_item_myreq"/>
 
+    <item android:title="My Transactions"
+        android:id="@+id/nav_item_transac"/>
+
 
 </menu>

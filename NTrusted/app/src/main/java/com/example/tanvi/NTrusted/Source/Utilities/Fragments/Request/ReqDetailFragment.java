@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,16 +14,12 @@ import android.widget.Toast;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Activities.HomePageActivity;
 import com.example.tanvi.NTrusted.Source.Constants;
-import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Request;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.BorrowingAdDetailFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
-import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.POSTOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
-import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyPOSTCallBack;
 
 import org.json.JSONArray;
-
-import java.util.HashMap;
 
 /**
  * Created by tanvi on 5/1/2017.

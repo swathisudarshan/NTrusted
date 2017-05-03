@@ -1,10 +1,9 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +13,15 @@ import android.widget.Toast;
 
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
-import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Request;
-import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverAdapter;
-import com.example.tanvi.NTrusted.Source.Utilities.Adapters.AdverWithoutRankAdapter;
-import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.AdvJSONParser;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.WithRankAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.WithoutRankAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request.ReqDetailFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.JSONParser;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -44,11 +42,11 @@ public class ReceivedAdFragment extends ListFragment {
 
     private List<Request> requests = new ArrayList<Request>();
 
-    private AdverAdapter adverAdapter;
+    private WithRankAdapter withRankAdapter;
 
-    private AdverWithoutRankAdapter adverWithoutRankAdapter;
+    private WithoutRankAdapter withoutRankAdapter;
 
-    private AdvJSONParser advJSONParser = new AdvJSONParser();
+    private JSONParser JSONParser = new JSONParser();
 
     //private Advertisement advertisement;
 
@@ -97,7 +95,7 @@ public class ReceivedAdFragment extends ListFragment {
 
                                 System.out.println("Request in success is ------>" + result.getJSONObject(i).toString());
                                 JSONObject object = result.getJSONObject(i);
-                                request = advJSONParser.parseJSONRequest(object);
+                                request = JSONParser.parseJSONRequest(object);
 
                                 requests.add(request);
 
@@ -108,8 +106,8 @@ public class ReceivedAdFragment extends ListFragment {
                         }
 
 
-                        adverAdapter = new AdverAdapter(getActivity().getApplicationContext(), requests,0);
-                        setListAdapter(adverAdapter);
+                        withRankAdapter = new WithRankAdapter(getActivity().getApplicationContext(), requests,0);
+                        setListAdapter(withRankAdapter);
 
 
                     }
@@ -123,55 +121,47 @@ public class ReceivedAdFragment extends ListFragment {
 
         if(args.getString("adType").equals("lend")){
 
-//     System.out.println("Has requests !!" + args.getInt("categoryId") + "and user id is " + userId);
-//            getOperation = new GETOperation(Constants.getRentees + "?catId=" + args.getInt("categoryId") + "&RenterId=" + userId, context);
-//            getOperation.getData(new VolleyGETCallBack() {
-//                @Override
-//                public void onSuccess(String result) {
-//                }
-//
-//                @Override
-//                public void onSuccess(JSONArray result) {
-//
-//                    if (result.length() == 0) {
-//                        Toast.makeText(getActivity().getApplicationContext(), "No requests available for this selection", Toast.LENGTH_SHORT).show();
-//                        getFragmentManager().popBackStack();
-//                    } else {
-//                        for (int i = 0; i < result.length(); i++) {
-//
-//                            try {
-//
-//                                System.out.println("requests in success is ------>" + result.getJSONObject(i).toString());
-//                                JSONObject object = result.getJSONObject(i);
-//                                advertisement = advJSONParser.parseJSONWithRank(object);
-//
-//
-//                                if (advertisement.getAdPostedby().getId().equals(userId)) {
-//                                    System.out.println("ITS MEEEE !!!!!!!!!!!!!!!!!!!!!!!!!");
-//                                    continue;
-//
-//
-//                                } else {
-//                                    advertisements.add(advertisement);
-//                                    System.out.println("Advertisment " + advertisement.getAdId() + " added to the list !!");
-//                                }
-//
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
-//
-//                        }
-//
-//
-//                        adverAdapter = new AdverAdapter(getActivity().getApplicationContext(), advertisements);
-//                        setListAdapter(adverAdapter);
-//
-//
-//                    }
-//
-//                }
-//
-//            });
+            System.out.println("Has arguments !!" + args.getInt("categoryId") + "and user id is " + userId);
+            getOperation = new GETOperation(Constants.getLendRequestsforCat + "?receiverId=" + userId + "&catId=" + args.getInt("categoryId"), context);
+            getOperation.getData(new VolleyGETCallBack() {
+                @Override
+                public void onSuccess(String result) {
+                }
+
+                @Override
+                public void onSuccess(JSONArray result) {
+
+                    if (result.length() == 0) {
+                        Toast.makeText(getActivity().getApplicationContext(), "No requests available for this selection", Toast.LENGTH_SHORT).show();
+                        getFragmentManager().popBackStack();
+                    } else {
+                        for (int i = 0; i < result.length(); i++) {
+
+                            try {
+
+                                System.out.println("Request in success is ------>" + result.getJSONObject(i).toString());
+                                JSONObject object = result.getJSONObject(i);
+                                request = JSONParser.parseJSONRequest(object);
+
+                                requests.add(request);
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+
+                        withRankAdapter = new WithRankAdapter(getActivity().getApplicationContext(), requests,0);
+                        setListAdapter(withRankAdapter);
+
+
+                    }
+
+                }
+
+            });
+
 
         }
 

@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Transaction;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,17 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.tanvi.NTrusted.R;
 
-/**
- * Created by tanvi on 5/1/2017.
- */
-public class MyReqTabFragment extends Fragment {
 
+
+public class MyTransactionsFragment extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 2 ;
+    public static int int_items = 3 ;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,9 +75,9 @@ public class MyReqTabFragment extends Fragment {
         public Fragment getItem(int position)
         {
             switch (position){
-                case 0 : return new sentReqFragment();
-                case 1 : return new ReceivedReqSearchFragment();
-
+                case 0 : return new ActiveTranFragment();
+                case 1 : return new PendingTranFragment();
+                case 2 : return new ClosedTranFragment();
             }
             return null;
         }
@@ -101,16 +98,14 @@ public class MyReqTabFragment extends Fragment {
 
             switch (position){
                 case 0 :
-                    return "Sent Requests";
+                    return "Active Transactions";
                 case 1 :
-                    return "Received Requests";
-
+                    return "Pending Transactions";
+                case 2 :
+                    return "Closed Transactions";
             }
             return null;
         }
     }
-
-
-
 
 }

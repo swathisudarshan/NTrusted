@@ -1,4 +1,4 @@
-package com.example.tanvi.NTrusted.Source.Utilities.Fragments;
+package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,9 +15,7 @@ import android.widget.Spinner;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Category;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.BorrowAdFragment;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.LendAdFragment;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.ReceivedAdFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.LendAdFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
