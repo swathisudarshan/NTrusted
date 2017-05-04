@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Category;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.CustomSpinnerAdapter;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.BorrowAdFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.LendAdFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
@@ -46,6 +47,7 @@ public class SearchFragment extends Fragment {
     private GETOperation getOperation;
     private Spinner categorySpinner;
     private Spinner adTypeSpinner;
+    private CustomSpinnerAdapter customSpinnerAdapter;
     private ArrayAdapter categoryArrayAdapter, adTypeArrayAdapter;
     private Button button;
     private int categoryId;
@@ -128,16 +130,17 @@ public class SearchFragment extends Fragment {
                                      categoryFirst.setCategoryName("Select Category");
                                      categoryList.add(0,categoryFirst);
 
-                                     categoryArrayAdapter = new ArrayAdapter<Category>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item,categoryList);
+                                     //categoryArrayAdapter = new ArrayAdapter<Category>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item,categoryList);
 
+                                     customSpinnerAdapter = new CustomSpinnerAdapter(getActivity().getApplicationContext(),categoryList);
                                      categorySpinner = (Spinner) rootView.findViewById(R.id.appCompatSpinner);
-                                     categorySpinner.setAdapter(categoryArrayAdapter);
+                                     categorySpinner.setAdapter(customSpinnerAdapter);
+                                     //categorySpinner.setAdapter(categoryArrayAdapter);
 
                                      categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                          @Override
                                          public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                                             view.setBackgroundColor(Color.WHITE);
                                              if(i>0)
                                              {
                                                  Category item = (Category) adapterView.getItemAtPosition(i);
@@ -163,13 +166,14 @@ public class SearchFragment extends Fragment {
         adTypeList.add("Borrow Products Advertisements");
         adTypeList.add("Lend Products Advertisements");
         adTypeSpinner = (Spinner) rootView.findViewById(R.id.appCompatSpinner1);
-        adTypeArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item,adTypeList);
-        adTypeSpinner.setAdapter(adTypeArrayAdapter);
+        customSpinnerAdapter=new CustomSpinnerAdapter(getActivity().getApplicationContext(),adTypeList,true);
+        //adTypeArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item,adTypeList);
+        adTypeSpinner.setAdapter(customSpinnerAdapter);
 
         adTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println(adapterView.getItemAtPosition(i).toString());
+                //System.out.println(adapterView.getItemAtPosition(i).toString());
             }
 
             @Override

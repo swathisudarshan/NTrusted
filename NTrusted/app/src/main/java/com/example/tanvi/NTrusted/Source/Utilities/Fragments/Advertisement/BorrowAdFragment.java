@@ -86,7 +86,7 @@ public class BorrowAdFragment extends ListFragment {
                 public void onSuccess(JSONArray result) {
 
                     if(result.length()==0)
-                    Toast.makeText(getActivity().getApplicationContext(), "No borrowing advertisements available", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity().getApplicationContext(), "No borrowing advertisements available", Toast.LENGTH_SHORT).show();
 
 
                     for (int i = 0; i < result.length(); i++) {

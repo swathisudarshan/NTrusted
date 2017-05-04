@@ -88,7 +88,7 @@ public class LendAdFragment extends ListFragment {
                 public void onSuccess(JSONArray result) {
 
                     if(result.length()==0)
-                        Toast.makeText(getActivity().getApplicationContext(), "No lending advertisements available", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity().getApplicationContext(), "No lending advertisements available", Toast.LENGTH_SHORT).show();
 
 
                     System.out.println("In volley call back !!!!!!!!!!!!!!!!!!" + result.toString());

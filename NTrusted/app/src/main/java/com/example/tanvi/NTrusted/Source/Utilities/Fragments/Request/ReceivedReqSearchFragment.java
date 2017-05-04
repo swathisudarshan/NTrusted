@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Category;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.CustomSpinnerAdapter;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.LendAdFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
@@ -36,6 +37,7 @@ public class ReceivedReqSearchFragment extends Fragment {
     private Spinner categorySpinner;
     private Spinner adTypeSpinner;
     private ArrayAdapter categoryArrayAdapter, adTypeArrayAdapter;
+    private CustomSpinnerAdapter customSpinnerAdapter;
     private Button button;
     private int categoryId;
     private String adType;
@@ -79,16 +81,16 @@ public class ReceivedReqSearchFragment extends Fragment {
                 categoryFirst.setCategoryName("Select Category");
                 categoryList.add(0,categoryFirst);
 
-                categoryArrayAdapter = new ArrayAdapter<Category>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item,categoryList);
+                //categoryArrayAdapter = new ArrayAdapter<Category>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item,categoryList);
 
                 categorySpinner = (Spinner) rootView.findViewById(R.id.appCompatSpinner);
-                categorySpinner.setAdapter(categoryArrayAdapter);
+                customSpinnerAdapter = new CustomSpinnerAdapter(getActivity().getApplicationContext(),categoryList);
+                categorySpinner.setAdapter(customSpinnerAdapter);
 
                 categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                        view.setBackgroundColor(Color.WHITE);
                         if(i>0)
                         {
                             Category item = (Category) adapterView.getItemAtPosition(i);
@@ -114,8 +116,8 @@ public class ReceivedReqSearchFragment extends Fragment {
         adTypeList.add("Borrow Products Requests");
         adTypeList.add("Lend Products Advertisements");
         adTypeSpinner = (Spinner) rootView.findViewById(R.id.appCompatSpinner1);
-        adTypeArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item,adTypeList);
-        adTypeSpinner.setAdapter(adTypeArrayAdapter);
+        customSpinnerAdapter = new CustomSpinnerAdapter(getActivity().getApplicationContext(),categoryList);
+        adTypeSpinner.setAdapter(customSpinnerAdapter);
 
         adTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

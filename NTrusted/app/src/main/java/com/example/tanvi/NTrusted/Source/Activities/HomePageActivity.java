@@ -88,24 +88,28 @@ public class HomePageActivity extends AppCompatActivity implements TransactionDe
                 if (menuItem.getItemId() == R.id.nav_item_home) {
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView,new TabFragment()).commit();
+                    xfragmentTransaction.addToBackStack(null);
                 }
 
                 //MyRequest Fragment
                 if (menuItem.getItemId() == R.id.nav_item_myreq) {
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView,new MyReqTabFragment()).commit();
+                    xfragmentTransaction.addToBackStack(null);
                 }
 
                 //MyTransaction Fragment
                 if (menuItem.getItemId() == R.id.nav_item_transac) {
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView,new MyTransactionsFragment()).commit();
+                    xfragmentTransaction.addToBackStack(null);
                 }
 
                 // If post ad selected the  redirect to Post Adv Fragment
                 if (menuItem.getItemId() == R.id.nav_item_post) {
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.containerView,new PostAdvFragment()).commit();
+                    fragmentTransaction.addToBackStack(null);
 
                 }
 
@@ -113,6 +117,7 @@ public class HomePageActivity extends AppCompatActivity implements TransactionDe
                 if (menuItem.getItemId() == R.id.nav_item_search) {
                     FragmentTransaction xfragmentTransaction = mFragmentManager.beginTransaction();
                     xfragmentTransaction.replace(R.id.containerView,new SearchFragment()).commit();
+                    xfragmentTransaction.addToBackStack(null);
                 }
 
                 //If clicked on logout
