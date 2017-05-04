@@ -16,7 +16,6 @@ import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Request;
 import com.example.tanvi.NTrusted.Source.Utilities.Adapters.WithRankAdapter;
 import com.example.tanvi.NTrusted.Source.Utilities.Adapters.WithoutRankAdapter;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request.ReqDetailFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.JSONParser;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
@@ -31,7 +30,7 @@ import java.util.List;
 /**
  * Created by tanvi on 5/1/2017.
  */
-public class ReceivedAdFragment extends ListFragment {
+public class ReceivedReqFragment extends ListFragment {
 
 
     private int categoryId;
@@ -95,7 +94,7 @@ public class ReceivedAdFragment extends ListFragment {
 
                                 System.out.println("Request in success is ------>" + result.getJSONObject(i).toString());
                                 JSONObject object = result.getJSONObject(i);
-                                request = JSONParser.parseJSONRequest(object);
+                                request = JSONParser.parseRequestJSONWithRank(object);
 
                                 requests.add(request);
 
@@ -141,7 +140,7 @@ public class ReceivedAdFragment extends ListFragment {
 
                                 System.out.println("Request in success is ------>" + result.getJSONObject(i).toString());
                                 JSONObject object = result.getJSONObject(i);
-                                request = JSONParser.parseJSONRequest(object);
+                                request = JSONParser.parseRequestJSONWithRank(object);
 
                                 requests.add(request);
 

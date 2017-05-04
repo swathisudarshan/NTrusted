@@ -53,6 +53,8 @@
         android:layout_below="@+id/appCompatSpinner1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
-        android:id="@+id/getMeAds" />
+        android:id="@+id/getMeAds"
+        android:textColor="@color/orange"
+        android:background="@color/black"/>
 
 </RelativeLayout>

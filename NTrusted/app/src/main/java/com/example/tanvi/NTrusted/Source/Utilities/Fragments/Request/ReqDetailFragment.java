@@ -35,6 +35,7 @@ public class ReqDetailFragment extends Fragment {
 
     private GETOperation getOperation;
 
+    String type;
     private String mParam1;
     private String mParam2;
 
@@ -61,7 +62,15 @@ public class ReqDetailFragment extends Fragment {
         cancel.setText("Decline");
 
         Bundle args = getArguments();
+        type = args.getString("sent");
 
+
+        if(type.equals("true")){
+
+            send.setVisibility(View.INVISIBLE);
+            cancel.setVisibility(View.INVISIBLE);
+
+        }
 
         final Request request = (Request) args.getSerializable("request");
         product.setText(request.getAd().getProductName());
@@ -73,11 +82,6 @@ public class ReqDetailFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                HashMap<String, Integer> parameters = new HashMap<String, Integer>();
-//                parameters.put("requestId", request.getRequestId()); //Replace it by actual adId obtained from Extra bundle
-//                parameters.put("response", 2);
-
-                //System.out.println("******* Req Ad Details Parameters: adId: " + parameters.get("adId") + " senderId:  " + userId);
 
                 getOperation = new GETOperation(Constants.acceptDeclineRequest+"?requestId="+request.getRequestId()+"&response=2", getActivity().getApplicationContext());
                 getOperation.getStringData(new VolleyGETCallBack() {

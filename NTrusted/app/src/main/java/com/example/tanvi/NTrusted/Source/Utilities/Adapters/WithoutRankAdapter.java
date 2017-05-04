@@ -22,7 +22,9 @@ public class WithoutRankAdapter extends BaseAdapter {
         private Context context;
         List<Advertisement> advertisementList;
         List<Transaction> transactionList;
+        List<Request> requestList;
         boolean isTransaction = false;
+        boolean isRequest=false;
 
 
         public WithoutRankAdapter(Context context, List<Advertisement> advertisementList) {
@@ -35,6 +37,13 @@ public class WithoutRankAdapter extends BaseAdapter {
         this.transactionList = transactionList;
             isTransaction = true;
         }
+
+    public WithoutRankAdapter(Context context, List<Request> requestList, boolean  isRequest) {
+        this.context = context;
+        this.requestList = requestList;
+        this.isRequest = isRequest;
+    }
+
 
 
 
@@ -52,6 +61,9 @@ public class WithoutRankAdapter extends BaseAdapter {
 
             if(isTransaction)
                 return transactionList.size();
+            if(isRequest)
+                return requestList.size();
+
             return advertisementList.size();
         }
 
@@ -60,6 +72,8 @@ public class WithoutRankAdapter extends BaseAdapter {
 
             if(isTransaction)
                     return transactionList.get(i);
+            if(isRequest)
+                return requestList.get(i);
 
             return advertisementList.get(i);
 
@@ -108,6 +122,29 @@ public class WithoutRankAdapter extends BaseAdapter {
 
                 holder.category.setText(transaction.getAd().getProductName());
                 holder.postedAdFor.setVisibility(View.INVISIBLE);
+
+
+            }
+
+            if(isRequest){
+
+                Request request = (Request) getItem(i);
+
+                holder.userName.setText(request.getReceiver().getName());
+                if(holder.adType!=null)
+                {
+                    if(request.getAd().getAdType()==1)
+                        holder.adType.setText("Lend");
+                    if(request.getAd().getAdType()==2)
+                        holder.adType.setText("Borrow");
+
+                }
+
+                holder.category.setText(request.getAd().getProductName());
+                holder.postedAdFor.setVisibility(View.INVISIBLE);
+
+
+
 
 
             }

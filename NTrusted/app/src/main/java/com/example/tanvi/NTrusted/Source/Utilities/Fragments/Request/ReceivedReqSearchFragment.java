@@ -1,6 +1,5 @@
 package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Request;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,7 +15,6 @@ import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Category;
 import com.example.tanvi.NTrusted.Source.Utilities.Adapters.CustomSpinnerAdapter;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Advertisement.LendAdFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
@@ -144,14 +142,14 @@ public class ReceivedReqSearchFragment extends Fragment {
                 if(adTypeSpinner.getSelectedItem().equals("Borrow Products Requests"))
                 {
                     System.out.println("In *************************** On click borrow selected");
-                    ReceivedAdFragment receivedAdFragment = new ReceivedAdFragment();
+                    ReceivedReqFragment receivedReqFragment = new ReceivedReqFragment();
 
                     Bundle bundle = new Bundle();
                     bundle.putInt("categoryId",categoryId);
                     bundle.putString("adType","borrow");
-                    receivedAdFragment.setArguments(bundle);
+                    receivedReqFragment.setArguments(bundle);
                     android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.containerView,receivedAdFragment);
+                    transaction.replace(R.id.containerView, receivedReqFragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
 
@@ -159,7 +157,7 @@ public class ReceivedReqSearchFragment extends Fragment {
                 }
                 if(adTypeSpinner.getSelectedItem().toString().equals("Lend Products Requests")){
 
-                    ReceivedAdFragment borrowAdFragment = new ReceivedAdFragment();
+                    ReceivedReqFragment borrowAdFragment = new ReceivedReqFragment();
                     Bundle bundle = new Bundle();
                     bundle.putInt("categoryId",categoryId);
                     bundle.putString("adType","lend");

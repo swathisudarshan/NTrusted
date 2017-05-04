@@ -39,11 +39,11 @@
                 android:text="Category :"
                 android:textColor="@color/orange"/>
 
-            <Spinner
+            <android.support.v7.widget.AppCompatSpinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner"
-               ></Spinner>
+               ></android.support.v7.widget.AppCompatSpinner>
 
         </TableRow>
 

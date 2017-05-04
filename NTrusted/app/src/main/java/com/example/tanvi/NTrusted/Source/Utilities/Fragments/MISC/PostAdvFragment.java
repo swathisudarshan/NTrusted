@@ -24,6 +24,7 @@ import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
+import com.example.tanvi.NTrusted.Source.Utilities.Adapters.CustomSpinnerAdapter;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.POSTOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
@@ -35,6 +36,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
@@ -50,7 +53,7 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
     private EditText productName, productDesc, productPrice;
     private List<Category> categories = new ArrayList<Category>();
 
-    private ArrayAdapter<Category> adapter;
+    private CustomSpinnerAdapter customSpinnerAdapter;
 
     private Button postAdv;
 
@@ -178,12 +181,8 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
                 }
 
 
-                adapter = new ArrayAdapter<Category>(getActivity().getApplicationContext(), R.layout.support_simple_spinner_dropdown_item,categories);
-
-                //adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-
-                categorySpinner.setAdapter(adapter);
-
+                customSpinnerAdapter = new CustomSpinnerAdapter(getActivity().getApplicationContext(),categories);
+                categorySpinner.setAdapter(customSpinnerAdapter);
 
                 for(int i=0;i<categories.size();i++)
                     System.out.println(categories.get(i).getCategoryName());

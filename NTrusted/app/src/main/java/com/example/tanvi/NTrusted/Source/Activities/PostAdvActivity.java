@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -41,7 +40,7 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
     private EditText productName, productDesc, productPrice;
     private List<Category> categories = new ArrayList<Category>();
 
-    private CustomSpinnerAdapter adapter;
+    private CustomSpinnerAdapter customSpinnerAdapter;
 
     private Button postAdv;
 
@@ -134,8 +133,8 @@ public class PostAdvActivity extends AppCompatActivity implements AdapterView.On
                 }
 
 
-                adapter = new CustomSpinnerAdapter(getApplicationContext(),categories);
-                categorySpinner.setAdapter(adapter);
+                customSpinnerAdapter = new CustomSpinnerAdapter(getApplicationContext(),categories);
+                categorySpinner.setAdapter(customSpinnerAdapter);
 
 
                 for(int i=0;i<categories.size();i++)

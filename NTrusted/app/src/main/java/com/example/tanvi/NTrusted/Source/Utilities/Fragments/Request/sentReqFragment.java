@@ -4,15 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Constants;
-import com.example.tanvi.NTrusted.Source.Models.Transaction;
+import com.example.tanvi.NTrusted.Source.Models.Request;
 import com.example.tanvi.NTrusted.Source.Utilities.Adapters.WithoutRankAdapter;
 import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.JSONParser;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
@@ -22,13 +22,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by tanvi on 5/1/2017.
  */
-public class sentReqFragment extends ListFragment {
+public class SentReqFragment extends ListFragment {
 
 
 
@@ -37,13 +38,13 @@ public class sentReqFragment extends ListFragment {
 
     private GETOperation getOperation;
 
-    private List<Transaction> transactions = new ArrayList<Transaction>();
+    private List<Request> requests = new ArrayList<Request>();
 
     private WithoutRankAdapter withoutRankAdapter;
 
     private com.example.tanvi.NTrusted.Source.Utilities.JSONParser.JSONParser JSONParser;
 
-    private Transaction transaction;
+    private Request request;
 
 
     @Override
@@ -63,7 +64,7 @@ public class sentReqFragment extends ListFragment {
 
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_one, container, false);
-        this.transactions.clear();
+        this.requests.clear();
 
         //get all active transactions
         getOperation = new GETOperation(Constants.getAllSentRequests+"?senderId="+userId,context);
@@ -83,8 +84,8 @@ public class sentReqFragment extends ListFragment {
 
                     try {
                         JSONObject object = result.getJSONObject(i);
-                        transaction = JSONParser.parseTransactionJSON(object);
-                        transactions.add(transaction);
+                        request = JSONParser.parseRequestJSONWithoutRank(object);
+                        requests.add(request);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -92,7 +93,7 @@ public class sentReqFragment extends ListFragment {
 
                 }
 
-                        withoutRankAdapter = new WithoutRankAdapter(getActivity().getApplicationContext(),transactions, 1);
+                        withoutRankAdapter = new WithoutRankAdapter(getActivity().getApplicationContext(),requests,true);
                         setListAdapter(withoutRankAdapter);
 
 
@@ -105,6 +106,20 @@ public class sentReqFragment extends ListFragment {
         return view;
 
 
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        ReqDetailFragment reqDetailFragment = new ReqDetailFragment();
+        Request request1 = (Request) l.getItemAtPosition(position);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("request", (Serializable)request1 );
+        bundle.putString("sent","true");
+        reqDetailFragment.setArguments(bundle);
+        android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.containerView, reqDetailFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 

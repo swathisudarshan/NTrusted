@@ -169,7 +169,51 @@ public class JSONParser {
 
     }
 
-    public Request parseJSONRequest(JSONObject object) throws JSONException {
+    public Request parseRequestJSONWithoutRank(JSONObject object) throws JSONException{
+
+        request= new Request();
+        request.setRequestId((Integer) object.get("requestId"));
+        request.setRequestDate(String.valueOf(object.get("requestDate")));
+        request.setResponse((Integer) object.get("response"));
+        request.setRequestType((Integer) object.get("requestType"));
+
+        //set adv in req
+        Advertisement ad = new Advertisement();
+        ad.setAdId(String.valueOf(object.getJSONObject("advertisement").get("adId")));
+        ad.setProductName((String) object.getJSONObject("advertisement").get("productName"));
+
+        Category category = new Category();
+        category.setCategoryName((String) object.getJSONObject("advertisement").getJSONObject("category").get("categoryName"));
+        category.setCategoryID((Integer) object.getJSONObject("advertisement").getJSONObject("category").get("categoryId"));
+        ad.setProductCategory(category);
+
+        //set participants in req
+        User receiver = new User();
+        receiver.setId((String) object.getJSONObject("receiver").get("fbId"));
+        receiver.setName((String) object.getJSONObject("receiver").get("name"));
+        receiver.setAddress((String) object.getJSONObject("receiver").get("address"));
+        receiver.setPhone((String) object.getJSONObject("receiver").get("phoneNumber"));
+        receiver.setEmail((String) object.getJSONObject("receiver").get("email"));
+
+        User sender = new User();
+        sender.setId((String) object.getJSONObject("sender").get("fbId"));
+        sender.setName((String) object.getJSONObject("sender").get("name"));
+        sender.setAddress((String) object.getJSONObject("sender").get("address"));
+        sender.setPhone((String) object.getJSONObject("sender").get("phoneNumber"));
+        sender.setEmail((String) object.getJSONObject("sender").get("email"));
+
+        request.setReceiver(receiver);
+        request.setSender(sender);
+        request.setAd(ad);
+
+        return request;
+
+
+
+    }
+
+
+    public Request parseRequestJSONWithRank(JSONObject object) throws JSONException {
 
         request= new Request();
         //get request object
@@ -259,24 +303,10 @@ public class JSONParser {
         Double rank = (Double) object.get("rank");
         DecimalFormat df = new DecimalFormat("#.#");
         float key = Float.valueOf(df.format(rank));//rank = Math.floor(rank);
-        //float rank = Float.valueOf(String.valueOf(d));
 
-        //rank = Math.floor(rank);
 
         if (rankMapping.containsKey(key))
             request.setRank(rankMapping.get(key));
-
-
-//        if (rank == -2.0)
-//            request.setRank(1);
-//        if (rank == -1.0)
-//            request.setRank(2);
-//        if (rank == 0.0)
-//            request.setRank(3);
-//        if (rank == 1.0)
-//            request.setRank(4);
-//        if (rank == 2.0)
-//            request.setRank(5);
 
 
         System.out.println("Rank is "+request.getRank());
