@@ -36,7 +36,7 @@ public class PendingTranFragment extends ListFragment {
 
     private GETOperation getOperation;
 
-    private List<Transaction> transactions = new ArrayList<Transaction>();
+    static List<Transaction> transactions = new ArrayList<Transaction>();
 
     private WithoutRankAdapter withoutRankAdapter;
 
@@ -92,49 +92,56 @@ public class PendingTranFragment extends ListFragment {
                 }
 
 
-                //Make a call to get all transactions where user is rentee
-
-
-                getOperation = new GETOperation(Constants.getOutgoingRenteeCloseReq+"?userId="+userId,context);
-                getOperation.getData(new VolleyGETCallBack() {
-                    @Override
-                    public void onSuccess(String result) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(JSONArray result) {
-
-
-                        System.out.println("In volley call back TWOOO!!!!!!!!!!!!!!!!!!" + result.toString());
-
-                        JSONParser = new JSONParser();
-
-                        for (int i = 0; i < result.length(); i++) {
-
-                            try {
-                                JSONObject object = result.getJSONObject(i);
-                                transaction = JSONParser.parseTransactionJSON(object);
-                                transactions.add(transaction);
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        withoutRankAdapter = new WithoutRankAdapter(getActivity().getApplicationContext(),transactions, 1);
-                        setListAdapter(withoutRankAdapter);
-
-                    }
-                });
-
             }
 
         });
 
 
+        //Make a call to get all transactions where user is rentee
 
+
+        getOperation = new GETOperation(Constants.getOutgoingRenteeCloseReq+"?userId="+userId,context);
+        getOperation.getData(new VolleyGETCallBack() {
+            @Override
+            public void onSuccess(String result) {
+
+            }
+
+            @Override
+            public void onSuccess(JSONArray result) {
+
+
+                System.out.println("In volley call back TWOOO!!!!!!!!!!!!!!!!!!" + result.toString());
+
+                JSONParser = new JSONParser();
+
+                for (int i = 0; i < result.length(); i++) {
+
+                    try {
+                        JSONObject object = result.getJSONObject(i);
+                        transaction = JSONParser.parseTransactionJSON(object);
+                        transactions.add(transaction);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                System.out.println("The list is - >"+transactions.toString());
+
+
+            }
+        });
+
+
+
+
+
+
+        withoutRankAdapter = new WithoutRankAdapter(getActivity().getApplicationContext(),transactions, 1);
+        setListAdapter(withoutRankAdapter);
         return view;
 
 

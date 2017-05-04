@@ -319,6 +319,8 @@ public class JSONParser {
 
         transaction = new Transaction();
 
+        System.out.println("In here !!!");
+
         transaction.setTransactionId((Integer) object.get("transactionId"));
         Date date = new Date();
         date.setTime((Long) object.get("startDate"));

@@ -18,7 +18,7 @@ import com.example.tanvi.NTrusted.R;
 public class MyTransactionsFragment extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
-    public static int int_items = 3 ;
+    public static int int_items = 2 ;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,8 +76,7 @@ public class MyTransactionsFragment extends Fragment {
         {
             switch (position){
                 case 0 : return new ActiveTranFragment();
-                case 1 : return new PendingTranFragment();
-                case 2 : return new ClosedTranFragment();
+                case 1 : return new ClosedTranFragment();
             }
             return null;
         }
@@ -100,9 +99,8 @@ public class MyTransactionsFragment extends Fragment {
                 case 0 :
                     return "Active Transactions";
                 case 1 :
-                    return "Pending Transactions";
-                case 2 :
                     return "Closed Transactions";
+
             }
             return null;
         }

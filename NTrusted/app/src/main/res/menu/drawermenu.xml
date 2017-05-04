@@ -10,14 +10,18 @@
     <item android:title="Post an Adv"
         android:id="@+id/nav_item_post" />
 
-    <item android:title="Logout"
-        android:id="@+id/nav_item_logout"/>
-
     <item android:title="My Requests"
         android:id="@+id/nav_item_myreq"/>
 
     <item android:title="My Transactions"
         android:id="@+id/nav_item_transac"/>
+
+    <item android:title=""
+        />
+
+    <item android:title="Logout"
+        android:id="@+id/nav_item_logout"/>
+
 
 
 </menu>

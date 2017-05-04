@@ -35,7 +35,7 @@ public class WithoutRankAdapter extends BaseAdapter {
         public WithoutRankAdapter(Context context, List<Transaction> transactionList, int transaction) {
         this.context = context;
         this.transactionList = transactionList;
-            isTransaction = true;
+            this.isTransaction = true;
         }
 
     public WithoutRankAdapter(Context context, List<Request> requestList, boolean  isRequest) {
@@ -75,6 +75,7 @@ public class WithoutRankAdapter extends BaseAdapter {
             if(isRequest)
                 return requestList.get(i);
 
+            else
             return advertisementList.get(i);
 
         }
@@ -109,7 +110,10 @@ public class WithoutRankAdapter extends BaseAdapter {
 
             if(isTransaction){
 
+                System.out.println("In here isn trans");
+
                 Transaction transaction = (Transaction) getItem(i);
+
                 holder.userName.setText(transaction.getRentee().getName());
                 if(holder.adType!=null)
                 {
@@ -124,9 +128,10 @@ public class WithoutRankAdapter extends BaseAdapter {
                 holder.postedAdFor.setVisibility(View.INVISIBLE);
 
 
+
             }
 
-            if(isRequest){
+            else if(isRequest){
 
                 Request request = (Request) getItem(i);
 

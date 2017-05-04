@@ -23,6 +23,10 @@ import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
 import org.json.JSONArray;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * Created by tanvi on 5/2/2017.
  */
@@ -34,6 +38,7 @@ public class MyAlertDialogFragment extends DialogFragment {
     private String title,userId;
     private RatingBar ratingBar;
     private GETOperation getOperation;
+    private HashMap<Float,Float> rankMapping= new HashMap<Float,Float>();
 
     public MyAlertDialogFragment() {
         // Empty constructor required for DialogFragment
@@ -94,16 +99,74 @@ public class MyAlertDialogFragment extends DialogFragment {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float ratingView, boolean b) {
 
-                if(ratingView == 1)
-                    rating=-2;
-                if(ratingView == 2)
-                    rating=-1;
-                if(ratingView == 3)
-                    rating=0;
-                if(ratingView == 4)
-                    rating=1;
-                if(ratingView == 5)
-                    rating=2;
+
+
+                rankMapping.put(-2f,1f);
+                rankMapping.put(-1.9f,1.1f);
+                rankMapping.put(-1.8f,1.2f);
+                rankMapping.put(-1.7f,1.3f);
+                rankMapping.put(-1.6f,1.4f);
+                rankMapping.put(-1.5f,1.5f);
+                rankMapping.put(-1.4f,1.6f);
+                rankMapping.put(-1.3f,1.7f);
+                rankMapping.put(-1.2f,1.8f);
+                rankMapping.put(-1.1f,1.9f);
+                rankMapping.put(-1.0f,2.0f);
+                rankMapping.put(-0.9f,2.1f);
+                rankMapping.put(-0.8f,2.2f);
+                rankMapping.put(-0.7f,2.3f);
+                rankMapping.put(-0.6f,2.4f);
+                rankMapping.put(-0.5f,2.5f);
+                rankMapping.put(-0.4f,2.6f);
+                rankMapping.put(-0.3f,2.7f);
+                rankMapping.put(-0.2f,2.8f);
+                rankMapping.put(-0.1f,2.9f);
+                rankMapping.put(0.0f,3.0f);
+                rankMapping.put(0.1f,3.1f);
+                rankMapping.put(0.2f,3.2f);
+                rankMapping.put(0.3f,3.3f);
+                rankMapping.put(0.4f,3.4f);
+                rankMapping.put(0.5f,3.5f);
+                rankMapping.put(0.6f,3.6f);
+                rankMapping.put(0.7f,3.7f);
+                rankMapping.put(0.8f,3.8f);
+                rankMapping.put(0.9f,3.9f);
+                rankMapping.put(1.0f,4.0f);
+                rankMapping.put(1.1f,4.1f);
+                rankMapping.put(1.2f,4.2f);
+                rankMapping.put(1.3f,4.3f);
+                rankMapping.put(1.4f,4.4f);
+                rankMapping.put(1.5f,4.5f);
+                rankMapping.put(1.6f,4.6f);
+                rankMapping.put(1.7f,4.7f);
+                rankMapping.put(1.8f,4.8f);
+                rankMapping.put(1.9f,4.9f);
+                rankMapping.put(2.0f,5.0f);
+
+                Iterator it = rankMapping.entrySet().iterator();
+                while(it.hasNext()){
+
+                    Map.Entry pair = (Map.Entry)it.next();
+                    if(pair.getValue().equals(ratingView)){
+
+                        rating = (float) pair.getKey();
+
+                    }
+
+
+                }
+
+
+//                if(ratingView == 1)
+//                    rating=-2;
+//                if(ratingView == 2)
+//                    rating=-1;
+//                if(ratingView == 3)
+//                    rating=0;
+//                if(ratingView == 4)
+//                    rating=1;
+//                if(ratingView == 5)
+//                    rating=2;
 
                 int tid = transaction.getTransactionId();
                 postRating(rating,tid);
@@ -122,9 +185,6 @@ public class MyAlertDialogFragment extends DialogFragment {
 
             @Override
             public void onSuccess(String result) {
-//                android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                TabFragment tabFragment = new TabFragment();
-//                transaction.replace()
 
                 Intent intent = new Intent(getActivity(), HomePageActivity.class);
                 startActivity(intent);
