@@ -157,7 +157,7 @@ public class ReceivedReqSearchFragment extends Fragment {
                 }
                 if(adTypeSpinner.getSelectedItem().toString().equals("Lend Products Requests")){
 
-                    LendAdFragment borrowAdFragment = new LendAdFragment();
+                    ReceivedAdFragment borrowAdFragment = new ReceivedAdFragment();
                     Bundle bundle = new Bundle();
                     bundle.putInt("categoryId",categoryId);
                     bundle.putString("adType","lend");

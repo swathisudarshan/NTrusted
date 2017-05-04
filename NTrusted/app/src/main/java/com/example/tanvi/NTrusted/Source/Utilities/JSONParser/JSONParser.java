@@ -10,7 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by tanvi on 4/29/2017.
@@ -69,20 +71,72 @@ public class JSONParser {
         JSONObject userObj = (JSONObject) advObj.get("user");
         JSONObject catObj = (JSONObject) advObj.get("category");
 
-        double rank = (double) object.get("rank");
-        rank = Math.floor(rank);
-        System.out.println("Rank is : " + rank);
+        HashMap<Float,Float> rankMapping= new HashMap<Float,Float>();
 
-        if (rank == -2.0)
-            adv.setRank(1);
-        if (rank == -1.0)
-            adv.setRank(2);
-        if (rank == 0.0)
-            adv.setRank(3);
-        if (rank == 1.0)
-            adv.setRank(4);
-        if (rank == 2.0)
-            adv.setRank(5);
+        rankMapping.put(-2f,1f);
+        rankMapping.put(-1.9f,1.1f);
+        rankMapping.put(-1.8f,1.2f);
+        rankMapping.put(-1.7f,1.3f);
+        rankMapping.put(-1.6f,1.4f);
+        rankMapping.put(-1.5f,1.5f);
+        rankMapping.put(-1.4f,1.6f);
+        rankMapping.put(-1.3f,1.7f);
+        rankMapping.put(-1.2f,1.8f);
+        rankMapping.put(-1.1f,1.9f);
+        rankMapping.put(-1.0f,2.0f);
+        rankMapping.put(-0.9f,2.1f);
+        rankMapping.put(-0.8f,2.2f);
+        rankMapping.put(-0.7f,2.3f);
+        rankMapping.put(-0.6f,2.4f);
+        rankMapping.put(-0.5f,2.5f);
+        rankMapping.put(-0.4f,2.6f);
+        rankMapping.put(-0.3f,2.7f);
+        rankMapping.put(-0.2f,2.8f);
+        rankMapping.put(-0.1f,2.9f);
+        rankMapping.put(0.0f,3.0f);
+        rankMapping.put(0.1f,3.1f);
+        rankMapping.put(0.2f,3.2f);
+        rankMapping.put(0.3f,3.3f);
+        rankMapping.put(0.4f,3.4f);
+        rankMapping.put(0.5f,3.5f);
+        rankMapping.put(0.6f,3.6f);
+        rankMapping.put(0.7f,3.7f);
+        rankMapping.put(0.8f,3.8f);
+        rankMapping.put(0.9f,3.9f);
+        rankMapping.put(1.0f,4.0f);
+        rankMapping.put(1.1f,4.1f);
+        rankMapping.put(1.2f,4.2f);
+        rankMapping.put(1.3f,4.3f);
+        rankMapping.put(1.4f,4.4f);
+        rankMapping.put(1.5f,4.5f);
+        rankMapping.put(1.6f,4.6f);
+        rankMapping.put(1.7f,4.7f);
+        rankMapping.put(1.8f,4.8f);
+        rankMapping.put(1.9f,4.9f);
+        rankMapping.put(2.0f,5.0f);
+
+
+        Double rank = (Double) object.get("rank");
+        DecimalFormat df = new DecimalFormat("#.#");
+        float key = Float.valueOf(df.format(rank));//rank = Math.floor(rank);
+        //float rank = Float.valueOf(String.valueOf(d));
+
+        //rank = Math.floor(rank);
+
+        if (rankMapping.containsKey(key))
+            adv.setRank(rankMapping.get(key));
+//        rank = Math.floor(rank);
+//        if (rank == -2.0)
+//            adv.setRank(1);
+//        if (rank == -1.0)
+//            adv.setRank(2);
+//        if (rank == 0.0)
+//            adv.setRank(3);
+//        if (rank == 1.0)
+//            adv.setRank(4);
+//        if (rank == 2.0)
+//            adv.setRank(5);
+
 
 
         //Set ad details
@@ -121,6 +175,50 @@ public class JSONParser {
         //get request object
         JSONObject reqObject = (JSONObject) object.get("request");
 
+        HashMap<Float,Float> rankMapping= new HashMap<Float,Float>();
+
+        rankMapping.put(-2f,1f);
+        rankMapping.put(-1.9f,1.1f);
+        rankMapping.put(-1.8f,1.2f);
+        rankMapping.put(-1.7f,1.3f);
+        rankMapping.put(-1.6f,1.4f);
+        rankMapping.put(-1.5f,1.5f);
+        rankMapping.put(-1.4f,1.6f);
+        rankMapping.put(-1.3f,1.7f);
+        rankMapping.put(-1.2f,1.8f);
+        rankMapping.put(-1.1f,1.9f);
+        rankMapping.put(-1.0f,2.0f);
+        rankMapping.put(-0.9f,2.1f);
+        rankMapping.put(-0.8f,2.2f);
+        rankMapping.put(-0.7f,2.3f);
+        rankMapping.put(-0.6f,2.4f);
+        rankMapping.put(-0.5f,2.5f);
+        rankMapping.put(-0.4f,2.6f);
+        rankMapping.put(-0.3f,2.7f);
+        rankMapping.put(-0.2f,2.8f);
+        rankMapping.put(-0.1f,2.9f);
+        rankMapping.put(0.0f,3.0f);
+        rankMapping.put(0.1f,3.1f);
+        rankMapping.put(0.2f,3.2f);
+        rankMapping.put(0.3f,3.3f);
+        rankMapping.put(0.4f,3.4f);
+        rankMapping.put(0.5f,3.5f);
+        rankMapping.put(0.6f,3.6f);
+        rankMapping.put(0.7f,3.7f);
+        rankMapping.put(0.8f,3.8f);
+        rankMapping.put(0.9f,3.9f);
+        rankMapping.put(1.0f,4.0f);
+        rankMapping.put(1.1f,4.1f);
+        rankMapping.put(1.2f,4.2f);
+        rankMapping.put(1.3f,4.3f);
+        rankMapping.put(1.4f,4.4f);
+        rankMapping.put(1.5f,4.5f);
+        rankMapping.put(1.6f,4.6f);
+        rankMapping.put(1.7f,4.7f);
+        rankMapping.put(1.8f,4.8f);
+        rankMapping.put(1.9f,4.9f);
+        rankMapping.put(2.0f,5.0f);
+
         //set req fields
         request.setRequestId((Integer) reqObject.get("requestId"));
         request.setRequestDate(String.valueOf(reqObject.get("requestDate")));
@@ -158,20 +256,27 @@ public class JSONParser {
 
 
         //set rank
-        double rank = (double) object.get("rank");
-        rank = Math.floor(rank);
+        Double rank = (Double) object.get("rank");
+        DecimalFormat df = new DecimalFormat("#.#");
+        float key = Float.valueOf(df.format(rank));//rank = Math.floor(rank);
+        //float rank = Float.valueOf(String.valueOf(d));
+
+        //rank = Math.floor(rank);
+
+        if (rankMapping.containsKey(key))
+            request.setRank(rankMapping.get(key));
 
 
-        if (rank == -2.0)
-            request.setRank(1);
-        if (rank == -1.0)
-            request.setRank(2);
-        if (rank == 0.0)
-            request.setRank(3);
-        if (rank == 1.0)
-            request.setRank(4);
-        if (rank == 2.0)
-            request.setRank(5);
+//        if (rank == -2.0)
+//            request.setRank(1);
+//        if (rank == -1.0)
+//            request.setRank(2);
+//        if (rank == 0.0)
+//            request.setRank(3);
+//        if (rank == 1.0)
+//            request.setRank(4);
+//        if (rank == 2.0)
+//            request.setRank(5);
 
 
         System.out.println("Rank is "+request.getRank());

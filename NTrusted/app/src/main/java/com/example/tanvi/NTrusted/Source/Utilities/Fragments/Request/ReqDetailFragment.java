@@ -80,19 +80,21 @@ public class ReqDetailFragment extends Fragment {
                 //System.out.println("******* Req Ad Details Parameters: adId: " + parameters.get("adId") + " senderId:  " + userId);
 
                 getOperation = new GETOperation(Constants.acceptDeclineRequest+"?requestId="+request.getRequestId()+"&response=2", getActivity().getApplicationContext());
-                getOperation.getData(new VolleyGETCallBack() {
+                getOperation.getStringData(new VolleyGETCallBack() {
                     @Override
                     public void onSuccess(String result) {
-                    }
-
-                    @Override
-                    public void onSuccess(JSONArray result) {
 
                         System.out.println("Success !! Request Accepted");
                         //Navigate to Requests List page
                         Toast.makeText(getActivity().getApplicationContext(), "Request Sent Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity().getApplicationContext(), HomePageActivity.class);
                         startActivity(intent);
+                    }
+
+                    @Override
+                    public void onSuccess(JSONArray result) {
+
+
 
                     }
                 });

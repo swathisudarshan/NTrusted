@@ -40,7 +40,7 @@ public class WithRankAdapter extends BaseAdapter {
     public WithRankAdapter(Context context, List<Request> requestList, int req) {
         this.context = context;
         this.requestList= requestList;
-        isRequest=true;
+        this.isRequest=true;
     }
 
     private class ViewHolder{
@@ -54,9 +54,9 @@ public class WithRankAdapter extends BaseAdapter {
     @Override
     public int getCount() {
 
-        if(isRequest)
+        if(this.isRequest){
             return requestList.size();
-
+        }
         return advertisementList.size();
     }
 

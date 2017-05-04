@@ -24,6 +24,7 @@ import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Transaction.MyTrans
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC.PostAdvFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC.SearchFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC.TabFragment;
+import com.example.tanvi.NTrusted.Source.Utilities.Fragments.Transaction.TransactionDetailFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.JSONParser.JSONParser;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
@@ -33,7 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class HomePageActivity extends AppCompatActivity implements LendingAdDetailFragment.OnFragmentInteractionListener,SearchFragment.OnFragmentInteractionListener,PostAdvFragment.OnFragmentInteractionListener, BorrowingAdDetailFragment.OnFragmentInteractionListener{
+public class HomePageActivity extends AppCompatActivity implements TransactionDetailFragment.OnFragmentInteractionListener, LendingAdDetailFragment.OnFragmentInteractionListener,SearchFragment.OnFragmentInteractionListener,PostAdvFragment.OnFragmentInteractionListener, BorrowingAdDetailFragment.OnFragmentInteractionListener{
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;

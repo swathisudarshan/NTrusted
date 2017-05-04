@@ -5,7 +5,7 @@ public class AdWithRank {
 	double rank;
 	
 	
-	public AdWithRank(Advertisement advertisement, Double double1) {
+	public AdWithRank(Advertisement advertisement, double double1) {
 		super();
 		this.advertisement = advertisement;
 		this.rank = double1;
@@ -19,7 +19,7 @@ public class AdWithRank {
 	public double getRank() {
 		return rank;
 	}
-	public void setRank(float rank) {
+	public void setRank(double rank) {
 		this.rank = rank;
 	}
 

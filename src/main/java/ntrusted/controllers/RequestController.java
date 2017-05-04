@@ -284,7 +284,7 @@ public class RequestController {
 			//set Advertisemnt active status as busy
 			ad.setActive(2);
 			System.out.println("Ad in A/D ---------------------------------> before update"+ad.getActive());
-			_adDao.save(ad);
+			_adDao.update(ad);
 			System.out.println("Ad in A/D ---------------------------------> after update"+ad.getActive());
 			
 			//convert date format to desired format

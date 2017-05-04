@@ -152,6 +152,7 @@ public class TransactionController {
 		{
 			trx.setStatus(0);
 			ad.setActive(1);
+			_adDao.update(ad);
 			//Check if renter and rentee are friends if not add connections to both mongoModels
 			renter =  cuRepo.findByUserId(trx.getRenter().getFbId());
 			rentee = cuRepo.findByUserId(trx.getRentee().getFbId());

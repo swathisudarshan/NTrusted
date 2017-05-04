@@ -80,7 +80,7 @@ public class TransactionDetailFragment extends Fragment {
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         String userId = pref.getString(Constants.UserID, null);
         Bundle args = getArguments();
-        transaction = new Transaction();
+        transaction = (Transaction) args.getSerializable("transaction");
 
         product= (TextView) view.findViewById(R.id.product);
         tid= (TextView) view.findViewById(R.id.tid);
