@@ -1,7 +1,6 @@
 package com.example.tanvi.NTrusted.Source.Utilities.Fragments.Transaction;
 
 import android.app.Dialog;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.DialogFragment;
@@ -17,7 +16,6 @@ import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Activities.HomePageActivity;
 import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Transaction;
-import com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC.TabFragment;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
 
@@ -33,7 +31,7 @@ import java.util.Map;
 
 public class MyAlertDialogFragment extends DialogFragment {
 
-    private TextView tid,product,rentee,start,phone;
+    private TextView tid,product, otherParticipant,start,phone;
     private Transaction transaction;
     private String title,userId;
     private RatingBar ratingBar;
@@ -68,7 +66,7 @@ public class MyAlertDialogFragment extends DialogFragment {
 
         tid= (TextView) view.findViewById(R.id.tid);
         product= (TextView) view.findViewById(R.id.product);
-        rentee= (TextView) view.findViewById(R.id.renteeName);
+        otherParticipant = (TextView) view.findViewById(R.id.otherParticipant);
         start= (TextView) view.findViewById(R.id.start);
         phone= (TextView) view.findViewById(R.id.phone);
         ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
@@ -86,7 +84,13 @@ public class MyAlertDialogFragment extends DialogFragment {
 
         tid.setText(String.valueOf(transaction.getTransactionId()));
         product.setText(transaction.getAd().getProductName());
-        rentee.setText(transaction.getRentee().getName());
+
+        if(userId.equals(transaction.getRentee().getName()))
+            otherParticipant.setText(transaction.getRenter().getName());
+        else
+            otherParticipant.setText(transaction.getRentee().getName());
+
+        otherParticipant.setText(transaction.getRentee().getName());
         start.setText(String.valueOf(transaction.getStartDate()));
         phone.setText(transaction.getRentee().getPhone());
 

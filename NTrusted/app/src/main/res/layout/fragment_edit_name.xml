@@ -60,13 +60,13 @@
 
             <TextView android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Rentee: "
+                android:text="Participant: "
                 android:textColor="@color/black"
                 android:textSize="15dp"/>
             <TextView android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text=""
-                android:id="@+id/renteeName"
+                android:id="@+id/otherParticipant"
                 android:textColor="@color/black"
                 android:textSize="15dp"/>
 
