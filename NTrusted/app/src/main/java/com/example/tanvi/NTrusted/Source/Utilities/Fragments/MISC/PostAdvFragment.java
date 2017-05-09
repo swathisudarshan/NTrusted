@@ -265,17 +265,25 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
 
         HashMap<String,String> parameters = new HashMap<String,String>();
 
+
         int radio= radioGroup.getCheckedRadioButtonId();
         System.out.println("Radio is -------------->"+radio);
 
-        if(radioBorrow.getId()==radio)
-            parameters.put("adType","2");
-        if(radioLend.getId()==radio)
-            parameters.put("adType","1");
+        if(radioBorrow.getId()==radio){
 
+            parameters.put("adType","2");
+            parameters.put("productPrice","0");
+
+        }
+
+        if(radioLend.getId()==radio) {
+            parameters.put("adType", "1");
+            parameters.put("productPrice",advertisement.getProductPrice());
+        }
         parameters.put("productName",advertisement.getProductName());
         parameters.put("productDescription",advertisement.getProductDesc());
-        parameters.put("productPrice",advertisement.getProductPrice());
+
+        System.out.println("CAT!!!!!!!!!!!!!!!!!!!!!!!!"+String.valueOf(advertisement.getProductCategory().getCategoryID()));
         parameters.put("categoryId",String.valueOf(advertisement.getProductCategory().getCategoryID()));
         parameters.put("active", "1");
         parameters.put("userId",userId);

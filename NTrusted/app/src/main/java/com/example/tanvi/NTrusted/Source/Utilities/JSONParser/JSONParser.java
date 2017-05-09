@@ -274,6 +274,7 @@ public class JSONParser {
         ad.setAdId(String.valueOf(reqObject.getJSONObject("advertisement").get("adId")));
         ad.setProductName((String) reqObject.getJSONObject("advertisement").get("productName"));
 
+
         Category category = new Category();
         category.setCategoryName((String) reqObject.getJSONObject("advertisement").getJSONObject("category").get("categoryName"));
         category.setCategoryID((Integer) reqObject.getJSONObject("advertisement").getJSONObject("category").get("categoryId"));
@@ -293,6 +294,8 @@ public class JSONParser {
         sender.setAddress((String) reqObject.getJSONObject("sender").get("address"));
         sender.setPhone((String) reqObject.getJSONObject("sender").get("phoneNumber"));
         sender.setEmail((String) reqObject.getJSONObject("sender").get("email"));
+
+
 
         request.setReceiver(receiver);
         request.setSender(sender);

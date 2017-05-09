@@ -83,6 +83,7 @@ public class ReceivedReqFragment extends ListFragment {
 
                 @Override
                 public void onSuccess(JSONArray result) {
+                    requests.clear();
 
                     if (result.length() == 0) {
                         Toast.makeText(getActivity().getApplicationContext(), "No requests available for this selection", Toast.LENGTH_SHORT).show();
@@ -129,6 +130,7 @@ public class ReceivedReqFragment extends ListFragment {
 
                 @Override
                 public void onSuccess(JSONArray result) {
+                    requests.clear();
 
                     if (result.length() == 0) {
                         Toast.makeText(getActivity().getApplicationContext(), "No requests available for this selection", Toast.LENGTH_SHORT).show();
@@ -180,6 +182,7 @@ public class ReceivedReqFragment extends ListFragment {
             Request request1 = (Request) l.getItemAtPosition(position);
             Bundle bundle = new Bundle();
             bundle.putSerializable("request", (Serializable)request1 );
+            bundle.putString("sent","false");
             reqDetailFragment.setArguments(bundle);
             android.support.v4.app.FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.containerView, reqDetailFragment);

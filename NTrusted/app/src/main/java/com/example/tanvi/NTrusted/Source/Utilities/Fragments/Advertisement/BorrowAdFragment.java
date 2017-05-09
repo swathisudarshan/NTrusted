@@ -76,6 +76,7 @@ public class BorrowAdFragment extends ListFragment {
         Bundle args = getArguments();
         if(args==null) {
 
+
             getOperation = new GETOperation(Constants.getAllBorrowAds, context);
             getOperation.getData(new VolleyGETCallBack() {
                 @Override
@@ -84,8 +85,9 @@ public class BorrowAdFragment extends ListFragment {
 
                 @Override
                 public void onSuccess(JSONArray result) {
+                    advertisements.clear();
 
-                    if(result.length()==0)
+
                     //Toast.makeText(getActivity().getApplicationContext(), "No borrowing advertisements available", Toast.LENGTH_SHORT).show();
 
 
@@ -95,7 +97,7 @@ public class BorrowAdFragment extends ListFragment {
 
                             JSONObject advObj = result.getJSONObject(i);
                             advertisement = JSONParser.parseAdvJSONWithoutRank(advObj);
-
+                            System.out.println("After Success Borrow Ads !!!!!!!!!!!!!!"+advObj.toString());
                             if(advertisement.getAdPostedby().getId().equals(userId))
                                 continue;
                             else
@@ -131,6 +133,8 @@ public class BorrowAdFragment extends ListFragment {
 
                 @Override
                 public void onSuccess(JSONArray result) {
+
+                    advertisements.clear();
 
                     if (result.length() == 0){
                         Toast.makeText(getActivity().getApplicationContext(), "No advertisements available for this selection", Toast.LENGTH_SHORT).show();

@@ -112,9 +112,9 @@ public class ReceivedReqSearchFragment extends Fragment {
         //For Ad Type
         adTypeList = new ArrayList<String>();
         adTypeList.add("Borrow Products Requests");
-        adTypeList.add("Lend Products Advertisements");
+        adTypeList.add("Lend Products Requests");
         adTypeSpinner = (Spinner) rootView.findViewById(R.id.appCompatSpinner1);
-        customSpinnerAdapter = new CustomSpinnerAdapter(getActivity().getApplicationContext(),categoryList);
+        customSpinnerAdapter = new CustomSpinnerAdapter(getActivity().getApplicationContext(),adTypeList,true);
         adTypeSpinner.setAdapter(customSpinnerAdapter);
 
         adTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

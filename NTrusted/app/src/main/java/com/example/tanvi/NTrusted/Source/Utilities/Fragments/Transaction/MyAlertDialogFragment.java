@@ -85,12 +85,13 @@ public class MyAlertDialogFragment extends DialogFragment {
         tid.setText(String.valueOf(transaction.getTransactionId()));
         product.setText(transaction.getAd().getProductName());
 
-        if(userId.equals(transaction.getRentee().getName()))
+        //Set participants name on the popup
+        if(userId.equals(transaction.getRentee().getId()))
             otherParticipant.setText(transaction.getRenter().getName());
-        else
+        if(userId.equals(transaction.getRenter().getId()))
             otherParticipant.setText(transaction.getRentee().getName());
 
-        otherParticipant.setText(transaction.getRentee().getName());
+       // otherParticipant.setText(transaction.getRentee().getName());
         start.setText(String.valueOf(transaction.getStartDate()));
         phone.setText(transaction.getRentee().getPhone());
 

@@ -30,18 +30,23 @@ public class WithoutRankAdapter extends BaseAdapter {
         public WithoutRankAdapter(Context context, List<Advertisement> advertisementList) {
             this.context = context;
             this.advertisementList = advertisementList;
+            this.isTransaction = false;
+            this.isRequest=false;
+
         }
 
         public WithoutRankAdapter(Context context, List<Transaction> transactionList, int transaction) {
         this.context = context;
         this.transactionList = transactionList;
             this.isTransaction = true;
+            this.isRequest=false;
         }
 
     public WithoutRankAdapter(Context context, List<Request> requestList, boolean  isRequest) {
         this.context = context;
         this.requestList = requestList;
         this.isRequest = isRequest;
+        this.isTransaction=false;
     }
 
 

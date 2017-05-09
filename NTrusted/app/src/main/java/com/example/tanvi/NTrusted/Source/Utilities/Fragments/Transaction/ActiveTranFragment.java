@@ -58,6 +58,7 @@ public class ActiveTranFragment extends ListFragment {
         this.userId = pref.getString(Constants.UserID, null);
 
         System.out.println(" User is:" + this.userId);
+        this.transactions.clear();
     }
 
     @Nullable
@@ -109,6 +110,7 @@ public class ActiveTranFragment extends ListFragment {
                     @Override
                     public void onSuccess(JSONArray result) {
 
+                        //transactions.clear();
 
                         System.out.println("In volley call back TWOOO!!!!!!!!!!!!!!!!!!" + result.toString());
 

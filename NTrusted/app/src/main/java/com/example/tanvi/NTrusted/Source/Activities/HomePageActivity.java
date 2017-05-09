@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.tanvi.NTrusted.R;
@@ -49,6 +50,10 @@ public class HomePageActivity extends AppCompatActivity implements TransactionDe
 
     private String userId;
 
+    MenuItem userName;
+
+    String user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +63,7 @@ public class HomePageActivity extends AppCompatActivity implements TransactionDe
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref",0);
         this.userId = pref.getString(Constants.UserID,null);
+        this.user = pref.getString(Constants.UserName,null);
 
         checkTransactionClosedReq();
 
@@ -66,6 +72,9 @@ public class HomePageActivity extends AppCompatActivity implements TransactionDe
         //Setup the DrawerLayout and NavigationView
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         mNavigationView = (NavigationView) findViewById(R.id.shitstuff) ;
+        Menu menu =mNavigationView.getMenu();
+        userName=menu.getItem(0);
+        userName.setTitle(user);
 
         /* Lets inflate the very first fragment
          * Here , we are inflating the TabFragment as the first Fragment

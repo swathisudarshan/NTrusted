@@ -107,6 +107,7 @@ public class ClosedTranFragment extends ListFragment {
                     public void onSuccess(JSONArray result) {
 
 
+                        transactions.clear();
                         System.out.println("In volley call back TWOOO!!!!!!!!!!!!!!!!!!" + result.toString());
 
                         JSONParser = new JSONParser();

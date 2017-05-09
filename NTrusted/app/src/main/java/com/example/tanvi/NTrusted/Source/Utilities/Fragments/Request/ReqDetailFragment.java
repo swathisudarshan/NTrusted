@@ -27,7 +27,7 @@ import org.json.JSONArray;
 public class ReqDetailFragment extends Fragment {
 
 
-    private TextView product, description, category, postedBy, date;
+    private TextView product, description, category, postedBy, date, requestedBy;
 
     private Button send, cancel;
 
@@ -55,6 +55,8 @@ public class ReqDetailFragment extends Fragment {
         postedBy = (TextView) view.findViewById(R.id.by);
         category = (TextView) view.findViewById(R.id.cat);
         date = (TextView) view.findViewById(R.id.date);
+        requestedBy= (TextView) view.findViewById(R.id.requestedBy);
+        requestedBy.setText("Requested By:");
 
         send = (Button) view.findViewById(R.id.send);
         cancel = (Button) view.findViewById(R.id.cancel);
@@ -65,7 +67,7 @@ public class ReqDetailFragment extends Fragment {
         type = args.getString("sent");
 
 
-        if(type.equals("true")){
+        if(type!=null && type.equals("true")){
 
             send.setVisibility(View.INVISIBLE);
             cancel.setVisibility(View.INVISIBLE);

@@ -35,6 +35,7 @@ public class WithRankAdapter extends BaseAdapter {
     public WithRankAdapter(Context context, List<Advertisement> advertisementList) {
         this.context = context;
         this.advertisementList = advertisementList;
+        this.isRequest=false;
     }
 
     public WithRankAdapter(Context context, List<Request> requestList, int req) {
@@ -55,7 +56,9 @@ public class WithRankAdapter extends BaseAdapter {
     public int getCount() {
 
         if(this.isRequest){
+
             return requestList.size();
+
         }
         return advertisementList.size();
     }

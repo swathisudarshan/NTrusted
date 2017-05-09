@@ -114,7 +114,8 @@
                    android:layout_width="wrap_content"
                    android:text="Posted By: "
                    android:textColor="@color/orange"
-                   android:textSize="15dp"/>
+                   android:textSize="15dp"
+                   android:id="@+id/requestedBy"/>
                <TextView android:layout_height="wrap_content"
                    android:layout_width="wrap_content"
                    android:text=""

@@ -26,6 +26,11 @@
         </activity>
         <activity android:name=".Source.AdDetailsActivity" />
 <activity android:name=".Source.Activities.HomePageActivity"></activity>
+
+        <meta-data
+            android:name="CLOUDINARY_URL"
+            android:value="cloudinary://572795462535774:tuZx599TGCrhZC5vrAdiwrG5cYY@ntrusted" />
+
     </application>
 
 </manifest>

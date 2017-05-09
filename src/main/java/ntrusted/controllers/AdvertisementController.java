@@ -82,7 +82,15 @@ public class AdvertisementController {
 	    	//adType: 1 & active: 1 for new Lending advertisement 
 	    	
 	    	System.out.println("In Add lending product !!!!!!!!!!!!!!!!");
-	    	float productpriceFloat = Float.valueOf(productPrice);
+	    	float productpriceFloat;
+	    	if(productPrice.equals("0"))
+	    	{
+	    		productpriceFloat = 0;
+	    	}
+	    	else
+	    	{
+	    		productpriceFloat = Float.valueOf(productPrice);
+	    	}
 	    	int activeInteger = Integer.valueOf(active);
 	    	int categoryInteger = Integer.valueOf(categoryId);
 	    	int adTypeInteger = Integer.valueOf(adType);
@@ -90,7 +98,7 @@ public class AdvertisementController {
 	    	Category category = _catDao.getById(categoryInteger);
 	    	User user = _userDao.getById(userId);
 	    	java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-	    	//System.out.println("Product Name:"+productName+" Product Desc: "+productDescription+" Product Price:"+productpriceFloat+" Active: "+activeInteger+" Category:"+category.getCategoryName()+" Ad Type:"+adTypeInteger+" User:"+user.getName());
+	    	System.out.println("Product Name:"+productName+" Product Desc: "+productDescription+" Product Price:"+productpriceFloat+" Active: "+activeInteger+" Category:"+category.getCategoryName()+" Ad Type:"+adTypeInteger+" User:"+user.getName());
 	    	Advertisement ad = new Advertisement(productName, productDescription, productpriceFloat,date,activeInteger,category,user,adTypeInteger);
 	     	 _adDao.save(ad);
 			}
