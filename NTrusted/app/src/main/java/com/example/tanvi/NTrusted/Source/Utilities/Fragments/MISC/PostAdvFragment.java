@@ -1,19 +1,26 @@
 package com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -37,13 +44,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+import static android.content.ContentValues.TAG;
 
 public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -71,8 +80,24 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
 
     private String userId;
 
+    private Button mUploadImagesButton;
+
 
     private OnFragmentInteractionListener mListener;
+
+    //Camera
+    private String userChoosenTask;
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    private List<String> imageStringArray;
+    private final ArrayList<Bitmap> ResponseimageArray = new ArrayList<Bitmap>();
+    private final ArrayList<Bitmap> ShowImagesCaptured = new ArrayList<Bitmap>();
+    private final int PICK_IMAGE_MULTIPLE =1;
+    private LinearLayout lnrImages;
+    private ArrayList<String> imagesPathList;
+    private Bitmap yourbitmap;
+    private TextView numImagesTextView;
+    private int numImages = 0;
+
 
     public PostAdvFragment() {
         // Required empty public constructor
@@ -146,11 +171,71 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
             }
         });
 
+
+        mUploadImagesButton = (Button) rootView.findViewById(R.id.image_upload);
+        mUploadImagesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
         postAdv.setOnClickListener(this);
         categorySpinner.setOnItemSelectedListener(this);
         getCategories();
 
         return rootView;
+    }
+
+    private void selectImage() {
+        Log.d(TAG, "in selectImage");
+
+        final CharSequence[] items = { "Take Photo",
+                "Cancel" };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
+        builder.setTitle("Add Photo!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                boolean result = CameraUtility.checkPermission(getActivity().getApplicationContext());
+
+                if (items[item].equals("Take Photo")) {
+                    userChoosenTask ="Take Photo";
+                    if(result)
+                        cameraIntent();
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void cameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE){
+                Log.d(TAG, "Select from gallery chosen");
+                //onCaptureImageResult(data);
+                //numImagesTextView.setText(numImagesTextView.getText().toString() + "\n. Image Received from gallery.");
+            } else if (requestCode == REQUEST_CAMERA) {
+                Log.d(TAG, "Took a pic.");
+                onCaptureImageResult(data);
+            }
+        }
+    }
+
+    private void onCaptureImageResult(Intent data) {
+
+        if (data != null) {
+            Bitmap img = (Bitmap) data.getExtras().get("data");
+        }
     }
 
     private void getCategories() {
