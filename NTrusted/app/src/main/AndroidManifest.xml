@@ -3,6 +3,15 @@
     package="com.example.tanvi.NTrusted">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -27,9 +36,9 @@
         <activity android:name=".Source.AdDetailsActivity" />
 <activity android:name=".Source.Activities.HomePageActivity"></activity>
 
-        <meta-data
-            android:name="CLOUDINARY_URL"
-            android:value="cloudinary://572795462535774:tuZx599TGCrhZC5vrAdiwrG5cYY@ntrusted" />
+            <meta-data
+                android:name="CLOUDINARY_URL"
+                android:value="cloudinary://572795462535774:tuZx599TGCrhZC5vrAdiwrG5cYY@ntrusted" />
 
     </application>
 

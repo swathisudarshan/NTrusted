@@ -1,5 +1,6 @@
 package com.example.tanvi.NTrusted.Source.Utilities.Fragments.MISC;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,8 +10,10 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -32,6 +35,7 @@ import com.example.tanvi.NTrusted.Source.Constants;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Category;
 import com.example.tanvi.NTrusted.Source.Utilities.Adapters.CustomSpinnerAdapter;
+import com.example.tanvi.NTrusted.Source.Utilities.ImageUtil.ImageUploadAsyncTask;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.GETOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.POSTOperation;
 import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyGETCallBack;
@@ -40,7 +44,14 @@ import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleyPOSTCallBack
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -82,8 +93,11 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
 
     private Button mUploadImagesButton;
 
+    private ImageUploadAsyncTask imageUploadAsyncTask;
 
     private OnFragmentInteractionListener mListener;
+
+    private String photoURL;
 
     //Camera
     private String userChoosenTask;
@@ -97,6 +111,7 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
     private Bitmap yourbitmap;
     private TextView numImagesTextView;
     private int numImages = 0;
+    Uri file;
 
 
     public PostAdvFragment() {
@@ -177,6 +192,17 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
             @Override
             public void onClick(View v) {
                 selectImage();
+
+//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+//                    mUploadImagesButton.setEnabled(false);
+//                    ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+//                }
+//
+//                file = Uri.fromFile(getMediaFile());
+//                intent.putExtra(MediaStore.EXTRA_OUTPUT,file);
+//                startActivityForResult(intent,100);
             }
         });
         postAdv.setOnClickListener(this);
@@ -186,18 +212,34 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
         return rootView;
     }
 
+
+
+
+
+    private File getMediaFile() {
+        File imageStorage = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"CameraComplaintPics");
+        if(!imageStorage.exists()){
+            if(!imageStorage.mkdirs())
+                return null;
+        }
+        String imageTimeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        return new File(imageStorage.getPath() + File.separator+ "Report-"+imageTimeStamp+".jpg");
+
+    }
+
+
     private void selectImage() {
         Log.d(TAG, "in selectImage");
 
         final CharSequence[] items = { "Take Photo",
                 "Cancel" };
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Add Photo!");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item) {
-                boolean result = CameraUtility.checkPermission(getActivity().getApplicationContext());
+                boolean result = CameraUtility.checkPermission(getActivity());
 
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask ="Take Photo";
@@ -212,6 +254,7 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
     }
 
     private void cameraIntent() {
+        System.out.println("In camera intent ****************");
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
@@ -222,8 +265,6 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_FILE){
                 Log.d(TAG, "Select from gallery chosen");
-                //onCaptureImageResult(data);
-                //numImagesTextView.setText(numImagesTextView.getText().toString() + "\n. Image Received from gallery.");
             } else if (requestCode == REQUEST_CAMERA) {
                 Log.d(TAG, "Took a pic.");
                 onCaptureImageResult(data);
@@ -236,6 +277,45 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
         if (data != null) {
             Bitmap img = (Bitmap) data.getExtras().get("data");
         }
+
+        ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+        File destination = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"ProductPics");
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        Uri file = Uri.fromFile(destination);
+
+        Log.d("captured",destination.getPath());
+
+
+
+        new ImageUploadAsyncTask(getActivity().getApplicationContext(),file){
+
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                super.onPostExecute(integer);
+
+                photoURL=this.fileURL;
+                System.out.println("Photo url is "+photoURL);
+            }
+        }.execute();
+
     }
 
     private void getCategories() {
@@ -372,6 +452,8 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
         parameters.put("categoryId",String.valueOf(advertisement.getProductCategory().getCategoryID()));
         parameters.put("active", "1");
         parameters.put("userId",userId);
+        System.out.println("Photo url is "+photoURL);
+        parameters.put("photoURL",photoURL);
 
 
 

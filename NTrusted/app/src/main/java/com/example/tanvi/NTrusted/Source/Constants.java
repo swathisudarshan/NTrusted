@@ -6,8 +6,8 @@ package com.example.tanvi.NTrusted.Source;
 public interface Constants {
 
     //Server IP Address
-    public static final String serverHost = "10.0.0.58";
-    //public static final String serverHost = "130.65.254.18";
+    //public static final String serverHost = "10.0.0.58";
+    public static final String serverHost = "192.168.0.60";
     //public static final String serverHost = "10.250.99.119";
 
     //APIs
