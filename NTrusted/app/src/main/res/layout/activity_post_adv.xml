@@ -159,11 +159,16 @@
         android:text="Upload Image"
         android:layout_width="127dp"
         android:layout_height="wrap_content"
-        android:id="@+id/image_upload" />
+        android:id="@+id/image_upload"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/orange"
+        android:background="@color/black"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:text="Post Adv"
         android:textColor="@color/orange"

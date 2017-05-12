@@ -163,8 +163,10 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
         radioBorrow = (RadioButton) rootView.findViewById(R.id.radioBorrow);
         radioLend = (RadioButton) rootView.findViewById(R.id.radioLend);
         productPriceTitle = (TextView) rootView.findViewById(R.id.productPriceText);
+        mUploadImagesButton = (Button) rootView.findViewById(R.id.image_upload);
         productPrice.setVisibility(View.INVISIBLE);
         productPriceTitle.setVisibility(View.INVISIBLE);
+        mUploadImagesButton.setVisibility(View.INVISIBLE);
 
         radioLend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +174,7 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
 
                 productPriceTitle.setVisibility(View.VISIBLE);
                 productPrice.setVisibility(View.VISIBLE);
+                mUploadImagesButton.setVisibility(View.VISIBLE);
 
             }
         });
@@ -182,12 +185,13 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
 
                 productPriceTitle.setVisibility(View.INVISIBLE);
                 productPrice.setVisibility(View.INVISIBLE);
+                mUploadImagesButton.setVisibility(View.INVISIBLE);
 
             }
         });
 
 
-        mUploadImagesButton = (Button) rootView.findViewById(R.id.image_upload);
+
         mUploadImagesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
