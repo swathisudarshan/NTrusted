@@ -23,17 +23,14 @@
 
     <!--</LinearLayout>-->
 
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dip"
-        android:textStyle="bold"
-        android:text="Aparna"
-        android:textColor="@color/cardview_light_background"
+    <com.android.volley.toolbox.NetworkImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/userName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        />
+        android:src="@drawable/ntrusted_logo"
+        android:id="@+id/productImage" />
 
     <TextView
 
@@ -45,32 +42,25 @@
         android:textStyle="bold"
         android:typeface="sans"
         android:textColor="@color/orange"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-
-
-        />
-
     <TextView
-        android:id="@+id/wantsTo"
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="posted adv for"
-        android:paddingLeft="15dp"
-        android:textSize="15dip"
+        android:textSize="20dip"
         android:textStyle="bold"
+        android:text="Aparna"
         android:textColor="@color/cardview_light_background"
-        android:layout_alignBaseline="@+id/userName"
-        android:layout_alignBottom="@+id/userName"
-        android:layout_toRightOf="@+id/userName"
-        android:layout_toEndOf="@+id/userName"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp" />
+        android:layout_marginRight="76dp"
+        android:layout_marginEnd="76dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/category"
+        android:layout_toStartOf="@+id/category" />
 
     <TextView
         android:text="lend"
@@ -80,12 +70,12 @@
         android:id="@+id/adType"
         android:textSize="15dip"
         android:textStyle="bold"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
-        android:layout_below="@+id/userName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignBottom="@+id/productImage"
+        android:layout_toLeftOf="@+id/category"
+        android:layout_toStartOf="@+id/category"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="16dp" />
 
 
 </RelativeLayout>

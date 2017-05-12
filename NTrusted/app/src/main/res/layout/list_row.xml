@@ -23,17 +23,29 @@
 
     <!--</LinearLayout>-->
 
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dip"
-        android:textStyle="bold"
-        android:text="Aparna"
-        android:textColor="@color/cardview_light_background"
+    <com.android.volley.toolbox.NetworkImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/userName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        />
+        android:src="@drawable/ntrusted_logo"
+        android:id="@+id/productImage" />
+
+    <TextView
+        android:text="lend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/orange"
+        android:id="@+id/adType"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        android:layout_below="@+id/userName"
+        android:layout_alignLeft="@+id/userName"
+        android:layout_alignStart="@+id/userName"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="17dp" />
 
     <TextView
 
@@ -45,11 +57,25 @@
         android:textStyle="bold"
         android:typeface="sans"
         android:textColor="@color/orange"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:text="Aparna"
+        android:textColor="@color/cardview_light_background"
+        android:layout_marginRight="76dp"
+        android:layout_marginEnd="76dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/category"
+        android:layout_toStartOf="@+id/category" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -57,46 +83,13 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:stepSize="0.1"
-        android:layout_below="@+id/wantsTo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:clickable="false"
         android:longClickable="false"
         android:isIndicator="true"
 
-        />
-
-    <TextView
-        android:id="@+id/wantsTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="posted adv for"
-        android:paddingLeft="15dp"
-        android:textSize="15dip"
-        android:textStyle="bold"
-        android:textColor="@color/cardview_light_background"
-        android:layout_alignBaseline="@+id/userName"
-        android:layout_alignBottom="@+id/userName"
-        android:layout_toRightOf="@+id/userName"
-        android:layout_toEndOf="@+id/userName"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp" />
-
-    <TextView
-        android:text="lend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/orange"
-        android:id="@+id/adType"
-        android:textSize="15dip"
-        android:textStyle="bold"
-        android:layout_alignBottom="@+id/ratingBar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="13dp" />
+        android:layout_below="@+id/category"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

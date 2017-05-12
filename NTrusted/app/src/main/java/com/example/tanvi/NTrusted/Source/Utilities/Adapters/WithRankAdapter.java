@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Request;
+import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleySingleton;
 
 import java.util.List;
 
@@ -50,6 +53,7 @@ public class WithRankAdapter extends BaseAdapter {
         TextView category;
         TextView adType;
         RatingBar ratingBar;
+        NetworkImageView productImage;
     }
 
     @Override
@@ -95,6 +99,7 @@ public class WithRankAdapter extends BaseAdapter {
             holder.category = (TextView) view.findViewById(R.id.category);
             holder.userName = (TextView) view.findViewById(R.id.userName);
             holder.ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+            holder.productImage= (NetworkImageView) view.findViewById(R.id.productImage);
 
             view.setTag(holder);
         }
@@ -110,6 +115,9 @@ public class WithRankAdapter extends BaseAdapter {
             holder.category.setText(request.getAd().getProductCategory().getCategoryName());
             System.out.println("Rank in adapter is ------>" + request.getRank());
             holder.ratingBar.setRating(request.getRank());
+            ImageLoader mImageLoader = VolleySingleton.getInstance(context).getImageLoader();
+            holder.productImage.setImageUrl(request.getAd().getImageURL(),mImageLoader);
+
 
 
 
@@ -123,6 +131,9 @@ public class WithRankAdapter extends BaseAdapter {
             holder.category.setText(advertisement.getProductCategory().getCategoryName());
             System.out.println("Rank in adapter is ------>" + advertisement.getRank());
             holder.ratingBar.setRating(advertisement.getRank());
+
+            ImageLoader mImageLoader = VolleySingleton.getInstance(context).getImageLoader();
+            holder.productImage.setImageUrl(advertisement.getImageURL(),mImageLoader);
 
 
             int ad = advertisement.getAdType();

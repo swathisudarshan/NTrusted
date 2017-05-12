@@ -9,10 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.tanvi.NTrusted.R;
 import com.example.tanvi.NTrusted.Source.Models.Advertisement;
 import com.example.tanvi.NTrusted.Source.Models.Request;
 import com.example.tanvi.NTrusted.Source.Models.Transaction;
+import com.example.tanvi.NTrusted.Source.Utilities.REST_Calls.VolleySingleton;
 
 import java.util.List;
 
@@ -58,6 +61,7 @@ public class WithoutRankAdapter extends BaseAdapter {
             TextView category;
             TextView adType;
             TextView postedAdFor;
+        NetworkImageView productImage;
       }
 
 
@@ -107,6 +111,7 @@ public class WithoutRankAdapter extends BaseAdapter {
                 holder.category = (TextView) view.findViewById(R.id.category);
                 holder.userName = (TextView) view.findViewById(R.id.userName);
                 holder.postedAdFor= (TextView) view.findViewById(R.id.wantsTo);
+                holder.productImage= (NetworkImageView) view.findViewById(R.id.productImage);
                 view.setTag(holder);
             }
             else{
@@ -131,6 +136,8 @@ public class WithoutRankAdapter extends BaseAdapter {
 
                 holder.category.setText(transaction.getAd().getProductName());
                 holder.postedAdFor.setVisibility(View.INVISIBLE);
+                ImageLoader mImageLoader = VolleySingleton.getInstance(context).getImageLoader();
+                holder.productImage.setImageUrl(transaction.getAd().getImageURL(),mImageLoader);
 
 
 
@@ -152,6 +159,8 @@ public class WithoutRankAdapter extends BaseAdapter {
 
                 holder.category.setText(request.getAd().getProductName());
                 holder.postedAdFor.setVisibility(View.INVISIBLE);
+                ImageLoader mImageLoader = VolleySingleton.getInstance(context).getImageLoader();
+                holder.productImage.setImageUrl(request.getAd().getImageURL(),mImageLoader);
 
 
 
@@ -171,6 +180,9 @@ public class WithoutRankAdapter extends BaseAdapter {
                     holder.adType.setText("lend");
                 else if(ad==2)
                     holder.adType.setText("borrow");
+
+                ImageLoader mImageLoader = VolleySingleton.getInstance(context).getImageLoader();
+                holder.productImage.setImageUrl(advertisement.getImageURL(),mImageLoader);
 
 
             }

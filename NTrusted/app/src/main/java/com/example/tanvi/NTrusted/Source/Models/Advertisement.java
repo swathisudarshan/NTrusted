@@ -18,6 +18,7 @@ public class Advertisement implements Serializable {
     private String status;
     private int adType;
     private User user;
+    private String imageURL;
     float rank;
 
     public float getRank() {
@@ -110,4 +111,13 @@ public class Advertisement implements Serializable {
 
     @Override
     public String toString(){return getProductName();}
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getImageURL() {
+
+        return imageURL;
+    }
 }

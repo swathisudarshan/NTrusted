@@ -39,6 +39,9 @@ public class JSONParser {
         adv.setProductDesc(String.valueOf(advObj.get("productDescription")));
         adv.setProductPrice(String.valueOf(advObj.get("productPrice")));
         adv.setAdType((Integer) advObj.get("adType"));
+
+        /*TODO*/
+        adv.setImageURL((String) advObj.get("ImageURL"));
         Date date = new Date();
         date.setTime((Long) advObj.get("postDate"));
         adv.setPostDate(date);
