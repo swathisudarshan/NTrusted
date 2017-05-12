@@ -77,7 +77,8 @@ public class AdvertisementController {
 			  @RequestParam(value="active") String active, 
 			  @RequestParam(value="categoryId") String categoryId, 
 			  @RequestParam(value="userId") String userId,
-			  @RequestParam(value="adType") String adType) {
+			  @RequestParam(value="adType") String adType,
+			  @RequestParam(value="url") String url) {
 	    try {
 	    	//adType: 1 & active: 1 for new Lending advertisement 
 	    	
@@ -99,7 +100,7 @@ public class AdvertisementController {
 	    	User user = _userDao.getById(userId);
 	    	java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 	    	System.out.println("Product Name:"+productName+" Product Desc: "+productDescription+" Product Price:"+productpriceFloat+" Active: "+activeInteger+" Category:"+category.getCategoryName()+" Ad Type:"+adTypeInteger+" User:"+user.getName());
-	    	Advertisement ad = new Advertisement(productName, productDescription, productpriceFloat,date,activeInteger,category,user,adTypeInteger);
+	    	Advertisement ad = new Advertisement(productName, productDescription, productpriceFloat,date,activeInteger,category,user,adTypeInteger,url);
 	     	 _adDao.save(ad);
 			}
 			catch(Exception ex) {
@@ -117,7 +118,8 @@ public class AdvertisementController {
 			  @RequestParam(value="active") String active, 
 			  @RequestParam(value="categoryId") String categoryId, 
 			  @RequestParam(value="userId") String userId,
-			  @RequestParam(value="adType") String adType) {
+			  @RequestParam(value="adType") String adType,
+			  @RequestParam(value="url") String url) {
 	    try {
 	    	//adType: 2 & active: 1 for new Borrowing advertisement	    	
 	    	System.out.println("In Add Borrowing product !!!!!!!!!!!!!!!!");
@@ -129,7 +131,7 @@ public class AdvertisementController {
 	    	User user = _userDao.getById(userId);
 	    	java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 	    	
-	    	Advertisement ad = new Advertisement(productName, productDescription,0,date,activeInteger,category,user,adTypeInteger);
+	    	Advertisement ad = new Advertisement(productName, productDescription,0,date,activeInteger,category,user,adTypeInteger,url);
 				 _adDao.save(ad);
 			}
 			catch(Exception ex) {

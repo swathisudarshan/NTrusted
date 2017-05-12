@@ -61,6 +61,11 @@ public class Advertisement {
 	@Column(name="AdType")
 	private int adType;
 	
+	@Column(name="url")
+	private String url;
+	
+	
+
 	public Advertisement()
 	{
 		
@@ -72,7 +77,7 @@ public class Advertisement {
 	}
 
 	public Advertisement(String productName, String productDescription, float productPrice, Date postDate,
-			int active, Category category, User user, int AdType) {
+			int active, Category category, User user, int AdType,String url) {
 		this.productName = productName;
 		this.productDescription = productDescription;
 		this.productPrice = productPrice;
@@ -81,6 +86,7 @@ public class Advertisement {
 		this.category = category;
 		this.user = user;
 		this.adType = AdType;
+		this.url = url;
 	}
 
 	public int getAdId() {
@@ -154,6 +160,14 @@ public class Advertisement {
 
 	public void setAdType(int adType) {
 		this.adType = adType;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	/*@Override
