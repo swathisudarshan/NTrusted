@@ -453,7 +453,7 @@ public class PostAdvFragment extends Fragment implements AdapterView.OnItemSelec
         parameters.put("active", "1");
         parameters.put("userId",userId);
         System.out.println("Photo url is "+photoURL);
-        parameters.put("photoURL",photoURL);
+        parameters.put("url",photoURL);
 
 
 

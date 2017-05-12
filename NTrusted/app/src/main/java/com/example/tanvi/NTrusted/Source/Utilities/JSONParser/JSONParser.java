@@ -40,8 +40,12 @@ public class JSONParser {
         adv.setProductPrice(String.valueOf(advObj.get("productPrice")));
         adv.setAdType((Integer) advObj.get("adType"));
 
-        /*TODO*/
-        adv.setImageURL((String) advObj.get("ImageURL"));
+        if(advObj.get("url")==null)
+            System.out.println("Image url is null");
+
+        else
+        adv.setImageURL(String.valueOf(advObj.get("url")));
+
         Date date = new Date();
         date.setTime((Long) advObj.get("postDate"));
         adv.setPostDate(date);
@@ -148,6 +152,8 @@ public class JSONParser {
         adv.setProductDesc(String.valueOf(advObj.get("productDescription")));
         adv.setProductPrice(String.valueOf(advObj.get("productPrice")));
         adv.setAdType((Integer) advObj.get("adType"));
+        if(advObj.get("url")!=null)
+        adv.setImageURL((String) advObj.get("url"));
         Date date = new Date();
         date.setTime((Long) advObj.get("postDate"));
         adv.setPostDate(date);
@@ -184,6 +190,8 @@ public class JSONParser {
         Advertisement ad = new Advertisement();
         ad.setAdId(String.valueOf(object.getJSONObject("advertisement").get("adId")));
         ad.setProductName((String) object.getJSONObject("advertisement").get("productName"));
+        if(object.getJSONObject("advertisement").get("url")!=null)
+        adv.setImageURL((String) object.getJSONObject("advertisement").get("url"));
 
         Category category = new Category();
         category.setCategoryName((String) object.getJSONObject("advertisement").getJSONObject("category").get("categoryName"));
@@ -276,6 +284,8 @@ public class JSONParser {
         Advertisement ad = new Advertisement();
         ad.setAdId(String.valueOf(reqObject.getJSONObject("advertisement").get("adId")));
         ad.setProductName((String) reqObject.getJSONObject("advertisement").get("productName"));
+        if(reqObject.getJSONObject("advertisement").get("url")!=null)
+            adv.setImageURL((String) reqObject.getJSONObject("advertisement").get("url"));
 
 
         Category category = new Category();
@@ -356,6 +366,8 @@ public class JSONParser {
         date.setTime((Long) advObj.get("postDate"));
         adv.setPostDate(date);
         adv.setStatus(String.valueOf(advObj.get("active")));
+        adv.setImageURL((String) advObj.get("url"));
+
 
         //set user details
         User user = new User();

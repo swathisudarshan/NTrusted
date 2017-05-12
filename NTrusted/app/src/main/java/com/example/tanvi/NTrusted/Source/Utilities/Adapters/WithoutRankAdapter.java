@@ -110,7 +110,7 @@ public class WithoutRankAdapter extends BaseAdapter {
                 holder.adType = (TextView) view.findViewById(R.id.adType);
                 holder.category = (TextView) view.findViewById(R.id.category);
                 holder.userName = (TextView) view.findViewById(R.id.userName);
-                holder.postedAdFor= (TextView) view.findViewById(R.id.wantsTo);
+
                 holder.productImage= (NetworkImageView) view.findViewById(R.id.productImage);
                 view.setTag(holder);
             }
